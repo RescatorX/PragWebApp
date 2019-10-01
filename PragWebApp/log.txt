@@ -1,0 +1,418 @@
+2019-10-02 00:37:55.761 +02:00 [Information] User profile is available. Using '"C:\Users\Miroslav\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-02 00:37:56.667 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:37:56.913 +02:00 [Error] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)
+PragWebApp.Controllers.HomeController.Index (PragWebApp)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(CandidateSet candidates)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, EndpointSelectorContext context, CandidateSet candidateSet)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.SelectAsync(HttpContext httpContext, EndpointSelectorContext context, CandidateSet candidateSet)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext, EndpointSelectorContext context)
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher.MatchAsync(HttpContext httpContext, EndpointSelectorContext context)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-02 00:37:57.036 +02:00 [Information] Request finished in 371.6321ms 500 text/html; charset=utf-8
+2019-10-02 00:42:59.851 +02:00 [Information] User profile is available. Using '"C:\Users\Miroslav\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-02 00:43:00.769 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:43:00.938 +02:00 [Information] Request finished in 171.3424ms 404 
+2019-10-02 00:50:27.318 +02:00 [Information] User profile is available. Using '"C:\Users\Miroslav\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-02 00:50:28.207 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.349 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.377 +02:00 [Information] Request finished in 17.0934ms 302 
+2019-10-02 00:50:28.377 +02:00 [Information] Request finished in 153.5992ms 302 
+2019-10-02 00:50:28.396 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.404 +02:00 [Information] Request finished in 3.3321ms 302 
+2019-10-02 00:50:28.427 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.431 +02:00 [Information] Request finished in 2.2505ms 302 
+2019-10-02 00:50:28.445 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.449 +02:00 [Information] Request finished in 2.9673ms 302 
+2019-10-02 00:50:28.453 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.458 +02:00 [Information] Request finished in 3.0641ms 302 
+2019-10-02 00:50:28.460 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.465 +02:00 [Information] Request finished in 2.6618ms 302 
+2019-10-02 00:50:28.467 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.472 +02:00 [Information] Request finished in 2.5146ms 302 
+2019-10-02 00:50:28.474 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.479 +02:00 [Information] Request finished in 3.2314ms 302 
+2019-10-02 00:50:28.481 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.486 +02:00 [Information] Request finished in 2.4317ms 302 
+2019-10-02 00:50:28.489 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.492 +02:00 [Information] Request finished in 2.4857ms 302 
+2019-10-02 00:50:28.495 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.498 +02:00 [Information] Request finished in 2.1474ms 302 
+2019-10-02 00:50:28.501 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.510 +02:00 [Information] Request finished in 2.9496ms 302 
+2019-10-02 00:50:28.514 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.525 +02:00 [Information] Request finished in 4.3703ms 302 
+2019-10-02 00:50:28.526 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.531 +02:00 [Information] Request finished in 6.4128ms 302 
+2019-10-02 00:50:28.533 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.539 +02:00 [Information] Request finished in 2.9602ms 302 
+2019-10-02 00:50:28.542 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.546 +02:00 [Information] Request finished in 3.1ms 302 
+2019-10-02 00:50:28.550 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.557 +02:00 [Information] Request finished in 3.2453ms 302 
+2019-10-02 00:50:28.561 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.565 +02:00 [Information] Request finished in 5.0927ms 302 
+2019-10-02 00:50:28.573 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.614 +02:00 [Information] Request finished in 3.9523ms 302 
+2019-10-02 00:50:28.871 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.900 +02:00 [Information] Request finished in 11.4724ms 302 
+2019-10-02 00:50:28.904 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:28.959 +02:00 [Information] Request finished in 10.7342ms 302 
+2019-10-02 00:50:28.980 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.028 +02:00 [Information] Request finished in 45.9214ms 302 
+2019-10-02 00:50:29.139 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.145 +02:00 [Information] Request finished in 9.0735ms 302 
+2019-10-02 00:50:29.148 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.161 +02:00 [Information] Request finished in 3.7652ms 302 
+2019-10-02 00:50:29.162 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.167 +02:00 [Information] Request finished in 3.1742ms 302 
+2019-10-02 00:50:29.170 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.176 +02:00 [Information] Request finished in 3.4703ms 302 
+2019-10-02 00:50:29.179 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.186 +02:00 [Information] Request finished in 3.1687ms 302 
+2019-10-02 00:50:29.189 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.195 +02:00 [Information] Request finished in 3.6949ms 302 
+2019-10-02 00:50:29.197 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.201 +02:00 [Information] Request finished in 3.5046ms 302 
+2019-10-02 00:50:29.205 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.209 +02:00 [Information] Request finished in 3.1422ms 302 
+2019-10-02 00:50:29.212 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.216 +02:00 [Information] Request finished in 2.9934ms 302 
+2019-10-02 00:50:29.221 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.227 +02:00 [Information] Request finished in 4.981ms 302 
+2019-10-02 00:50:29.231 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.234 +02:00 [Information] Request finished in 3.9329ms 302 
+2019-10-02 00:50:29.240 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.252 +02:00 [Information] Request finished in 6.6445ms 302 
+2019-10-02 00:50:29.254 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.262 +02:00 [Information] Request finished in 7.7423ms 302 
+2019-10-02 00:50:29.266 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.281 +02:00 [Information] Request finished in 7.2453ms 302 
+2019-10-02 00:50:29.282 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.290 +02:00 [Information] Request finished in 3.3317ms 302 
+2019-10-02 00:50:29.293 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.297 +02:00 [Information] Request finished in 3.1371ms 302 
+2019-10-02 00:50:29.300 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:50:29.305 +02:00 [Information] Request finished in 3.0435ms 302 
+2019-10-02 00:53:22.773 +02:00 [Information] User profile is available. Using '"C:\Users\Miroslav\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-02 00:53:23.775 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:23.888 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:23.897 +02:00 [Information] Request finished in 122.9667ms 302 
+2019-10-02 00:53:23.905 +02:00 [Information] Request finished in 9.0091ms 302 
+2019-10-02 00:53:23.914 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:23.925 +02:00 [Information] Request finished in 7.2039ms 302 
+2019-10-02 00:53:23.927 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:23.949 +02:00 [Information] Request finished in 17.4431ms 302 
+2019-10-02 00:53:23.977 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:23.994 +02:00 [Information] Request finished in 2.5209ms 302 
+2019-10-02 00:53:23.996 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.000 +02:00 [Information] Request finished in 2.599ms 302 
+2019-10-02 00:53:24.003 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.009 +02:00 [Information] Request finished in 2.7222ms 302 
+2019-10-02 00:53:24.011 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.014 +02:00 [Information] Request finished in 2.539ms 302 
+2019-10-02 00:53:24.018 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.022 +02:00 [Information] Request finished in 3.1975ms 302 
+2019-10-02 00:53:24.025 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.029 +02:00 [Information] Request finished in 2.3748ms 302 
+2019-10-02 00:53:24.032 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.037 +02:00 [Information] Request finished in 2.6002ms 302 
+2019-10-02 00:53:24.039 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.042 +02:00 [Information] Request finished in 2.3389ms 302 
+2019-10-02 00:53:24.045 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.050 +02:00 [Information] Request finished in 2.8363ms 302 
+2019-10-02 00:53:24.053 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.057 +02:00 [Information] Request finished in 3.2851ms 302 
+2019-10-02 00:53:24.059 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.063 +02:00 [Information] Request finished in 2.2974ms 302 
+2019-10-02 00:53:24.068 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.073 +02:00 [Information] Request finished in 3.6053ms 302 
+2019-10-02 00:53:24.076 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.081 +02:00 [Information] Request finished in 3.0424ms 302 
+2019-10-02 00:53:24.086 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.092 +02:00 [Information] Request finished in 5.2593ms 302 
+2019-10-02 00:53:24.095 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.108 +02:00 [Information] Request finished in 8.4967ms 302 
+2019-10-02 00:53:24.109 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.115 +02:00 [Information] Request finished in 4.4465ms 302 
+2019-10-02 00:53:24.550 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.638 +02:00 [Information] Request finished in 143.9462ms 302 
+2019-10-02 00:53:24.726 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.736 +02:00 [Information] Request finished in 4.3447ms 302 
+2019-10-02 00:53:24.738 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.742 +02:00 [Information] Request finished in 5.5597ms 302 
+2019-10-02 00:53:24.745 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.751 +02:00 [Information] Request finished in 3.2737ms 302 
+2019-10-02 00:53:24.755 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.760 +02:00 [Information] Request finished in 4.3107ms 302 
+2019-10-02 00:53:24.763 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.767 +02:00 [Information] Request finished in 3.5125ms 302 
+2019-10-02 00:53:24.771 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.775 +02:00 [Information] Request finished in 3.3428ms 302 
+2019-10-02 00:53:24.779 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.783 +02:00 [Information] Request finished in 4.0375ms 302 
+2019-10-02 00:53:24.787 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.791 +02:00 [Information] Request finished in 3.5169ms 302 
+2019-10-02 00:53:24.793 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.798 +02:00 [Information] Request finished in 2.8809ms 302 
+2019-10-02 00:53:24.800 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.806 +02:00 [Information] Request finished in 3.01ms 302 
+2019-10-02 00:53:24.810 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.818 +02:00 [Information] Request finished in 4.2693ms 302 
+2019-10-02 00:53:24.820 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.828 +02:00 [Information] Request finished in 5.1965ms 302 
+2019-10-02 00:53:24.831 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.837 +02:00 [Information] Request finished in 6.2174ms 302 
+2019-10-02 00:53:24.840 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.844 +02:00 [Information] Request finished in 3.1734ms 302 
+2019-10-02 00:53:24.848 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.856 +02:00 [Information] Request finished in 3.6653ms 302 
+2019-10-02 00:53:24.860 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.869 +02:00 [Information] Request finished in 3.5879ms 302 
+2019-10-02 00:53:24.872 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.876 +02:00 [Information] Request finished in 6.7377ms 302 
+2019-10-02 00:53:24.879 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.883 +02:00 [Information] Request finished in 3.1975ms 302 
+2019-10-02 00:53:24.887 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:24.891 +02:00 [Information] Request finished in 3.9629ms 302 
+2019-10-02 00:53:29.942 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:29.959 +02:00 [Information] Request finished in 7.509ms 302 
+2019-10-02 00:53:29.960 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:29.970 +02:00 [Information] Request finished in 9.3269ms 302 
+2019-10-02 00:53:29.975 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:29.978 +02:00 [Information] Request finished in 5.1196ms 302 
+2019-10-02 00:53:29.981 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:29.985 +02:00 [Information] Request finished in 2.3882ms 302 
+2019-10-02 00:53:29.989 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:29.992 +02:00 [Information] Request finished in 2.1826ms 302 
+2019-10-02 00:53:29.995 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:29.998 +02:00 [Information] Request finished in 2.0124ms 302 
+2019-10-02 00:53:30.001 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.005 +02:00 [Information] Request finished in 2.1956ms 302 
+2019-10-02 00:53:30.008 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.011 +02:00 [Information] Request finished in 3.0183ms 302 
+2019-10-02 00:53:30.014 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.017 +02:00 [Information] Request finished in 2.419ms 302 
+2019-10-02 00:53:30.027 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.032 +02:00 [Information] Request finished in 3.3443ms 302 
+2019-10-02 00:53:30.034 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.040 +02:00 [Information] Request finished in 4.5452ms 302 
+2019-10-02 00:53:30.042 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.048 +02:00 [Information] Request finished in 2.7301ms 302 
+2019-10-02 00:53:30.051 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.055 +02:00 [Information] Request finished in 3.2283ms 302 
+2019-10-02 00:53:30.058 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.061 +02:00 [Information] Request finished in 2.3188ms 302 
+2019-10-02 00:53:30.064 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.069 +02:00 [Information] Request finished in 2.6381ms 302 
+2019-10-02 00:53:30.072 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.076 +02:00 [Information] Request finished in 3.0187ms 302 
+2019-10-02 00:53:30.079 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.082 +02:00 [Information] Request finished in 2.9366ms 302 
+2019-10-02 00:53:30.086 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.091 +02:00 [Information] Request finished in 3.1059ms 302 
+2019-10-02 00:53:30.093 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.096 +02:00 [Information] Request finished in 2.7159ms 302 
+2019-10-02 00:53:30.099 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.103 +02:00 [Information] Request finished in 1.9354ms 302 
+2019-10-02 00:53:30.660 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.666 +02:00 [Information] Request finished in 5.148ms 302 
+2019-10-02 00:53:30.672 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.687 +02:00 [Information] Request finished in 7.7427ms 302 
+2019-10-02 00:53:30.689 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.697 +02:00 [Information] Request finished in 4.0292ms 302 
+2019-10-02 00:53:30.703 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.707 +02:00 [Information] Request finished in 6.2987ms 302 
+2019-10-02 00:53:30.711 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.715 +02:00 [Information] Request finished in 3.6538ms 302 
+2019-10-02 00:53:30.718 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.725 +02:00 [Information] Request finished in 3.9432ms 302 
+2019-10-02 00:53:30.726 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.730 +02:00 [Information] Request finished in 3.2318ms 302 
+2019-10-02 00:53:30.734 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.739 +02:00 [Information] Request finished in 3.1256ms 302 
+2019-10-02 00:53:30.741 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.744 +02:00 [Information] Request finished in 3.0652ms 302 
+2019-10-02 00:53:30.747 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.751 +02:00 [Information] Request finished in 2.0428ms 302 
+2019-10-02 00:53:30.754 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.757 +02:00 [Information] Request finished in 2.6061ms 302 
+2019-10-02 00:53:30.760 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.763 +02:00 [Information] Request finished in 2.6875ms 302 
+2019-10-02 00:53:30.766 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.769 +02:00 [Information] Request finished in 1.9031ms 302 
+2019-10-02 00:53:30.773 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.775 +02:00 [Information] Request finished in 2.5679ms 302 
+2019-10-02 00:53:30.778 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.781 +02:00 [Information] Request finished in 2.0993ms 302 
+2019-10-02 00:53:30.784 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.788 +02:00 [Information] Request finished in 2.2299ms 302 
+2019-10-02 00:53:30.793 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.796 +02:00 [Information] Request finished in 5.8199ms 302 
+2019-10-02 00:53:30.800 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.804 +02:00 [Information] Request finished in 2.3914ms 302 
+2019-10-02 00:53:30.807 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.810 +02:00 [Information] Request finished in 3.2283ms 302 
+2019-10-02 00:53:30.814 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:53:30.817 +02:00 [Information] Request finished in 3.0802ms 302 
+2019-10-02 00:54:26.282 +02:00 [Information] User profile is available. Using '"C:\Users\Miroslav\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-02 00:54:27.088 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:54:27.224 +02:00 [Information] Request finished in 140.9211ms 404 
+2019-10-02 00:55:37.080 +02:00 [Information] User profile is available. Using '"C:\Users\Miroslav\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-02 00:55:37.838 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:55:37.976 +02:00 [Information] Request finished in 140.4316ms 404 
+2019-10-02 00:56:55.342 +02:00 [Information] User profile is available. Using '"C:\Users\Miroslav\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-02 00:56:56.099 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:56:56.266 +02:00 [Error] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)
+PragWebApp.Controllers.HomeController.Index (PragWebApp)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(CandidateSet candidates)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, EndpointSelectorContext context, CandidateSet candidateSet)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.SelectAsync(HttpContext httpContext, EndpointSelectorContext context, CandidateSet candidateSet)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext, EndpointSelectorContext context)
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher.MatchAsync(HttpContext httpContext, EndpointSelectorContext context)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-02 00:56:56.341 +02:00 [Information] Request finished in 245.521ms 500 text/html; charset=utf-8
+2019-10-02 00:56:56.508 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/favicon.ico  
+2019-10-02 00:56:56.538 +02:00 [Information] Sending file. Request path: '"/favicon.ico"'. Physical path: '"C:\Work\PragWebApp\PragWebApp\wwwroot\favicon.ico"'
+2019-10-02 00:56:56.545 +02:00 [Information] Request finished in 32.8115ms 200 image/x-icon
+2019-10-02 00:58:50.498 +02:00 [Information] User profile is available. Using '"C:\Users\Miroslav\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-02 00:58:51.403 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 00:58:51.601 +02:00 [Error] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)
+PragWebApp.Controllers.HomeController.Index (PragWebApp)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(CandidateSet candidates)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, EndpointSelectorContext context, CandidateSet candidateSet)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.SelectAsync(HttpContext httpContext, EndpointSelectorContext context, CandidateSet candidateSet)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext, EndpointSelectorContext context)
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher.MatchAsync(HttpContext httpContext, EndpointSelectorContext context)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-02 00:58:51.701 +02:00 [Information] Request finished in 300.5701ms 500 text/html; charset=utf-8
+2019-10-02 01:07:25.025 +02:00 [Information] User profile is available. Using '"C:\Users\Miroslav\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-02 01:07:25.986 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 01:07:26.166 +02:00 [Information] Request finished in 183.0012ms 404 
+2019-10-02 01:08:36.577 +02:00 [Information] User profile is available. Using '"C:\Users\Miroslav\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-02 01:08:37.402 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 01:08:37.553 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.StartController.Index (PragWebApp)"'
+2019-10-02 01:08:37.569 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Start\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.StartController" ("PragWebApp").
+2019-10-02 01:08:37.701 +02:00 [Information] Executing action method "PragWebApp.Controllers.StartController.Index (PragWebApp)" - Validation state: Valid
+2019-10-02 01:08:37.710 +02:00 [Information] Executed action method "PragWebApp.Controllers.StartController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.RedirectToActionResult" in 3.6238ms.
+2019-10-02 01:08:37.759 +02:00 [Information] Executing RedirectResult, redirecting to "/Home?area=Web".
+2019-10-02 01:08:37.766 +02:00 [Information] Executed action "PragWebApp.Controllers.StartController.Index (PragWebApp)" in 191.7147ms
+2019-10-02 01:08:37.768 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.StartController.Index (PragWebApp)"'
+2019-10-02 01:08:37.815 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/Home?area=Web  
+2019-10-02 01:08:37.822 +02:00 [Information] Request finished in 423.8392ms 302 
+2019-10-02 01:08:37.825 +02:00 [Information] Executing endpoint '"PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-02 01:08:37.840 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.ActionResult Index()" on controller "PragWebApp.Areas.Web.Controllers.HomeController" ("PragWebApp").
+2019-10-02 01:08:37.866 +02:00 [Information] Executing action method "PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-02 01:08:37.870 +02:00 [Information] Executed action method "PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.6667ms.
+2019-10-02 01:08:37.926 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-02 01:08:37.933 +02:00 [Error] The view '"Index"' was not found. Searched locations: ["/Views/Home/Index.cshtml", "/Views/Shared/Index.cshtml", "/Pages/Shared/Index.cshtml"]
+2019-10-02 01:08:37.944 +02:00 [Information] Executed action "PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)" in 101.1729ms
+2019-10-02 01:08:37.947 +02:00 [Information] Executed endpoint '"PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-02 01:08:38.028 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The view 'Index' was not found. The following locations were searched:
+/Views/Home/Index.cshtml
+/Views/Shared/Index.cshtml
+/Pages/Shared/Index.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-02 01:08:38.090 +02:00 [Information] Request finished in 274.2886ms 500 text/html; charset=utf-8
+2019-10-02 01:09:55.214 +02:00 [Information] User profile is available. Using '"C:\Users\Miroslav\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-02 01:09:56.133 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 01:09:56.266 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.StartController.Index (PragWebApp)"'
+2019-10-02 01:09:56.287 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Start\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.StartController" ("PragWebApp").
+2019-10-02 01:09:56.425 +02:00 [Information] Executing action method "PragWebApp.Controllers.StartController.Index (PragWebApp)" - Validation state: Valid
+2019-10-02 01:09:56.435 +02:00 [Information] Executed action method "PragWebApp.Controllers.StartController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.RedirectToActionResult" in 4.0419ms.
+2019-10-02 01:09:56.507 +02:00 [Information] Executing RedirectResult, redirecting to "/Home?area=Web".
+2019-10-02 01:09:56.514 +02:00 [Information] Executed action "PragWebApp.Controllers.StartController.Index (PragWebApp)" in 220.8459ms
+2019-10-02 01:09:56.516 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.StartController.Index (PragWebApp)"'
+2019-10-02 01:09:56.581 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/Home?area=Web  
+2019-10-02 01:09:56.589 +02:00 [Information] Request finished in 454.8132ms 302 
+2019-10-02 01:09:56.597 +02:00 [Information] Executing endpoint '"PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-02 01:09:56.613 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.ActionResult Index()" on controller "PragWebApp.Areas.Web.Controllers.HomeController" ("PragWebApp").
+2019-10-02 01:09:56.661 +02:00 [Information] Executing action method "PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-02 01:09:56.664 +02:00 [Information] Executed action method "PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.7192ms.
+2019-10-02 01:09:56.720 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-02 01:09:56.880 +02:00 [Information] Executed ViewResult - view "Index" executed in 210.2691ms.
+2019-10-02 01:09:56.884 +02:00 [Information] Executed action "PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)" in 267.4633ms
+2019-10-02 01:09:56.886 +02:00 [Information] Executed endpoint '"PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-02 01:09:56.898 +02:00 [Information] Request finished in 311.3734ms 200 text/html; charset=utf-8
+2019-10-02 01:09:57.000 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+2019-10-02 01:09:57.003 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/lib/bootstrap/dist/css/bootstrap.css  
+2019-10-02 01:09:57.009 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/lib/bootstrap/dist/js/bootstrap.bundle.js  
+2019-10-02 01:09:57.011 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/css/site.css  
+2019-10-02 01:09:57.015 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/lib/jquery/dist/jquery.js  
+2019-10-02 01:09:57.027 +02:00 [Information] Sending file. Request path: '"/js/site.js"'. Physical path: '"C:\Work\PragWebApp\PragWebApp\wwwroot\js\site.js"'
+2019-10-02 01:09:57.042 +02:00 [Information] Request finished in 46.343ms 200 application/javascript
+2019-10-02 01:09:57.114 +02:00 [Information] Sending file. Request path: '"/css/site.css"'. Physical path: '"C:\Work\PragWebApp\PragWebApp\wwwroot\css\site.css"'
+2019-10-02 01:09:57.120 +02:00 [Information] Sending file. Request path: '"/lib/bootstrap/dist/js/bootstrap.bundle.js"'. Physical path: '"C:\Work\PragWebApp\PragWebApp\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js"'
+2019-10-02 01:09:57.122 +02:00 [Information] Sending file. Request path: '"/lib/bootstrap/dist/css/bootstrap.css"'. Physical path: '"C:\Work\PragWebApp\PragWebApp\wwwroot\lib\bootstrap\dist\css\bootstrap.css"'
+2019-10-02 01:09:57.136 +02:00 [Information] Request finished in 126.458ms 200 text/css
+2019-10-02 01:09:57.140 +02:00 [Information] Request finished in 142.7015ms 200 text/css
+2019-10-02 01:09:57.149 +02:00 [Information] Request finished in 123.5431ms 200 application/javascript
+2019-10-02 01:09:57.259 +02:00 [Information] Sending file. Request path: '"/lib/jquery/dist/jquery.js"'. Physical path: '"C:\Work\PragWebApp\PragWebApp\wwwroot\lib\jquery\dist\jquery.js"'
+2019-10-02 01:09:57.263 +02:00 [Information] Request finished in 247.6109ms 200 application/javascript
+2019-10-02 01:11:59.550 +02:00 [Information] User profile is available. Using '"C:\Users\Miroslav\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-02 01:12:00.514 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/  
+2019-10-02 01:12:00.652 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.StartController.Index (PragWebApp)"'
+2019-10-02 01:12:00.673 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Start\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.StartController" ("PragWebApp").
+2019-10-02 01:12:00.807 +02:00 [Information] Executing action method "PragWebApp.Controllers.StartController.Index (PragWebApp)" - Validation state: Valid
+2019-10-02 01:12:00.819 +02:00 [Information] Executed action method "PragWebApp.Controllers.StartController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.RedirectToActionResult" in 3.6246ms.
+2019-10-02 01:12:00.887 +02:00 [Information] Executing RedirectResult, redirecting to "/Web".
+2019-10-02 01:12:00.895 +02:00 [Information] Executed action "PragWebApp.Controllers.StartController.Index (PragWebApp)" in 215.6224ms
+2019-10-02 01:12:00.899 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.StartController.Index (PragWebApp)"'
+2019-10-02 01:12:00.965 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44350/Web  
+2019-10-02 01:12:00.973 +02:00 [Information] Executing endpoint '"PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-02 01:12:00.980 +02:00 [Information] Request finished in 460.4369ms 302 
+2019-10-02 01:12:00.980 +02:00 [Information] Route matched with "{area = \"Web\", action = \"Index\", controller = \"Home\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.ActionResult Index()" on controller "PragWebApp.Areas.Web.Controllers.HomeController" ("PragWebApp").
+2019-10-02 01:12:01.012 +02:00 [Information] Executing action method "PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-02 01:12:01.041 +02:00 [Information] Executed action method "PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 24.4833ms.
+2019-10-02 01:12:01.086 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-02 01:12:01.135 +02:00 [Information] Executed ViewResult - view "Index" executed in 73.4309ms.
+2019-10-02 01:12:01.139 +02:00 [Information] Executed action "PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)" in 155.2896ms
+2019-10-02 01:12:01.141 +02:00 [Information] Executed endpoint '"PragWebApp.Areas.Web.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-02 01:12:01.146 +02:00 [Information] Request finished in 180.9634ms 200 text/html; charset=utf-8
