@@ -1,9 +1,8 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PragWebApp", "PragWebApp\PragWebApp.csproj", "{6A66F94B-BA54-4BBC-A5A9-C7E8D6142887}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PragWebApp", "PragWebApp\PragWebApp.csproj", "{D611A469-0BE9-4B0E-8B5B-4125FB16D158}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +10,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6A66F94B-BA54-4BBC-A5A9-C7E8D6142887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A66F94B-BA54-4BBC-A5A9-C7E8D6142887}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A66F94B-BA54-4BBC-A5A9-C7E8D6142887}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A66F94B-BA54-4BBC-A5A9-C7E8D6142887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D611A469-0BE9-4B0E-8B5B-4125FB16D158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D611A469-0BE9-4B0E-8B5B-4125FB16D158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D611A469-0BE9-4B0E-8B5B-4125FB16D158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D611A469-0BE9-4B0E-8B5B-4125FB16D158}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

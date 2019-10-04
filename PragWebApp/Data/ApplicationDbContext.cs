@@ -3,36 +3,35 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Text;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
-using Microsoft.IdentityModel.Protocols;
 
 using PragWebApp.Data.Entities;
 using PragWebApp.Data.Enums;
 
 namespace PragWebApp.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
-
+/*
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
-
+*/
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<User>().ToTable("User");
-            modelBuilder.Entity<Role>().ToTable("Role");
-            modelBuilder.Entity<UserRole>().ToTable("UserRole");
+            //modelBuilder.Entity<User>().ToTable("User");
+            //modelBuilder.Entity<Role>().ToTable("Role");
+            //modelBuilder.Entity<UserRole>().ToTable("UserRole");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -52,7 +51,7 @@ namespace PragWebApp.Data
             serviceCollection.AddLogging(builder => builder.AddConsole().AddFilter(DbLoggerCategory.Database.Command.Name, LogLevel.Information));
             return serviceCollection.BuildServiceProvider().GetService<ILoggerFactory>();
         }
-
+/*
         public async Task SeedDatabase()
         {
             Role adminRole = null;
@@ -140,5 +139,6 @@ namespace PragWebApp.Data
                 throw new Exception("PrefillDatabase - UserRoles table prefill error: " + e.Message, e);
             }
         }
+*/
     }
 }

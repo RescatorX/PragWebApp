@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 using PragWebApp.Data;
 using PragWebApp.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace PragWebApp.Services
 {
@@ -26,14 +27,14 @@ namespace PragWebApp.Services
             }
         }
 
-        public async Task<User> GetAllowedUser(string login)
+        public async Task<IdentityUser> GetAllowedUser(string userName)
         {
-            return await this.dbContext.Users.FirstOrDefaultAsync(u => u.Login.Equals(login, StringComparison.InvariantCultureIgnoreCase));
+            return await this.dbContext.Users.FirstOrDefaultAsync(u => u.UserName.Equals(userName, StringComparison.InvariantCultureIgnoreCase));
         }
 
-        public async Task<List<UserRole>> GetUserRoles(User user)
+        public async Task<List<IdentityUserRole<string>>> GetUserRoles(string userId)
         {
-            return await this.dbContext.UserRoles.Where(ur => ur.User.Id.Equals(user.Id)).ToListAsync();
+            return await this.dbContext.UserRoles.Where(ur => ur.UserId.Equals(userId)).ToListAsync();
         }
     }
 }
