@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using Microsoft.AspNetCore.Identity;
-
-using PragWebApp.Data.Entities;
+using PragWebApp.Models;
 
 namespace PragWebApp.Services
 {
     public interface IUserService
     {
-        Task<IdentityUser> GetAllowedUser(string userName);
+        Task<ApplicationUser> GetAllowedUser(string userName);
 
-        Task<List<IdentityUserRole<string>>> GetUserRoles(string userId);
+        Task<List<ApplicationUserRole>> GetUserRoles(string userId);
     }
 }

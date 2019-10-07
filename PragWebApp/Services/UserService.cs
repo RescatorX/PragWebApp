@@ -7,8 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 
 using PragWebApp.Data;
-using PragWebApp.Data.Entities;
-using Microsoft.AspNetCore.Identity;
+using PragWebApp.Models;
 
 namespace PragWebApp.Services
 {
@@ -27,12 +26,12 @@ namespace PragWebApp.Services
             }
         }
 
-        public async Task<IdentityUser> GetAllowedUser(string userName)
+        public async Task<ApplicationUser> GetAllowedUser(string userName)
         {
             return await this.dbContext.Users.FirstOrDefaultAsync(u => u.UserName.Equals(userName, StringComparison.InvariantCultureIgnoreCase));
         }
 
-        public async Task<List<IdentityUserRole<string>>> GetUserRoles(string userId)
+        public async Task<List<ApplicationUserRole>> GetUserRoles(string userId)
         {
             return await this.dbContext.UserRoles.Where(ur => ur.UserId.Equals(userId)).ToListAsync();
         }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,27 +13,78 @@ using Microsoft.Extensions.Logging;
 
 using PragWebApp.Data.Entities;
 using PragWebApp.Data.Enums;
+using PragWebApp.Extensions;
+using PragWebApp.Models;
+using PragWebApp.Utils;
 
 namespace PragWebApp.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<
+        ApplicationUser, ApplicationRole, Guid,
+        ApplicationUserClaim, ApplicationUserRole, ApplicationUserLogin,
+        ApplicationRoleClaim, ApplicationUserToken>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
-/*
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<UserRole> UserRoles { get; set; }
-*/
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.Entity<User>().ToTable("User");
-            //modelBuilder.Entity<Role>().ToTable("Role");
-            //modelBuilder.Entity<UserRole>().ToTable("UserRole");
+            modelBuilder.Entity<ApplicationUser>(b =>
+            {
+                b.Property(u => u.UserName).HasMaxLength(128);
+                b.Property(u => u.NormalizedUserName).HasMaxLength(128);
+                b.Property(u => u.Email).HasMaxLength(128);
+                b.Property(u => u.NormalizedEmail).HasMaxLength(128);
+
+                // Each User can have many UserClaims
+                b.HasMany(e => e.Claims)
+                    .WithOne(e => e.User)
+                    .HasForeignKey(uc => uc.UserId)
+                    .IsRequired();
+
+                // Each User can have many UserLogins
+                b.HasMany(e => e.Logins)
+                    .WithOne(e => e.User)
+                    .HasForeignKey(ul => ul.UserId)
+                    .IsRequired();
+
+                // Each User can have many UserTokens
+                b.HasMany(e => e.Tokens)
+                    .WithOne(e => e.User)
+                    .HasForeignKey(ut => ut.UserId)
+                    .IsRequired();
+
+                // Each User can have many entries in the UserRole join table
+                b.HasMany(e => e.UserRoles)
+                    .WithOne(e => e.User)
+                    .HasForeignKey(ur => ur.UserId)
+                    .IsRequired();
+            });
+
+            modelBuilder.Entity<ApplicationRole>(b =>
+            {
+                // Each Role can have many entries in the UserRole join table
+                b.HasMany(e => e.UserRoles)
+                    .WithOne(e => e.Role)
+                    .HasForeignKey(ur => ur.RoleId)
+                    .IsRequired();
+
+                // Each Role can have many associated RoleClaims
+                b.HasMany(e => e.RoleClaims)
+                    .WithOne(e => e.Role)
+                    .HasForeignKey(rc => rc.RoleId)
+                    .IsRequired();
+            });
+
+            modelBuilder.Entity<ApplicationUserToken>(b =>
+            {
+                b.Property(t => t.LoginProvider).HasMaxLength(128);
+                b.Property(t => t.Name).HasMaxLength(128);
+            });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -51,25 +104,28 @@ namespace PragWebApp.Data
             serviceCollection.AddLogging(builder => builder.AddConsole().AddFilter(DbLoggerCategory.Database.Command.Name, LogLevel.Information));
             return serviceCollection.BuildServiceProvider().GetService<ILoggerFactory>();
         }
-/*
+
         public async Task SeedDatabase()
         {
-            Role adminRole = null;
-            Role stylistRole = null;
+            //this.UserRoles
+            ApplicationRole adminRole = null;
+            ApplicationRole stylistRole = null;
             try
             {
-                adminRole = new Role()
+                adminRole = new ApplicationRole()
                 {
                     Name = "Admins",
-                    Created = DateTime.Now,
+                    NormalizedName = "ADMINS",
+                    Description = "Administrators role",
                     Status = RoleStatus.Enabled
                 };
                 this.Roles.Add(adminRole);
 
-                stylistRole = new Role()
+                stylistRole = new ApplicationRole()
                 {
                     Name = "Stylists",
-                    Created = DateTime.Now,
+                    NormalizedName = "STYLISTS",
+                    Description = "Stylists role",
                     Status = RoleStatus.Enabled
                 };
                 this.Roles.Add(stylistRole);
@@ -81,27 +137,55 @@ namespace PragWebApp.Data
                 throw new Exception("PrefillDatabase - Roles table prefill error: " + e.Message, e);
             }
 
-            User adminUser1 = null;
-            User adminUser2 = null;
+            List<ApplicationUserClaim> adminUserClaims = new List<ApplicationUserClaim>();
+            List<ApplicationUserToken> adminUserTokens = new List<ApplicationUserToken>();
+            List<ApplicationUserRole> adminUserRoles = new List<ApplicationUserRole>();
+
+            ApplicationUser adminUser1 = null;
+            ApplicationUser adminUser2 = null;
             try
             {
-                adminUser1 = new User()
+                adminUser1 = new ApplicationUser()
                 {
                     FirstName = "Miroslav",
                     LastName = "Kalina",
-                    Login = "xkalinam@email.cz",
-                    Password = "PragPrag",
+                    UserName = "RescatorX",
+                    NormalizedUserName = "RESCATORX",
+                    Email = "xkalinam@email.cz",
+                    NormalizedEmail = "XKALINAM@EMAIL.CZ",
+                    EmailConfirmed = true,
+                    Logins = null,
+                    TwoFactorEnabled = false,
+                    PhoneNumber = "123456789",
+                    PhoneNumberConfirmed = true,
+                    AccessFailedCount = 0,
+                    Claims = adminUserClaims,
+                    UserRoles = adminUserRoles,
+                    Tokens = adminUserTokens,
+                    PasswordHash = Constants.DefaultAdminPassword.ComputeSHA256Hash(),
                     Created = DateTime.Now,
                     Status = UserStatus.Verified
                 };
                 this.Users.Add(adminUser1);
 
-                adminUser2 = new User()
+                adminUser2 = new ApplicationUser()
                 {
                     FirstName = "Jiří",
                     LastName = "Prágr",
-                    Login = "jiri.pragr@seznam.cz",
-                    Password = "PragPrag",
+                    UserName = "jpragr",
+                    NormalizedUserName = "JPRAGR",
+                    Email = "jiri.pragr@seznam.cz",
+                    NormalizedEmail = "JIRI.PRAGR@SEZNAM.CZ",
+                    EmailConfirmed = true,
+                    Logins = null,
+                    TwoFactorEnabled = false,
+                    PhoneNumber = "987654321",
+                    PhoneNumberConfirmed = true,
+                    AccessFailedCount = 0,
+                    Claims = adminUserClaims,
+                    UserRoles = adminUserRoles,
+                    Tokens = adminUserTokens,
+                    PasswordHash = Constants.DefaultAdminPassword.ComputeSHA256Hash(),
                     Created = DateTime.Now,
                     Status = UserStatus.Verified
                 };
@@ -116,18 +200,18 @@ namespace PragWebApp.Data
 
             try
             {
-                UserRole adminUserRole1 = new UserRole()
+                ApplicationUserRole adminUserRole1 = new ApplicationUserRole()
                 {
-                    User = adminUser1,
-                    Role = adminRole,
+                    UserId = adminUser1.Id,
+                    RoleId = adminRole.Id,
                     Added = DateTime.Now
                 };
                 this.UserRoles.Add(adminUserRole1);
 
-                UserRole adminUserRole2 = new UserRole()
+                ApplicationUserRole adminUserRole2 = new ApplicationUserRole()
                 {
-                    User = adminUser2,
-                    Role = adminRole,
+                    UserId = adminUser2.Id,
+                    RoleId = adminRole.Id,
                     Added = DateTime.Now
                 };
                 this.UserRoles.Add(adminUserRole2);
@@ -138,7 +222,35 @@ namespace PragWebApp.Data
             {
                 throw new Exception("PrefillDatabase - UserRoles table prefill error: " + e.Message, e);
             }
+
+            try
+            {
+                ApplicationUserToken adminUserToken1 = new ApplicationUserToken()
+                {
+                    Name = "Token1",
+                    User = adminUser1,
+                    UserId = adminUser1.Id,
+                    Value = "Token1",
+                    LoginProvider = "PragWebAppLoginProvider"
+                };
+                this.UserTokens.Add(adminUserToken1);
+
+                ApplicationUserToken adminUserToken2 = new ApplicationUserToken()
+                {
+                    Name = "Token2",
+                    User = adminUser2,
+                    UserId = adminUser2.Id,
+                    Value = "Token2",
+                    LoginProvider = "PragWebAppLoginProvider"
+                };
+                this.UserTokens.Add(adminUserToken2);
+
+                await this.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("PrefillDatabase - UserRoles table prefill error: " + e.Message, e);
+            }            
         }
-*/
     }
 }
