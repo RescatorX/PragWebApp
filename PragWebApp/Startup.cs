@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using PragWebApp.Models;
+using PragWebApp.Services;
 
 namespace PragWebApp
 {
@@ -41,26 +42,21 @@ namespace PragWebApp
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
-/*
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-*/
-
-/*
-            services.AddSingleton<IHostedService, HardwareService>();
-            services.AddSingleton<IHostedService, RemoteControlService>();
-            services.AddSingleton<IHostedService, PositionService>();
-*/
+            services.AddSingleton<IEmailSender, EmailSender>();
 
             services.AddLogging();
             services.AddHttpContextAccessor();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Account/Login";
+                options.LogoutPath = $"/Account/Logout";
+                options.AccessDeniedPath = $"/Account/AccessDenied";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

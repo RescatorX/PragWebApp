@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using PragWebApp.Data.Enums;
+using PragWebApp.Extensions;
+using PragWebApp.Models;
+
+namespace PragWebApp.Data.Entities
+{
+    public class CalendarEvent : BaseEntity
+    {
+        public string Title { get; set; }
+        public ApplicationUser Owner { get; set; }
+        public CalendarEventType Event { get; set; }
+        public DateTime Term { get; set; }
+        public Customer Customer { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerEmail { get; set; }
+        public string CustomerPhoneNumber { get; set; }
+        public bool SendEmail { get; set; }
+        public bool SendSms { get; set; }
+        public bool AllDay { get; set; }
+        public DateTime Created { get; set; }
+        public EventStatus Status { get; set; }
+
+        public override string ToString()
+        {
+            return "CalendarEvent: [ Id=" + this.Id
+                + ", Title=" + this.Title
+                + ", Owner=" + this.Owner.ToString()
+                + ", Event=" + this.Event.ToString()
+                + ", Term=" + this.Term.ToCzString()
+                + ", Customer=" + this.Customer.ToString()
+                + ", CustomerName=" + this.CustomerName
+                + ", CustomerEmail=" + this.CustomerEmail
+                + ", CustomerPhoneNumber=" + this.CustomerPhoneNumber
+                + ", SendEmail=" + this.SendEmail.ToString()
+                + ", SendSms=" + this.SendSms.ToString()
+                + ", AllDay=" + this.AllDay.ToString()
+                + ", Created=" + this.Created.ToCzString()
+                + ", Status=" + this.Status.ToString()
+                + " ]";
+        }
+    }
+}

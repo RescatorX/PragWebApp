@@ -29,9 +29,19 @@ namespace PragWebApp.Data
         {
         }
 
+        public DbSet<AuditTrail> AuditTrails { get; set; }
+        public DbSet<CalendarEvent> CalendarEvents { get; set; }
+        public DbSet<CalendarEventType> CalendarEventTypes { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<AuditTrail>().ToTable("AuditTrail");
+            modelBuilder.Entity<CalendarEvent>().ToTable("CalendarEvent");
+            modelBuilder.Entity<CalendarEventType>().ToTable("CalendarEventType");
+            modelBuilder.Entity<Customer>().ToTable("Customer");
 
             modelBuilder.Entity<ApplicationUser>(b =>
             {
@@ -85,52 +95,32 @@ namespace PragWebApp.Data
                 b.Property(t => t.LoginProvider).HasMaxLength(128);
                 b.Property(t => t.Name).HasMaxLength(128);
             });
-        }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder
-                .UseLoggerFactory(GetLoggerFactory())
-                .UseSqlServer(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, providerOptions => providerOptions.CommandTimeout(60))
-                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-            }
-        }
+            // Seed initial data
 
-        private ILoggerFactory GetLoggerFactory()
-        {
-            IServiceCollection serviceCollection = new ServiceCollection();
-            serviceCollection.AddLogging(builder => builder.AddConsole().AddFilter(DbLoggerCategory.Database.Command.Name, LogLevel.Information));
-            return serviceCollection.BuildServiceProvider().GetService<ILoggerFactory>();
-        }
-
-        public async Task SeedDatabase()
-        {
-            //this.UserRoles
             ApplicationRole adminRole = null;
             ApplicationRole stylistRole = null;
             try
             {
                 adminRole = new ApplicationRole()
                 {
-                    Name = "Admins",
-                    NormalizedName = "ADMINS",
+                    Id = Guid.NewGuid(),
+                    Name = "Admin",
+                    NormalizedName = "ADMIN",
                     Description = "Administrators role",
                     Status = RoleStatus.Enabled
                 };
-                this.Roles.Add(adminRole);
+                modelBuilder.Entity<ApplicationRole>().HasData(adminRole);
 
                 stylistRole = new ApplicationRole()
                 {
-                    Name = "Stylists",
-                    NormalizedName = "STYLISTS",
+                    Id = Guid.NewGuid(),
+                    Name = "Stylist",
+                    NormalizedName = "STYLIST",
                     Description = "Stylists role",
                     Status = RoleStatus.Enabled
                 };
-                this.Roles.Add(stylistRole);
-
-                await this.SaveChangesAsync();
+                modelBuilder.Entity<ApplicationRole>().HasData(stylistRole);
             }
             catch (Exception e)
             {
@@ -147,6 +137,7 @@ namespace PragWebApp.Data
             {
                 adminUser1 = new ApplicationUser()
                 {
+                    Id = Guid.NewGuid(),
                     FirstName = "Miroslav",
                     LastName = "Kalina",
                     UserName = "RescatorX",
@@ -166,10 +157,11 @@ namespace PragWebApp.Data
                     Created = DateTime.Now,
                     Status = UserStatus.Verified
                 };
-                this.Users.Add(adminUser1);
+                modelBuilder.Entity<ApplicationUser>().HasData(adminUser1);
 
                 adminUser2 = new ApplicationUser()
                 {
+                    Id = Guid.NewGuid(),
                     FirstName = "Jiří",
                     LastName = "Prágr",
                     UserName = "jpragr",
@@ -189,9 +181,7 @@ namespace PragWebApp.Data
                     Created = DateTime.Now,
                     Status = UserStatus.Verified
                 };
-                this.Users.Add(adminUser2);
-
-                await this.SaveChangesAsync();
+                modelBuilder.Entity<ApplicationUser>().HasData(adminUser2);
             }
             catch (Exception e)
             {
@@ -206,7 +196,7 @@ namespace PragWebApp.Data
                     RoleId = adminRole.Id,
                     Added = DateTime.Now
                 };
-                this.UserRoles.Add(adminUserRole1);
+                modelBuilder.Entity<ApplicationUserRole>().HasData(adminUserRole1);
 
                 ApplicationUserRole adminUserRole2 = new ApplicationUserRole()
                 {
@@ -214,9 +204,7 @@ namespace PragWebApp.Data
                     RoleId = adminRole.Id,
                     Added = DateTime.Now
                 };
-                this.UserRoles.Add(adminUserRole2);
-
-                await this.SaveChangesAsync();
+                modelBuilder.Entity<ApplicationUserRole>().HasData(adminUserRole2);
             }
             catch (Exception e)
             {
@@ -228,29 +216,43 @@ namespace PragWebApp.Data
                 ApplicationUserToken adminUserToken1 = new ApplicationUserToken()
                 {
                     Name = "Token1",
-                    User = adminUser1,
                     UserId = adminUser1.Id,
                     Value = "Token1",
                     LoginProvider = "PragWebAppLoginProvider"
                 };
-                this.UserTokens.Add(adminUserToken1);
+                modelBuilder.Entity<ApplicationUserToken>().HasData(adminUserToken1);
 
                 ApplicationUserToken adminUserToken2 = new ApplicationUserToken()
                 {
                     Name = "Token2",
-                    User = adminUser2,
                     UserId = adminUser2.Id,
                     Value = "Token2",
                     LoginProvider = "PragWebAppLoginProvider"
                 };
-                this.UserTokens.Add(adminUserToken2);
-
-                await this.SaveChangesAsync();
+                modelBuilder.Entity<ApplicationUserToken>().HasData(adminUserToken2);
             }
             catch (Exception e)
             {
                 throw new Exception("PrefillDatabase - UserRoles table prefill error: " + e.Message, e);
-            }            
+            }
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder
+                .UseLoggerFactory(GetLoggerFactory())
+                .UseSqlServer(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString, providerOptions => providerOptions.CommandTimeout(60))
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            }
+        }
+
+        private ILoggerFactory GetLoggerFactory()
+        {
+            IServiceCollection serviceCollection = new ServiceCollection();
+            serviceCollection.AddLogging(builder => builder.AddConsole().AddFilter(DbLoggerCategory.Database.Command.Name, LogLevel.Information));
+            return serviceCollection.BuildServiceProvider().GetService<ILoggerFactory>();
         }
     }
 }

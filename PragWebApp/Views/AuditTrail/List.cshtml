@@ -1,0 +1,68 @@
+﻿@model AuditTrailListViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "AuditTrail list";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form method="post">
+                <h4>Select time interval to list items.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ListFrom"></label>
+                    <input asp-for="ListFrom" class="form-control" />
+                    <span asp-validation-for="ListFrom" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ListTo"></label>
+                    <input asp-for="ListTo" class="form-control" />
+                    <span asp-validation-for="ListTo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Find</button>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            @{
+                if ((Model.Items != null) && Model.Items.Any())
+                {
+                    <h4>Audit trail items:</h4>
+                    <hr />
+                    <table>
+                        <tr>
+                            <th>Time</th>
+                            <th>User</th>
+                            <th>Title</th>
+                            <th>Operation</th>
+                            <th>Detail</th>
+                        </tr>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>@item.Created</td>
+                                <td>@item.User</td>
+                                <td>@item.Title</td>
+                                <td>@item.Operation</td>
+                                <td>@item.Detail</td>
+                            </tr>
+                        }
+                    </table>
+
+                }
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
