@@ -2708,3 +2708,934 @@ WHERE [rc].[RoleId] = @__role_Id_0"
 2019-10-08 18:43:54.465 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 66.2913ms
 2019-10-08 18:43:54.469 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
 2019-10-08 18:43:54.474 +02:00 [Information] Request finished in 95.0467ms 200 text/html; charset=utf-8
+2019-10-09 10:41:12.047 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 10:41:15.453 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 10:41:17.816 +02:00 [Information] Entity Framework Core "2.2.6-servicing-10079" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None"
+2019-10-09 10:41:19.144 +02:00 [Information] Executed DbCommand ("370"ms) [Parameters=["@__get_Item_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Created], [e].[Email], [e].[EmailConfirmed], [e].[FirstName], [e].[LastName], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[Status], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0"
+2019-10-09 10:41:19.556 +02:00 [Information] Executed DbCommand ("126"ms) [Parameters=["@__user_Id_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0"
+2019-10-09 10:41:19.660 +02:00 [Information] Executed DbCommand ("52"ms) [Parameters=["@__userId_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0"
+2019-10-09 10:41:19.728 +02:00 [Information] Executed DbCommand ("41"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName], [r].[Status]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0"
+2019-10-09 10:41:19.789 +02:00 [Information] Executed DbCommand ("34"ms) [Parameters=["@__role_Id_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0"
+2019-10-09 10:41:19.881 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 10:41:19.912 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 10:41:20.045 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 10:41:20.054 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.2864ms.
+2019-10-09 10:41:20.129 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 10:41:20.523 +02:00 [Information] Executed ViewResult - view "Index" executed in 430.8913ms.
+2019-10-09 10:41:20.529 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 611.1148ms
+2019-10-09 10:41:20.533 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 10:41:20.561 +02:00 [Information] Request finished in 5114.1502ms 200 text/html; charset=utf-8
+2019-10-09 10:41:20.788 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/lib/jquery/dist/jquery.js  
+2019-10-09 10:41:20.800 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/css/site.css  
+2019-10-09 10:41:20.804 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/lib/bootstrap/dist/css/bootstrap.css  
+2019-10-09 10:41:20.811 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/lib/bootstrap/dist/js/bootstrap.bundle.js  
+2019-10-09 10:41:20.839 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+2019-10-09 10:41:20.868 +02:00 [Information] The file "/lib/bootstrap/dist/css/bootstrap.css" was not modified
+2019-10-09 10:41:20.872 +02:00 [Information] The file "/lib/bootstrap/dist/js/bootstrap.bundle.js" was not modified
+2019-10-09 10:41:20.878 +02:00 [Information] The file "/css/site.css" was not modified
+2019-10-09 10:41:20.883 +02:00 [Information] The file "/lib/jquery/dist/jquery.js" was not modified
+2019-10-09 10:41:20.889 +02:00 [Information] The file "/js/site.js" was not modified
+2019-10-09 10:41:20.898 +02:00 [Information] Request finished in 90.6852ms 304 application/javascript
+2019-10-09 10:41:20.902 +02:00 [Information] Request finished in 103.1608ms 304 text/css
+2019-10-09 10:41:20.987 +02:00 [Information] Request finished in 122.4465ms 304 text/css
+2019-10-09 10:41:21.046 +02:00 [Information] Request finished in 122.7932ms 304 application/javascript
+2019-10-09 10:41:21.048 +02:00 [Information] Request finished in 86.5587ms 304 application/javascript
+2019-10-09 10:41:35.034 +02:00 [Information] Request starting HTTP/2.0 POST https://localhost:44302/Account/Logout application/x-www-form-urlencoded 225
+2019-10-09 10:41:35.107 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AccountController.Logout (PragWebApp)"'
+2019-10-09 10:41:35.143 +02:00 [Information] Route matched with "{action = \"Logout\", controller = \"Account\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Logout()" on controller "PragWebApp.Controllers.AccountController" ("PragWebApp").
+2019-10-09 10:41:35.177 +02:00 [Information] Authorization was successful.
+2019-10-09 10:41:35.254 +02:00 [Information] Executing action method "PragWebApp.Controllers.AccountController.Logout (PragWebApp)" - Validation state: Valid
+2019-10-09 10:41:35.267 +02:00 [Information] AuthenticationScheme: "Identity.Application" signed out.
+2019-10-09 10:41:35.273 +02:00 [Information] AuthenticationScheme: "Identity.External" signed out.
+2019-10-09 10:41:35.277 +02:00 [Information] AuthenticationScheme: "Identity.TwoFactorUserId" signed out.
+2019-10-09 10:41:35.283 +02:00 [Information] User logged out.
+2019-10-09 10:41:35.290 +02:00 [Information] Executed action method "PragWebApp.Controllers.AccountController.Logout (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.RedirectToActionResult" in 29.4394ms.
+2019-10-09 10:41:35.295 +02:00 [Information] Executing RedirectResult, redirecting to "/".
+2019-10-09 10:41:35.301 +02:00 [Information] Executed action "PragWebApp.Controllers.AccountController.Logout (PragWebApp)" in 153.8343ms
+2019-10-09 10:41:35.304 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AccountController.Logout (PragWebApp)"'
+2019-10-09 10:41:35.309 +02:00 [Information] Request finished in 275.7872ms 302 
+2019-10-09 10:41:35.330 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 10:41:35.334 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 10:41:35.338 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 10:41:35.361 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 10:41:35.364 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.1408ms.
+2019-10-09 10:41:35.368 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 10:41:35.379 +02:00 [Information] Executed ViewResult - view "Index" executed in 10.2376ms.
+2019-10-09 10:41:35.383 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 40.5928ms
+2019-10-09 10:41:35.390 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 10:41:35.395 +02:00 [Information] Request finished in 63.1493ms 200 text/html; charset=utf-8
+2019-10-09 11:40:10.076 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 11:40:11.211 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 11:40:11.319 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 11:40:11.343 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 11:40:11.488 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 11:40:11.497 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.9755ms.
+2019-10-09 11:40:11.535 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 11:40:12.546 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 1194.069ms
+2019-10-09 11:40:12.551 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 11:40:12.872 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.RenderPartialCoreAsync(String partialViewName, Object model, ViewDataDictionary viewData, TextWriter writer)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.PartialAsync(String partialViewName, Object model, ViewDataDictionary viewData)
+   at AspNetCore.Views_Shared__Layout.<ExecuteAsync>b__47_1() in C:\Work\PragWebApp\PragWebApp\Views\Shared\_Layout.cshtml:line 58
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.SetOutputContentAsync()
+   at AspNetCore.Views_Shared__Layout.ExecuteAsync()
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderLayoutAsync(ViewContext context, ViewBufferTextWriter bodyWriter)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-09 11:40:13.004 +02:00 [Information] Request finished in 1782.5131ms 500 text/html; charset=utf-8
+2019-10-09 11:44:12.837 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 11:44:14.035 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 11:44:14.136 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 11:44:14.162 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 11:44:14.314 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 11:44:14.322 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.8467ms.
+2019-10-09 11:44:14.363 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 11:44:15.136 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 966.4471ms
+2019-10-09 11:44:15.140 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 11:44:15.253 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.RenderPartialCoreAsync(String partialViewName, Object model, ViewDataDictionary viewData, TextWriter writer)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.PartialAsync(String partialViewName, Object model, ViewDataDictionary viewData)
+   at AspNetCore.Views_Shared__Layout.<ExecuteAsync>b__47_1() in C:\Work\PragWebApp\PragWebApp\Views\Shared\_Layout.cshtml:line 58
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.SetOutputContentAsync()
+   at AspNetCore.Views_Shared__Layout.ExecuteAsync()
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderLayoutAsync(ViewContext context, ViewBufferTextWriter bodyWriter)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-09 11:44:15.367 +02:00 [Information] Request finished in 1324.4859ms 500 text/html; charset=utf-8
+2019-10-09 11:46:06.335 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 11:46:07.347 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 11:46:07.454 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 11:46:07.479 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 11:46:07.618 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 11:46:07.629 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.9749ms.
+2019-10-09 11:46:07.672 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 11:46:08.380 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 890.9406ms
+2019-10-09 11:46:08.386 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 11:46:08.501 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.RenderPartialCoreAsync(String partialViewName, Object model, ViewDataDictionary viewData, TextWriter writer)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.PartialAsync(String partialViewName, Object model, ViewDataDictionary viewData)
+   at AspNetCore.Views_Shared__Layout.<ExecuteAsync>b__47_1() in C:\Work\PragWebApp\PragWebApp\Views\Shared\_Layout.cshtml:line 58
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.SetOutputContentAsync()
+   at AspNetCore.Views_Shared__Layout.ExecuteAsync()
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderLayoutAsync(ViewContext context, ViewBufferTextWriter bodyWriter)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-09 11:46:08.618 +02:00 [Information] Request finished in 1273.166ms 500 text/html; charset=utf-8
+2019-10-09 11:51:02.316 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 11:51:03.343 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 11:51:03.457 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 11:51:03.485 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 11:51:03.621 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 11:51:03.631 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.568ms.
+2019-10-09 11:51:03.667 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 11:51:03.758 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 266.6632ms
+2019-10-09 11:51:03.763 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 11:51:03.833 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderLayoutAsync(ViewContext context, ViewBufferTextWriter bodyWriter)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-09 11:51:03.945 +02:00 [Information] Request finished in 591.2002ms 500 text/html; charset=utf-8
+2019-10-09 11:59:44.130 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 11:59:47.025 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 11:59:47.139 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 11:59:47.164 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 11:59:47.340 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 11:59:47.350 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.0012ms.
+2019-10-09 11:59:47.389 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 11:59:47.504 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 332.7221ms
+2019-10-09 11:59:47.509 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 11:59:47.578 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderLayoutAsync(ViewContext context, ViewBufferTextWriter bodyWriter)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-09 11:59:47.716 +02:00 [Information] Request finished in 679.3234ms 500 text/html; charset=utf-8
+2019-10-09 21:37:27.667 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 21:37:30.867 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 21:37:31.054 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 21:37:31.093 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 21:37:31.402 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 21:37:31.429 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.7037ms.
+2019-10-09 21:37:31.506 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 21:37:31.702 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 601.137ms
+2019-10-09 21:37:31.707 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 21:37:32.692 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.<>c__DisplayClass8_0.<CreateActivateInfo>b__1(ViewContext context)
+   at Microsoft.Extensions.Internal.PropertyActivator`1.Activate(Object instance, TContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderLayoutAsync(ViewContext context, ViewBufferTextWriter bodyWriter)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-09 21:37:32.814 +02:00 [Information] Request finished in 1947.5578ms 500 text/html; charset=utf-8
+2019-10-09 21:40:20.250 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 21:40:21.323 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 21:40:21.435 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 21:40:21.469 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 21:40:21.602 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 21:40:21.617 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.0789ms.
+2019-10-09 21:40:21.665 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 21:40:23.345 +02:00 [Information] Executed ViewResult - view "Index" executed in 1705.4734ms.
+2019-10-09 21:40:23.351 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 1877.1883ms
+2019-10-09 21:40:23.357 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 21:40:23.368 +02:00 [Information] Request finished in 2049.706ms 200 text/html; charset=utf-8
+2019-10-09 21:40:32.101 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/Account/Register  
+2019-10-09 21:40:32.110 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 21:40:32.156 +02:00 [Information] Route matched with "{action = \"Register\", controller = \"Account\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Register(System.String)" on controller "PragWebApp.Controllers.AccountController" ("PragWebApp").
+2019-10-09 21:40:32.213 +02:00 [Information] Executing action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)" - Validation state: Valid
+2019-10-09 21:40:32.217 +02:00 [Information] Executed action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.6947ms.
+2019-10-09 21:40:32.227 +02:00 [Information] Executing ViewResult, running view "Register".
+2019-10-09 21:40:32.548 +02:00 [Information] Executed action "PragWebApp.Controllers.AccountController.Register (PragWebApp)" in 388.8812ms
+2019-10-09 21:40:32.553 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 21:40:32.758 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Cannot retrieve property 'Name' because localization failed.  Type 'PragWebApp.Resources.Controllers.Home.PragWebApp' is not public or does not contain a public static string property with the name 'PragWebApp.Models.AccountViewModels.RegisterViewModel.FirstName'.
+   at System.ComponentModel.DataAnnotations.LocalizableString.<>c__DisplayClass12_1.<GetLocalizableValue>b__2()
+   at System.ComponentModel.DataAnnotations.LocalizableString.GetLocalizableValue()
+   at Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.DataAnnotationsMetadataProvider.CreateDisplayMetadata(DisplayMetadataProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.DefaultCompositeMetadataDetailsProvider.CreateDisplayMetadata(DisplayMetadataProviderContext context)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata.get_DisplayMetadata()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata.get_Order()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata.<>c.<get_Properties>b__78_0(ModelMetadata p)
+   at System.Linq.EnumerableSorter`2.ComputeKeys(TElement[] elements, Int32 count)
+   at System.Linq.EnumerableSorter`1.ComputeMap(TElement[] elements, Int32 count)
+   at System.Linq.EnumerableSorter`1.Sort(TElement[] elements, Int32 count)
+   at System.Linq.OrderedEnumerable`1.ToList()
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ModelPropertyCollection..ctor(IEnumerable`1 properties)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata.get_Properties()
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ExpressionMetadataProvider.FromLambdaExpression[TModel,TResult](Expression`1 expression, ViewDataDictionary`1 viewData, IModelMetadataProvider metadataProvider)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpressionProvider.CreateModelExpression[TModel,TValue](ViewDataDictionary`1 viewData, Expression`1 expression)
+   at AspNetCore.Views_Account_Register.<ExecuteAsync>b__15_0() in C:\Work\PragWebApp\PragWebApp\Views\Account\Register.cshtml:line 15
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.GetChildContentAsync(Boolean useCachedResult, HtmlEncoder encoder)
+   at Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper.ProcessAsync(TagHelperContext context, TagHelperOutput output)
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner.RunAsync(TagHelperExecutionContext executionContext)
+   at AspNetCore.Views_Account_Register.ExecuteAsync() in C:\Work\PragWebApp\PragWebApp\Views\Account\Register.cshtml:line 10
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-09 21:40:32.914 +02:00 [Information] Request finished in 818.8456ms 500 text/html; charset=utf-8
+2019-10-09 21:55:16.516 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 21:55:17.630 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 21:55:17.744 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 21:55:17.771 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 21:55:17.926 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 21:55:17.937 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.8347ms.
+2019-10-09 21:55:17.980 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 21:55:18.722 +02:00 [Information] Executed ViewResult - view "Index" executed in 771.9595ms.
+2019-10-09 21:55:18.728 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 951.7452ms
+2019-10-09 21:55:18.732 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 21:55:18.744 +02:00 [Information] Request finished in 1118.3711ms 200 text/html; charset=utf-8
+2019-10-09 21:55:25.950 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/Account/Register  
+2019-10-09 21:55:25.959 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 21:55:25.994 +02:00 [Information] Route matched with "{action = \"Register\", controller = \"Account\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Register(System.String)" on controller "PragWebApp.Controllers.AccountController" ("PragWebApp").
+2019-10-09 21:55:26.055 +02:00 [Information] Executing action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)" - Validation state: Valid
+2019-10-09 21:55:26.058 +02:00 [Information] Executed action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.6484ms.
+2019-10-09 21:55:26.067 +02:00 [Information] Executing ViewResult, running view "Register".
+2019-10-09 21:55:26.278 +02:00 [Information] Executed action "PragWebApp.Controllers.AccountController.Register (PragWebApp)" in 280.0459ms
+2019-10-09 21:55:26.282 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 21:55:26.381 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Cannot retrieve property 'Name' because localization failed.  Type 'PragWebApp.Resources.Controllers_AccountController' is not public or does not contain a public static string property with the name 'AccountViewModels.RegisterViewModel.FirstName'.
+   at System.ComponentModel.DataAnnotations.LocalizableString.<>c__DisplayClass12_1.<GetLocalizableValue>b__2()
+   at System.ComponentModel.DataAnnotations.LocalizableString.GetLocalizableValue()
+   at Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.DataAnnotationsMetadataProvider.CreateDisplayMetadata(DisplayMetadataProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.DefaultCompositeMetadataDetailsProvider.CreateDisplayMetadata(DisplayMetadataProviderContext context)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata.get_DisplayMetadata()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata.get_Order()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata.<>c.<get_Properties>b__78_0(ModelMetadata p)
+   at System.Linq.EnumerableSorter`2.ComputeKeys(TElement[] elements, Int32 count)
+   at System.Linq.EnumerableSorter`1.ComputeMap(TElement[] elements, Int32 count)
+   at System.Linq.EnumerableSorter`1.Sort(TElement[] elements, Int32 count)
+   at System.Linq.OrderedEnumerable`1.ToList()
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ModelPropertyCollection..ctor(IEnumerable`1 properties)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata.get_Properties()
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ExpressionMetadataProvider.FromLambdaExpression[TModel,TResult](Expression`1 expression, ViewDataDictionary`1 viewData, IModelMetadataProvider metadataProvider)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpressionProvider.CreateModelExpression[TModel,TValue](ViewDataDictionary`1 viewData, Expression`1 expression)
+   at AspNetCore.Views_Account_Register.<ExecuteAsync>b__15_0() in C:\Work\PragWebApp\PragWebApp\Views\Account\Register.cshtml:line 15
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.GetChildContentAsync(Boolean useCachedResult, HtmlEncoder encoder)
+   at Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper.ProcessAsync(TagHelperContext context, TagHelperOutput output)
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner.RunAsync(TagHelperExecutionContext executionContext)
+   at AspNetCore.Views_Account_Register.ExecuteAsync() in C:\Work\PragWebApp\PragWebApp\Views\Account\Register.cshtml:line 10
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-09 21:55:26.439 +02:00 [Information] Request finished in 489.066ms 500 text/html; charset=utf-8
+2019-10-09 21:59:49.185 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 21:59:50.304 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 21:59:50.406 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 21:59:50.429 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 21:59:50.567 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 21:59:50.578 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.0613ms.
+2019-10-09 21:59:50.620 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 21:59:51.450 +02:00 [Information] Executed ViewResult - view "Index" executed in 856.1509ms.
+2019-10-09 21:59:51.454 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 1021.0155ms
+2019-10-09 21:59:51.459 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 21:59:51.471 +02:00 [Information] Request finished in 1170.5339ms 200 text/html; charset=utf-8
+2019-10-09 21:59:56.326 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/Account/Register  
+2019-10-09 21:59:56.341 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 21:59:56.373 +02:00 [Information] Route matched with "{action = \"Register\", controller = \"Account\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Register(System.String)" on controller "PragWebApp.Controllers.AccountController" ("PragWebApp").
+2019-10-09 21:59:56.458 +02:00 [Information] Executing action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)" - Validation state: Valid
+2019-10-09 21:59:56.471 +02:00 [Information] Executed action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.6277ms.
+2019-10-09 21:59:56.480 +02:00 [Information] Executing ViewResult, running view "Register".
+2019-10-09 21:59:56.714 +02:00 [Information] Executed action "PragWebApp.Controllers.AccountController.Register (PragWebApp)" in 338.0806ms
+2019-10-09 21:59:56.720 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 21:59:56.817 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Cannot retrieve property 'Name' because localization failed.  Type 'PragWebApp.Resources.Controllers_AccountController' is not public or does not contain a public static string property with the name 'AccountViewModels.RegisterViewModel.FirstName'.
+   at System.ComponentModel.DataAnnotations.LocalizableString.<>c__DisplayClass12_1.<GetLocalizableValue>b__2()
+   at System.ComponentModel.DataAnnotations.LocalizableString.GetLocalizableValue()
+   at Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.DataAnnotationsMetadataProvider.CreateDisplayMetadata(DisplayMetadataProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.DefaultCompositeMetadataDetailsProvider.CreateDisplayMetadata(DisplayMetadataProviderContext context)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata.get_DisplayMetadata()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata.get_Order()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata.<>c.<get_Properties>b__78_0(ModelMetadata p)
+   at System.Linq.EnumerableSorter`2.ComputeKeys(TElement[] elements, Int32 count)
+   at System.Linq.EnumerableSorter`1.ComputeMap(TElement[] elements, Int32 count)
+   at System.Linq.EnumerableSorter`1.Sort(TElement[] elements, Int32 count)
+   at System.Linq.OrderedEnumerable`1.ToList()
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ModelPropertyCollection..ctor(IEnumerable`1 properties)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata.get_Properties()
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ExpressionMetadataProvider.FromLambdaExpression[TModel,TResult](Expression`1 expression, ViewDataDictionary`1 viewData, IModelMetadataProvider metadataProvider)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpressionProvider.CreateModelExpression[TModel,TValue](ViewDataDictionary`1 viewData, Expression`1 expression)
+   at AspNetCore.Views_Account_Register.<ExecuteAsync>b__15_0() in C:\Work\PragWebApp\PragWebApp\Views\Account\Register.cshtml:line 15
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.GetChildContentAsync(Boolean useCachedResult, HtmlEncoder encoder)
+   at Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper.ProcessAsync(TagHelperContext context, TagHelperOutput output)
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner.RunAsync(TagHelperExecutionContext executionContext)
+   at AspNetCore.Views_Account_Register.ExecuteAsync() in C:\Work\PragWebApp\PragWebApp\Views\Account\Register.cshtml:line 10
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-09 21:59:56.880 +02:00 [Information] Request finished in 555.2747ms 500 text/html; charset=utf-8
+2019-10-09 22:01:50.938 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 22:01:52.214 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 22:01:52.378 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:01:52.421 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 22:01:52.597 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 22:01:52.609 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.6172ms.
+2019-10-09 22:01:52.658 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 22:01:53.422 +02:00 [Information] Executed ViewResult - view "Index" executed in 793.3452ms.
+2019-10-09 22:01:53.429 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 1001.8345ms
+2019-10-09 22:01:53.434 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:01:53.448 +02:00 [Information] Request finished in 1240.6121ms 200 text/html; charset=utf-8
+2019-10-09 22:01:55.483 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/Account/Register  
+2019-10-09 22:01:55.495 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 22:01:55.533 +02:00 [Information] Route matched with "{action = \"Register\", controller = \"Account\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Register(System.String)" on controller "PragWebApp.Controllers.AccountController" ("PragWebApp").
+2019-10-09 22:01:55.593 +02:00 [Information] Executing action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)" - Validation state: Valid
+2019-10-09 22:01:55.597 +02:00 [Information] Executed action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.8054ms.
+2019-10-09 22:01:55.607 +02:00 [Information] Executing ViewResult, running view "Register".
+2019-10-09 22:01:55.691 +02:00 [Information] Executed ViewResult - view "Register" executed in 89.5831ms.
+2019-10-09 22:01:55.695 +02:00 [Information] Executed action "PragWebApp.Controllers.AccountController.Register (PragWebApp)" in 159.1311ms
+2019-10-09 22:01:55.698 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 22:01:55.702 +02:00 [Information] Request finished in 218.6546ms 200 text/html; charset=utf-8
+2019-10-09 22:01:55.806 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/lib/jquery-validation/dist/jquery.validate.js  
+2019-10-09 22:01:55.808 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js  
+2019-10-09 22:01:55.866 +02:00 [Information] The file "/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" was not modified
+2019-10-09 22:01:55.867 +02:00 [Information] The file "/lib/jquery-validation/dist/jquery.validate.js" was not modified
+2019-10-09 22:01:55.876 +02:00 [Information] Request finished in 70.6793ms 304 application/javascript
+2019-10-09 22:01:55.881 +02:00 [Information] Request finished in 70.5441ms 304 application/javascript
+2019-10-09 22:10:07.050 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 22:10:08.175 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/Account/Register  
+2019-10-09 22:10:08.175 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 22:10:08.305 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:10:08.310 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 22:10:08.347 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 22:10:08.354 +02:00 [Information] Route matched with "{action = \"Register\", controller = \"Account\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Register(System.String)" on controller "PragWebApp.Controllers.AccountController" ("PragWebApp").
+2019-10-09 22:10:08.511 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 22:10:08.535 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.3177ms.
+2019-10-09 22:10:08.816 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 22:10:08.964 +02:00 [Information] Executing action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)" - Validation state: Valid
+2019-10-09 22:10:08.969 +02:00 [Information] Executed action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.8512ms.
+2019-10-09 22:10:08.980 +02:00 [Information] Executing ViewResult, running view "Register".
+2019-10-09 22:10:09.314 +02:00 [Information] Executed ViewResult - view "Index" executed in 736.7115ms.
+2019-10-09 22:10:09.314 +02:00 [Information] Executed ViewResult - view "Register" executed in 332.8956ms.
+2019-10-09 22:10:09.319 +02:00 [Information] Executed action "PragWebApp.Controllers.AccountController.Register (PragWebApp)" in 961.0757ms
+2019-10-09 22:10:09.322 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 967.1698ms
+2019-10-09 22:10:09.336 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 22:10:09.339 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:10:09.355 +02:00 [Information] Request finished in 1184.9508ms 200 text/html; charset=utf-8
+2019-10-09 22:10:09.374 +02:00 [Information] Request finished in 1201.6228ms 200 text/html; charset=utf-8
+2019-10-09 22:10:13.494 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/Account/Register  
+2019-10-09 22:10:13.504 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 22:10:13.509 +02:00 [Information] Route matched with "{action = \"Register\", controller = \"Account\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Register(System.String)" on controller "PragWebApp.Controllers.AccountController" ("PragWebApp").
+2019-10-09 22:10:13.536 +02:00 [Information] Executing action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)" - Validation state: Valid
+2019-10-09 22:10:13.555 +02:00 [Information] Executed action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.0494ms.
+2019-10-09 22:10:13.562 +02:00 [Information] Executing ViewResult, running view "Register".
+2019-10-09 22:10:13.573 +02:00 [Information] Executed ViewResult - view "Register" executed in 11.9241ms.
+2019-10-09 22:10:13.578 +02:00 [Information] Executed action "PragWebApp.Controllers.AccountController.Register (PragWebApp)" in 63.3999ms
+2019-10-09 22:10:13.583 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 22:10:13.586 +02:00 [Information] Request finished in 94.4041ms 200 text/html; charset=utf-8
+2019-10-09 22:11:38.370 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 22:11:39.511 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/Account/Register  
+2019-10-09 22:11:39.511 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 22:11:39.645 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:11:39.654 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 22:11:39.702 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 22:11:39.709 +02:00 [Information] Route matched with "{action = \"Register\", controller = \"Account\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Register(System.String)" on controller "PragWebApp.Controllers.AccountController" ("PragWebApp").
+2019-10-09 22:11:39.880 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 22:11:39.894 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.6094ms.
+2019-10-09 22:11:40.000 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 22:11:40.284 +02:00 [Information] Executing action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)" - Validation state: Valid
+2019-10-09 22:11:40.289 +02:00 [Information] Executed action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.0537ms.
+2019-10-09 22:11:40.304 +02:00 [Information] Executing ViewResult, running view "Register".
+2019-10-09 22:11:40.579 +02:00 [Information] Executed ViewResult - view "Register" executed in 278.5689ms.
+2019-10-09 22:11:40.579 +02:00 [Information] Executed ViewResult - view "Index" executed in 664.8632ms.
+2019-10-09 22:11:40.586 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 878.1071ms
+2019-10-09 22:11:40.589 +02:00 [Information] Executed action "PragWebApp.Controllers.AccountController.Register (PragWebApp)" in 871.1115ms
+2019-10-09 22:11:40.592 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:11:40.597 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 22:11:40.612 +02:00 [Information] Request finished in 1105.346ms 200 text/html; charset=utf-8
+2019-10-09 22:11:40.632 +02:00 [Information] Request finished in 1122.836ms 200 text/html; charset=utf-8
+2019-10-09 22:11:43.566 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/AuditTrail/List  
+2019-10-09 22:11:43.583 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:11:43.591 +02:00 [Information] Route matched with "{action = \"List\", controller = \"AuditTrail\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult List()" on controller "PragWebApp.Controllers.AuditTrailController" ("PragWebApp").
+2019-10-09 22:11:43.607 +02:00 [Information] Authorization failed.
+2019-10-09 22:11:43.610 +02:00 [Information] Authorization failed for the request at filter '"Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter"'.
+2019-10-09 22:11:43.622 +02:00 [Information] Executing ChallengeResult with authentication schemes ([]).
+2019-10-09 22:11:43.633 +02:00 [Information] AuthenticationScheme: "Identity.Application" was challenged.
+2019-10-09 22:11:43.637 +02:00 [Information] Executed action "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" in 41.753ms
+2019-10-09 22:11:43.640 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:11:43.647 +02:00 [Information] Request finished in 100.3892ms 302 
+2019-10-09 22:11:43.660 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/Account/Login?ReturnUrl=%2FAuditTrail%2FList  
+2019-10-09 22:11:43.669 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AccountController.Login (PragWebApp)"'
+2019-10-09 22:11:43.692 +02:00 [Information] Route matched with "{action = \"Login\", controller = \"Account\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(System.String)" on controller "PragWebApp.Controllers.AccountController" ("PragWebApp").
+2019-10-09 22:11:43.727 +02:00 [Information] Executing action method "PragWebApp.Controllers.AccountController.Login (PragWebApp)" - Validation state: Valid
+2019-10-09 22:11:43.740 +02:00 [Information] AuthenticationScheme: "Identity.External" signed out.
+2019-10-09 22:11:43.743 +02:00 [Information] Executed action method "PragWebApp.Controllers.AccountController.Login (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 12.7267ms.
+2019-10-09 22:11:43.766 +02:00 [Information] Executing ViewResult, running view "Login".
+2019-10-09 22:11:43.856 +02:00 [Information] Executed ViewResult - view "Login" executed in 108.1087ms.
+2019-10-09 22:11:43.861 +02:00 [Information] Executed action "PragWebApp.Controllers.AccountController.Login (PragWebApp)" in 164.5689ms
+2019-10-09 22:11:43.865 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AccountController.Login (PragWebApp)"'
+2019-10-09 22:11:43.869 +02:00 [Information] Request finished in 209.0391ms 200 text/html; charset=utf-8
+2019-10-09 22:11:50.939 +02:00 [Information] Request starting HTTP/2.0 POST https://localhost:44302/Account/Login?returnurl=%2FAuditTrail%2FList application/x-www-form-urlencoded 244
+2019-10-09 22:11:50.948 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AccountController.Login (PragWebApp)"'
+2019-10-09 22:11:50.963 +02:00 [Information] Route matched with "{action = \"Login\", controller = \"Account\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(PragWebApp.Models.AccountViewModels.LoginViewModel, System.String)" on controller "PragWebApp.Controllers.AccountController" ("PragWebApp").
+2019-10-09 22:11:51.057 +02:00 [Information] Executing action method "PragWebApp.Controllers.AccountController.Login (PragWebApp)" - Validation state: Valid
+2019-10-09 22:11:52.116 +02:00 [Information] Entity Framework Core "2.2.6-servicing-10079" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None"
+2019-10-09 22:11:52.899 +02:00 [Information] Executed DbCommand ("243"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 128)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Created], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[Status], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0"
+2019-10-09 22:11:53.333 +02:00 [Information] Executed DbCommand ("138"ms) [Parameters=["@__user_Id_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0"
+2019-10-09 22:11:53.416 +02:00 [Information] Executed DbCommand ("36"ms) [Parameters=["@__userId_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0"
+2019-10-09 22:11:53.470 +02:00 [Information] Executed DbCommand ("34"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Description], [r].[Name], [r].[NormalizedName], [r].[Status]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0"
+2019-10-09 22:11:53.529 +02:00 [Information] Executed DbCommand ("33"ms) [Parameters=["@__role_Id_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0"
+2019-10-09 22:11:53.544 +02:00 [Information] AuthenticationScheme: "Identity.Application" signed in.
+2019-10-09 22:11:53.551 +02:00 [Information] User logged in.
+2019-10-09 22:11:53.558 +02:00 [Information] Executed action method "PragWebApp.Controllers.AccountController.Login (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.RedirectResult" in 2497.145ms.
+2019-10-09 22:11:53.568 +02:00 [Information] Executing RedirectResult, redirecting to "/AuditTrail/List".
+2019-10-09 22:11:53.575 +02:00 [Information] Executed action "PragWebApp.Controllers.AccountController.Login (PragWebApp)" in 2608.7525ms
+2019-10-09 22:11:53.580 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AccountController.Login (PragWebApp)"'
+2019-10-09 22:11:53.584 +02:00 [Information] Request finished in 2649.3182ms 302 
+2019-10-09 22:11:53.599 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/AuditTrail/List  
+2019-10-09 22:11:53.612 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:11:53.616 +02:00 [Information] Route matched with "{action = \"List\", controller = \"AuditTrail\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult List()" on controller "PragWebApp.Controllers.AuditTrailController" ("PragWebApp").
+2019-10-09 22:11:53.621 +02:00 [Information] Authorization was successful.
+2019-10-09 22:11:53.627 +02:00 [Information] Executed action "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" in 7.3313ms
+2019-10-09 22:11:53.630 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:11:53.687 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'PragWebApp.Services.IAuditTrailService' while attempting to activate 'PragWebApp.Controllers.AuditTrailController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-10-09 22:11:53.759 +02:00 [Information] Request finished in 167.8671ms 500 text/html; charset=utf-8
+2019-10-09 22:14:49.225 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 22:14:50.332 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 22:14:50.332 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/Account/Register  
+2019-10-09 22:14:50.854 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:14:50.867 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 22:14:50.920 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 22:14:50.927 +02:00 [Information] Route matched with "{action = \"Register\", controller = \"Account\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Register(System.String)" on controller "PragWebApp.Controllers.AccountController" ("PragWebApp").
+2019-10-09 22:14:51.093 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 22:14:51.093 +02:00 [Information] Executing action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)" - Validation state: Valid
+2019-10-09 22:14:51.107 +02:00 [Information] Executed action method "PragWebApp.Controllers.AccountController.Register (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.0439ms.
+2019-10-09 22:14:51.107 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.7607ms.
+2019-10-09 22:14:51.176 +02:00 [Information] Executing ViewResult, running view "Register".
+2019-10-09 22:14:51.178 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 22:14:51.516 +02:00 [Information] Executed ViewResult - view "Register" executed in 390.2113ms.
+2019-10-09 22:14:51.516 +02:00 [Information] Executed ViewResult - view "Index" executed in 390.211ms.
+2019-10-09 22:14:51.521 +02:00 [Information] Executed action "PragWebApp.Controllers.AccountController.Register (PragWebApp)" in 590.4309ms
+2019-10-09 22:14:51.526 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 596.164ms
+2019-10-09 22:14:51.529 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AccountController.Register (PragWebApp)"'
+2019-10-09 22:14:51.538 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:14:51.553 +02:00 [Information] Request finished in 1227.7909ms 200 text/html; charset=utf-8
+2019-10-09 22:14:51.570 +02:00 [Information] Request finished in 1240.2112ms 200 text/html; charset=utf-8
+2019-10-09 22:14:55.551 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/AuditTrail/List  
+2019-10-09 22:14:55.561 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:14:55.571 +02:00 [Information] Route matched with "{action = \"List\", controller = \"AuditTrail\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult List()" on controller "PragWebApp.Controllers.AuditTrailController" ("PragWebApp").
+2019-10-09 22:14:55.586 +02:00 [Information] Authorization was successful.
+2019-10-09 22:14:55.626 +02:00 [Information] Executing action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" - Validation state: Valid
+2019-10-09 22:14:55.647 +02:00 [Information] Executed action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.0716ms.
+2019-10-09 22:14:55.680 +02:00 [Information] Executing ViewResult, running view "List".
+2019-10-09 22:14:55.729 +02:00 [Information] Executed ViewResult - view "List" executed in 77.9613ms.
+2019-10-09 22:14:55.734 +02:00 [Information] Executed action "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" in 158.807ms
+2019-10-09 22:14:55.737 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:14:55.743 +02:00 [Information] Request finished in 194.0646ms 200 text/html; charset=utf-8
+2019-10-09 22:17:18.816 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 22:17:19.913 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 22:17:20.379 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:17:20.405 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 22:17:20.546 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 22:17:20.557 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.587ms.
+2019-10-09 22:17:20.603 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 22:17:20.951 +02:00 [Information] Executed ViewResult - view "Index" executed in 378.0514ms.
+2019-10-09 22:17:20.957 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 546.9516ms
+2019-10-09 22:17:20.967 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:17:20.983 +02:00 [Information] Request finished in 1071.6294ms 200 text/html; charset=utf-8
+2019-10-09 22:17:25.091 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/AuditTrail/List  
+2019-10-09 22:17:25.125 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:17:25.130 +02:00 [Information] Route matched with "{action = \"List\", controller = \"AuditTrail\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult List()" on controller "PragWebApp.Controllers.AuditTrailController" ("PragWebApp").
+2019-10-09 22:17:25.168 +02:00 [Information] Authorization was successful.
+2019-10-09 22:17:25.197 +02:00 [Information] Executing action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" - Validation state: Valid
+2019-10-09 22:17:25.202 +02:00 [Information] Executed action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.3021ms.
+2019-10-09 22:17:25.213 +02:00 [Information] Executing ViewResult, running view "List".
+2019-10-09 22:17:25.280 +02:00 [Information] Executed ViewResult - view "List" executed in 74.3387ms.
+2019-10-09 22:17:25.284 +02:00 [Information] Executed action "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" in 149.9715ms
+2019-10-09 22:17:25.287 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:17:25.290 +02:00 [Information] Request finished in 198.4109ms 200 text/html; charset=utf-8
+2019-10-09 22:17:35.350 +02:00 [Information] Request starting HTTP/2.0 POST https://localhost:44302/AuditTrail/List application/x-www-form-urlencoded 263
+2019-10-09 22:17:35.358 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:17:35.404 +02:00 [Information] Route matched with "{action = \"List\", controller = \"AuditTrail\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] List(PragWebApp.Models.AuditTrailViewModels.AuditTrailListViewModel)" on controller "PragWebApp.Controllers.AuditTrailController" ("PragWebApp").
+2019-10-09 22:17:35.408 +02:00 [Information] Authorization was successful.
+2019-10-09 22:17:35.484 +02:00 [Information] Executing action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" - Validation state: Invalid
+2019-10-09 22:17:35.510 +02:00 [Information] Executed action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 22.5509ms.
+2019-10-09 22:17:35.513 +02:00 [Information] Executing ViewResult, running view "List".
+2019-10-09 22:17:35.547 +02:00 [Information] Executed ViewResult - view "List" executed in 33.7604ms.
+2019-10-09 22:17:35.550 +02:00 [Information] Executed action "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" in 143.6095ms
+2019-10-09 22:17:35.553 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:17:35.556 +02:00 [Information] Request finished in 207.0813ms 200 text/html; charset=utf-8
+2019-10-09 22:18:40.219 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 22:18:41.540 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 22:18:42.001 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:18:42.030 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 22:18:42.185 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 22:18:42.193 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.9188ms.
+2019-10-09 22:18:42.247 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 22:18:42.650 +02:00 [Information] Executed ViewResult - view "Index" executed in 437.674ms.
+2019-10-09 22:18:42.655 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 621.6128ms
+2019-10-09 22:18:42.659 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:18:42.673 +02:00 [Information] Request finished in 1138.0175ms 200 text/html; charset=utf-8
+2019-10-09 22:18:45.815 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/AuditTrail/List  
+2019-10-09 22:18:45.930 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:18:45.937 +02:00 [Information] Route matched with "{action = \"List\", controller = \"AuditTrail\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult List()" on controller "PragWebApp.Controllers.AuditTrailController" ("PragWebApp").
+2019-10-09 22:18:45.975 +02:00 [Information] Authorization was successful.
+2019-10-09 22:18:45.999 +02:00 [Information] Executing action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" - Validation state: Valid
+2019-10-09 22:18:46.004 +02:00 [Information] Executed action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.1906ms.
+2019-10-09 22:18:46.017 +02:00 [Information] Executing ViewResult, running view "List".
+2019-10-09 22:18:46.083 +02:00 [Information] Executed ViewResult - view "List" executed in 74.4223ms.
+2019-10-09 22:18:46.086 +02:00 [Information] Executed action "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" in 146.5013ms
+2019-10-09 22:18:46.092 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:18:46.096 +02:00 [Information] Request finished in 279.4614ms 200 text/html; charset=utf-8
+2019-10-09 22:19:04.405 +02:00 [Information] Request starting HTTP/2.0 POST https://localhost:44302/AuditTrail/List application/x-www-form-urlencoded 263
+2019-10-09 22:19:04.413 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:19:04.449 +02:00 [Information] Route matched with "{action = \"List\", controller = \"AuditTrail\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] List(PragWebApp.Models.AuditTrailViewModels.AuditTrailListViewModel)" on controller "PragWebApp.Controllers.AuditTrailController" ("PragWebApp").
+2019-10-09 22:19:04.453 +02:00 [Information] Authorization was successful.
+2019-10-09 22:19:04.580 +02:00 [Information] Executing action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" - Validation state: Valid
+2019-10-09 22:19:05.120 +02:00 [Information] Entity Framework Core "2.2.6-servicing-10079" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None"
+2019-10-09 22:19:05.489 +02:00 [Information] Executed DbCommand ("60"ms) [Parameters=["@__model_ListFrom_HasValue_0='?' (DbType = Boolean), @__model_ListFrom_1='?' (DbType = DateTime2), @__model_ListTo_HasValue_2='?' (DbType = Boolean), @__model_ListTo_3='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [at].[Id], [at].[Created], [at].[Detail], [at].[Operation], [at].[Title], [at].[UserId]
+FROM [AuditTrail] AS [at]
+WHERE (((@__model_ListFrom_HasValue_0 = 1) AND ([at].[Created] >= @__model_ListFrom_1)) OR (@__model_ListFrom_HasValue_0 <> 1)) AND (((@__model_ListTo_HasValue_2 = 1) AND ([at].[Created] <= @__model_ListTo_3)) OR (@__model_ListTo_HasValue_2 <> 1))"
+2019-10-09 22:19:05.646 +02:00 [Information] Executed DbCommand ("82"ms) [Parameters=["@__get_Item_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Created], [e].[Email], [e].[EmailConfirmed], [e].[FirstName], [e].[LastName], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[Status], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0"
+2019-10-09 22:19:05.920 +02:00 [Information] Executed DbCommand ("78"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AuditTrail] ([Id], [Created], [Detail], [Operation], [Title], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);"
+2019-10-09 22:19:05.961 +02:00 [Information] Executed action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1377.8469ms.
+2019-10-09 22:19:05.971 +02:00 [Information] Executing ViewResult, running view "List".
+2019-10-09 22:19:05.981 +02:00 [Information] Executed ViewResult - view "List" executed in 10.698ms.
+2019-10-09 22:19:05.988 +02:00 [Information] Executed action "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" in 1535.7141ms
+2019-10-09 22:19:05.994 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:19:06.015 +02:00 [Information] Request finished in 1615.1066ms 200 text/html; charset=utf-8
+2019-10-09 22:19:13.477 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/lib/bootstrap/dist/css/bootstrap.css.map  
+2019-10-09 22:19:13.479 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/lib/bootstrap/dist/js/bootstrap.bundle.js.map  
+2019-10-09 22:19:13.501 +02:00 [Information] The file "/lib/bootstrap/dist/css/bootstrap.css.map" was not modified
+2019-10-09 22:19:13.505 +02:00 [Information] The file "/lib/bootstrap/dist/js/bootstrap.bundle.js.map" was not modified
+2019-10-09 22:19:13.514 +02:00 [Information] Request finished in 37.5933ms 304 text/plain
+2019-10-09 22:19:13.516 +02:00 [Information] Request finished in 37.8863ms 304 text/plain
+2019-10-09 22:19:20.045 +02:00 [Information] Request starting HTTP/2.0 POST https://localhost:44302/AuditTrail/List application/x-www-form-urlencoded 263
+2019-10-09 22:19:20.056 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:19:20.060 +02:00 [Information] Route matched with "{action = \"List\", controller = \"AuditTrail\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] List(PragWebApp.Models.AuditTrailViewModels.AuditTrailListViewModel)" on controller "PragWebApp.Controllers.AuditTrailController" ("PragWebApp").
+2019-10-09 22:19:20.064 +02:00 [Information] Authorization was successful.
+2019-10-09 22:19:20.093 +02:00 [Information] Executing action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" - Validation state: Valid
+2019-10-09 22:19:20.128 +02:00 [Information] Entity Framework Core "2.2.6-servicing-10079" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None"
+2019-10-09 22:19:20.229 +02:00 [Information] Executed DbCommand ("73"ms) [Parameters=["@__model_ListFrom_HasValue_0='?' (DbType = Boolean), @__model_ListFrom_1='?' (DbType = DateTime2), @__model_ListTo_HasValue_2='?' (DbType = Boolean), @__model_ListTo_3='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [at].[Id], [at].[Created], [at].[Detail], [at].[Operation], [at].[Title], [at].[UserId]
+FROM [AuditTrail] AS [at]
+WHERE (((@__model_ListFrom_HasValue_0 = 1) AND ([at].[Created] >= @__model_ListFrom_1)) OR (@__model_ListFrom_HasValue_0 <> 1)) AND (((@__model_ListTo_HasValue_2 = 1) AND ([at].[Created] <= @__model_ListTo_3)) OR (@__model_ListTo_HasValue_2 <> 1))"
+2019-10-09 22:19:20.265 +02:00 [Information] Executed DbCommand ("30"ms) [Parameters=["@__get_Item_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Created], [e].[Email], [e].[EmailConfirmed], [e].[FirstName], [e].[LastName], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[Status], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0"
+2019-10-09 22:19:20.304 +02:00 [Information] Executed DbCommand ("29"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AuditTrail] ([Id], [Created], [Detail], [Operation], [Title], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);"
+2019-10-09 22:19:20.309 +02:00 [Information] Executed action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 212.6122ms.
+2019-10-09 22:19:20.313 +02:00 [Information] Executing ViewResult, running view "List".
+2019-10-09 22:19:20.321 +02:00 [Information] Executed ViewResult - view "List" executed in 8.0937ms.
+2019-10-09 22:19:20.324 +02:00 [Information] Executed action "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" in 261.0666ms
+2019-10-09 22:19:20.327 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:19:20.336 +02:00 [Information] Request finished in 288.1458ms 200 text/html; charset=utf-8
+2019-10-09 22:21:59.267 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 22:22:00.331 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 22:22:00.922 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:22:00.948 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 22:22:01.103 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 22:22:01.112 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.7998ms.
+2019-10-09 22:22:01.156 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 22:22:01.507 +02:00 [Information] Executed ViewResult - view "Index" executed in 374.9803ms.
+2019-10-09 22:22:01.514 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 560.5455ms
+2019-10-09 22:22:01.523 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:22:01.536 +02:00 [Information] Request finished in 1209.7864ms 200 text/html; charset=utf-8
+2019-10-09 22:22:06.776 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/AuditTrail/List  
+2019-10-09 22:22:06.787 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:22:06.805 +02:00 [Information] Route matched with "{action = \"List\", controller = \"AuditTrail\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult List()" on controller "PragWebApp.Controllers.AuditTrailController" ("PragWebApp").
+2019-10-09 22:22:06.822 +02:00 [Information] Authorization was successful.
+2019-10-09 22:22:06.858 +02:00 [Information] Executing action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" - Validation state: Valid
+2019-10-09 22:22:06.863 +02:00 [Information] Executed action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.2817ms.
+2019-10-09 22:22:06.874 +02:00 [Information] Executing ViewResult, running view "List".
+2019-10-09 22:22:06.944 +02:00 [Information] Executed ViewResult - view "List" executed in 76.5195ms.
+2019-10-09 22:22:06.960 +02:00 [Information] Executed action "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" in 139.68ms
+2019-10-09 22:22:06.964 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:22:06.967 +02:00 [Information] Request finished in 190.5912ms 200 text/html; charset=utf-8
+2019-10-09 22:22:16.414 +02:00 [Information] Request starting HTTP/2.0 POST https://localhost:44302/AuditTrail/List application/x-www-form-urlencoded 263
+2019-10-09 22:22:16.421 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:22:16.463 +02:00 [Information] Route matched with "{action = \"List\", controller = \"AuditTrail\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] List(PragWebApp.Models.AuditTrailViewModels.AuditTrailListViewModel)" on controller "PragWebApp.Controllers.AuditTrailController" ("PragWebApp").
+2019-10-09 22:22:16.472 +02:00 [Information] Authorization was successful.
+2019-10-09 22:22:16.564 +02:00 [Information] Executing action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" - Validation state: Invalid
+2019-10-09 22:22:16.588 +02:00 [Information] Executed action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 20.4802ms.
+2019-10-09 22:22:16.592 +02:00 [Information] Executing ViewResult, running view "List".
+2019-10-09 22:22:16.602 +02:00 [Information] Executed ViewResult - view "List" executed in 10.8681ms.
+2019-10-09 22:22:16.606 +02:00 [Information] Executed action "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" in 139.2322ms
+2019-10-09 22:22:16.611 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:22:16.615 +02:00 [Information] Request finished in 205.2151ms 200 text/html; charset=utf-8
+2019-10-09 22:27:23.095 +02:00 [Information] User profile is available. Using '"C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-10-09 22:27:24.245 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/  
+2019-10-09 22:27:24.779 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:27:24.805 +02:00 [Information] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "PragWebApp.Controllers.HomeController" ("PragWebApp").
+2019-10-09 22:27:24.993 +02:00 [Information] Executing action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)" - Validation state: Valid
+2019-10-09 22:27:25.003 +02:00 [Information] Executed action method "PragWebApp.Controllers.HomeController.Index (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.1012ms.
+2019-10-09 22:27:25.049 +02:00 [Information] Executing ViewResult, running view "Index".
+2019-10-09 22:27:25.446 +02:00 [Information] Executed ViewResult - view "Index" executed in 421.5946ms.
+2019-10-09 22:27:25.457 +02:00 [Information] Executed action "PragWebApp.Controllers.HomeController.Index (PragWebApp)" in 640.2844ms
+2019-10-09 22:27:25.466 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.HomeController.Index (PragWebApp)"'
+2019-10-09 22:27:25.479 +02:00 [Information] Request finished in 1239.6754ms 200 text/html; charset=utf-8
+2019-10-09 22:28:00.919 +02:00 [Information] Request starting HTTP/2.0 GET https://localhost:44302/AuditTrail/List  
+2019-10-09 22:28:00.983 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:28:01.000 +02:00 [Information] Route matched with "{action = \"List\", controller = \"AuditTrail\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult List()" on controller "PragWebApp.Controllers.AuditTrailController" ("PragWebApp").
+2019-10-09 22:28:01.021 +02:00 [Information] Authorization was successful.
+2019-10-09 22:28:01.045 +02:00 [Information] Executing action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" - Validation state: Valid
+2019-10-09 22:28:01.050 +02:00 [Information] Executed action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.1859ms.
+2019-10-09 22:28:01.073 +02:00 [Information] Executing ViewResult, running view "List".
+2019-10-09 22:28:01.137 +02:00 [Information] Executed ViewResult - view "List" executed in 82.2353ms.
+2019-10-09 22:28:01.141 +02:00 [Information] Executed action "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" in 137.88ms
+2019-10-09 22:28:01.145 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:28:01.150 +02:00 [Information] Request finished in 230.9377ms 200 text/html; charset=utf-8
+2019-10-09 22:28:09.754 +02:00 [Information] Request starting HTTP/2.0 POST https://localhost:44302/AuditTrail/List application/x-www-form-urlencoded 263
+2019-10-09 22:28:09.760 +02:00 [Information] Executing endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:28:09.796 +02:00 [Information] Route matched with "{action = \"List\", controller = \"AuditTrail\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] List(PragWebApp.Models.AuditTrailViewModels.AuditTrailListViewModel)" on controller "PragWebApp.Controllers.AuditTrailController" ("PragWebApp").
+2019-10-09 22:28:09.803 +02:00 [Information] Authorization was successful.
+2019-10-09 22:28:09.890 +02:00 [Information] Executing action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" - Validation state: Invalid
+2019-10-09 22:28:09.928 +02:00 [Information] Executed action method "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 24.7456ms.
+2019-10-09 22:28:09.932 +02:00 [Information] Executing ViewResult, running view "List".
+2019-10-09 22:28:09.945 +02:00 [Information] Executed ViewResult - view "List" executed in 14.3009ms.
+2019-10-09 22:28:09.948 +02:00 [Information] Executed action "PragWebApp.Controllers.AuditTrailController.List (PragWebApp)" in 149.695ms
+2019-10-09 22:28:09.951 +02:00 [Information] Executed endpoint '"PragWebApp.Controllers.AuditTrailController.List (PragWebApp)"'
+2019-10-09 22:28:09.955 +02:00 [Information] Request finished in 201.6046ms 200 text/html; charset=utf-8

@@ -16,6 +16,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using PragWebApp.Models;
 using PragWebApp.Services;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using PragWebApp.Resources;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace PragWebApp
 {
@@ -44,12 +49,28 @@ namespace PragWebApp
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddSingleton<IAuditTrailService, AuditTrailService>();
             services.AddSingleton<IEmailSender, EmailSender>();
+            services.AddSingleton<ISmsSender, SmsSender>();
+            services.AddSingleton<IUserService, UserService>();
 
             services.AddLogging();
             services.AddHttpContextAccessor();
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("cs-CZ"),
+                    new CultureInfo("en-US")
+                };
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                options.DefaultRequestCulture = new RequestCulture(culture: "cs-CZ", uiCulture: "cs-CZ");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix); ;
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -62,6 +83,9 @@ namespace PragWebApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            var localizationOption = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(localizationOption.Value);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -74,9 +98,24 @@ namespace PragWebApp
                 app.UseHsts();
             }
 
+            CultureInfo[] supportedCultures = new[]
+            {
+                new CultureInfo("cs-CZ"),
+                new CultureInfo("en-US"),
+            };
+/*
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {                                    
+                DefaultRequestCulture = new RequestCulture("cs-CZ"),
+                // Formatting numbers, dates, etc.
+                SupportedCultures = supportedCultures,
+                // UI strings that we have localized.
+                SupportedUICultures = supportedCultures
+            });
+*/
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+            app.UseCookiePolicy(); 
 
             app.UseAuthentication();
 
