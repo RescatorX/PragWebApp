@@ -19,6 +19,7 @@ namespace PragWebApp
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+
             WebHost.CreateDefaultBuilder(args)
             .ConfigureLogging(l =>
             {
@@ -27,6 +28,11 @@ namespace PragWebApp
                     .WriteTo.File("log.txt")
                     .CreateLogger());
             })
+/*
+            .UseKestrel()
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseIISIntegration()
+*/
             .UseStartup<Startup>();
     }
 }

@@ -25,6 +25,26 @@ namespace PragWebApp.Controllers
             return View();
         }
 
+        public IActionResult Salon()
+        {
+            return View();
+        }
+
+        public IActionResult Team()
+        {
+            return View();
+        }
+
+        public IActionResult Services()
+        {
+            return View();
+        }
+
+        public IActionResult Contacts()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
