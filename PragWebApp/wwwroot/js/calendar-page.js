@@ -1,11 +1,14 @@
 ﻿////////////////////////////////////////////
-/// AdminCtrl //////////////////////////////
+/// CalendarCtrl ///////////////////////////
 ////////////////////////////////////////////
 
-app.controller('adminCtrl', function ($scope, $http, $timeout) {
+app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
 
     // Global
     $scope.localizedStrings = [];
+
+    // Selector grid
+    $scope.selectorRows = [];
 
     // SelectType
     $scope.useExistingType = true;
@@ -75,7 +78,7 @@ app.controller('adminCtrl', function ($scope, $http, $timeout) {
     $scope.initData = function () {
 
         try {
-            $scope.loadDictionary();
+            $scope.generateSelectoRows();
         } catch (error) { }
 
         $scope.orders = [{ key: 'displayName', text: $scope.getLocalString('WZDOrderFieldsDisplay') }, { key: 'order', text: $scope.getLocalString('WZDOrderFieldsOrder') }];
@@ -93,6 +96,32 @@ app.controller('adminCtrl', function ($scope, $http, $timeout) {
         try {
             $scope.initDocument();
         } catch (error) { }
+    };
+
+    $scope.generateSelectorRows = function () {
+
+        var params = {
+            start: args.start.toString(),
+            end: args.end.toString(),
+            text: modal.result,
+            resource: args.resource
+        };
+        $.ajax({
+            type: 'GET',
+            url: '/api/events',
+            data: JSON.stringify(params),
+            success: function (data) {
+                dp.events.add(new DayPilot.Event(data));
+                dp.message("Event created");
+            },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+
+        var selectorDay = { key: 'displayName', text: $scope.getLocalString('WZDOrderFieldsDisplay') };
+        var selectorRow = [];
+        selectorRow.push(selectorDay);
+        $scope.selectorRows.push(selectorRow);
     };
 
     $scope.initDocument = function () {
@@ -2355,7 +2384,7 @@ app.controller('adminCtrl', function ($scope, $http, $timeout) {
 
     $scope.initData();
 
-}); // MainCtrl
+}); // CalendarCtrl
 
 app.directive('modal', function () {
     return {

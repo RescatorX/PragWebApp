@@ -47,35 +47,19 @@ namespace PragWebApp.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<JsonResult> AddEvent([FromBody] CalendarEvent calendarEvent)
-        {
-            try
-            {
-                _db.CalendarEvents.Add(calendarEvent);
-                await _db.SaveChangesAsync();
-
-                return new JsonResult(true);
-            }
-            catch
-            {
-                return new JsonResult(false);
-            }
-        }
-
-        [Authorize(Roles = "Stylist")]
+        [Authorize(Roles = "Admin,Stylist")]
         public IActionResult WorkingDay()
         {
             return View();
         }
 
-        [Authorize(Roles = "Stylist")]
+        [Authorize(Roles = "Admin,Stylist")]
         public IActionResult UserWeek(Guid userId)
         {
             return View();
         }
 
-        [Authorize(Roles = "Stylist")]
+        [Authorize(Roles = "Admin,Stylist")]
         public IActionResult UserMonth(Guid userId)
         {
             return View();

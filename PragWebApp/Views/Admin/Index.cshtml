@@ -28,3 +28,609 @@
         </li>
     </ul>
 </div>
+
+<div id="wizard-app-div" ng-app="AdminWizard">
+
+    <div id="controller-div" ng-controller="AdminCtrl">
+
+        <table id="wizard-app-header-table">
+            <tr>
+                <td style="width: 800px;">
+
+                    <div id="content-type-div">
+                        <table id="content-type-table">
+                            <tr>
+                                <td><h4>{{getLocalString('WZDCurrentContentType')}}:</h4></td>
+                                <td><label class="content-type-label">{{wizardTypeData.type.name}}</label></td>
+                                <td><a href='#' ng-click='$event.preventDefault();showSelectTypeModalDialog()' title="{{getLocalString('WZDChangeContentType')}}">{{getLocalString('WZDChange')}}</a></td>
+                                <td>
+                                    <div class="content-type-save-div" ng-click='$event.preventDefault();publish()' ng-if="workOnline == false" title="{{getLocalString('WZDSaveContentTypeTitle')}}">
+                                        <label ng-click="$event.preventDefault();publish()" title="{{getLocalString('WZDSaveContentTypeTitle')}}">{{getLocalString('WZDSaveContentType')}}</label>
+                                    </div>
+                                    <div class="content-type-save-div" style="cursor: default;" ng-if="workOnline == true">
+                                        <label class="disabledlink">{{getLocalString('WZDSaveContentType')}}</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h4>{{getLocalString('WZDContentTypePermissions')}}:</h4></td>
+                                <td colspan="2"><div id="type-permissions-area" class="user-permissions-div" userstooltip users='{{wizardTypeData.type.users}}' ng-click="editTypePermissions($event, '', '', '')" permission-section="T"><label class="user-permissions-label"></label></div></td>
+                                <td></td>
+                            </tr>
+                        </table>
+
+                        <!-- select existing or create new content type dialog -->
+                        <modal title="{{getLocalString('WZDChangeContentType')}}" visible="showSelectTypeModal">
+                            <ng-form id="selectTypeForm" name="selectTypeForm">
+                                <div class="" ng-if="useExistingType == true">
+                                    <div class="form-group">
+                                        <a href='#' ng-click='$event.preventDefault();showTxb(true)'>{{getLocalString('WZDCreateNewContentType')}}</a><br /><br />
+                                        <label for="type_existing_name">{{getLocalString('WZDSelectExistingContentType')}}</label>
+                                        <select name="type_existing_name" id="type_existing_name" ng-model='selectedType' ng-options='type.name for type in wizardInitData.types track by type.id' ng-change="selTypeChanged()" class="form-control"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="type_existing_description">{{getLocalString('WZDTypeDescription')}}</label>
+                                        <textarea name="type_existing_description" id="type_existing_description" rows="2" cols="50" ng-model='selectedType.description' class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="" ng-if="useExistingType == false">
+                                    <div class="form-group check-element">
+                                        <a href='#' ng-click='$event.preventDefault();showDdl(true)'>{{getLocalString('WZDSelectExistingContentType')}}</a><br /><br />
+                                        <label for="type_new_name">{{getLocalString('WZDTypeName')}}</label>
+                                        <input type="text" name="type_new_name" id="type_new_name" ng-model='createdType.name' required uniquetype class="form-control">
+                                        <div ng-messages="selectTypeForm.type_new_name.$error" class="validation-messages">
+                                            <p ng-message="required">{{getLocalString('WZDValidValueRequired')}}</p>
+                                            <p ng-message="uniquetype">{{getLocalString('WZDValidValueExists')}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="type_new_description">{{getLocalString('WZDTypeDescription')}}</label>
+                                        <textarea name="type_new_description" id="type_new_description" rows="2" cols="50" ng-model='createdType.description' class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="type_new_parent">{{getLocalString('WZDTypeParent')}}</label>
+                                        <select name="type_new_parent" id="type_new_parent" ng-model='selectedParent' ng-options='parent.name for parent in wizardInitData.parents track by parent.id' ng-change="selParentChanged()" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-default" ng-click="$event.preventDefault();selectType()" ng-if="useExistingType == true">{{getLocalString('WZDSelectType')}}</button>
+                                <button type="submit" class="btn btn-default" ng-click="$event.preventDefault();selectType()" ng-if="useExistingType == false">{{getLocalString('WZDCreateNewContentType')}}</button>
+                                <button type="cancel" class="btn btn-default" ng-click="$event.preventDefault();hideSelectTypeModalDialog()">{{getLocalString('WZDCancel')}}</button>
+                            </ng-form>
+                        </modal>
+
+                        <!-- create new content type confirm dialog -->
+                        <modal title="{{getLocalString('WZDCreateType')}}" visible="showConfirmNewContentTypeModal">
+                            <ng-form id="confirmNewContentTypeForm" name="confirmNewContentTypeForm">
+                                <div class="form-group">
+                                    <label>{{getLocalString1Param('WZDConfirmCreateType', wizardTypeData.type.name)}}</label>
+                                </div>
+                                <button type="submit" class="btn btn-default" ng-click="$event.preventDefault();doCreateNewContentType()">{{getLocalString('WZDCreateType')}}</button>
+                                <button type="cancel" class="btn btn-default" ng-click="$event.preventDefault();hideConfirmNewContentTypeModalDialog()">{{getLocalString('WZDCancel')}}</button>
+                            </ng-form>
+                        </modal>
+
+                        <!-- select existing or create new permissions dialog -->
+                        <modal title="{{getLocalString('WZDContentTypePermissions')}}" visible="showTypePermissionsModal">
+                            <ng-form id="typePermissionsForm" name="typePermissionsForm">
+                                <div class="form-group">
+                                    <input type='radio' id="typePermissionsRadioA" ng-model="lastTypeEditedPermissions.radio" value="A">
+                                    <label for="typePermissionsRadioA">{{getLocalString('WZDUsersEverybody')}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type='radio' id="typePermissionsRadioS" ng-model="lastTypeEditedPermissions.radio" value="S">
+                                    <label for="typePermissionsRadioS">{{getLocalString('WZDUsersSelectedOnly')}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="perms_users_table"></label>
+                                    <div style="padding-left: 50px;margin-top: -20px;">
+                                        <div style="width: 300px; max-height: 200px; overflow-y: hidden; padding-bottom: 10px;">
+                                            <table>
+                                                <tr ng-repeat='user in lastTypeEditedPermissions.users'>
+                                                    <td style="width: 20px;padding: 0px 5px;">
+                                                        <a href='#' ng-click='removeExistingTypePermission(user)' ng-if="lastTypeEditedPermissions.radio == 'S'">
+                                                            <img border="0" src="/_layouts/15/images/delete.gif" alt="{{getLocalString('WZDDeleteUser')}}">
+                                                        </a>
+                                                    </td>
+                                                    <td style="width: 100px;">{{user.name}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <button type="button" ng-click="addNewTypePermission()" ng-if="(lastTypeEditedPermissions.radio == 'S') && !showTypePeoplePicker" class="btn btn-default">{{getLocalString('WZDAddUsers')}}</button>
+                                        <div id="peoplePickerDiv" style="display: none;"></div>
+                                        <button type="button" ng-click="saveNewTypePermission()" ng-if="(lastTypeEditedPermissions.radio == 'S') && showTypePeoplePicker" class="btn btn-default">{{getLocalString('WZDSaveUsers')}}</button>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-default" ng-click="$event.preventDefault();saveTypePermissions()">{{getLocalString('WZDSavePermissions')}}</button>
+                                <button type="cancel" class="btn btn-default" ng-click="$event.preventDefault();hideTypePermissionsModalDialog()">{{getLocalString('WZDCancel')}}</button>
+                            </ng-form>
+                        </modal>
+
+                        <!-- fetch content type progress dialog -->
+                        <modal title="{{getLocalString('WZDContentTypeLoading')}}" visible="showFetchContentTypeProgressModal">
+                            <ng-form id="fetchContentTypeStatusForm" name="fetchContentTypeStatusForm">
+                                <div class="form-group">
+                                    <img border="0" src="/_layouts/images/gears_anv4.gif" alt="Please wait" style="width: 15px; height:15px;">&nbsp;&nbsp;
+                                    <label id="fetch-content-type-label">{{getLocalString1Param('WZDContentTypeLoadingProgress', wizardTypeData.type.name)}}</label>
+                                </div>
+                                <button id="fetch-content-type-okbutton" type="submit" class="btn btn-default" ng-click="$event.preventDefault();hideFetchContentTypeProgressModalDialog()" style="display: none;">{{getLocalString('WZDOK')}}</button>
+                            </ng-form>
+                        </modal>
+
+                    </div>  <!-- SelectTypeCtrl -->
+
+                </td>
+                <td></td>
+                <td style="width: 300px;">
+
+                    <div id="xml-files-div">
+
+                        <table id="xml-files-table" style="text-align: center;">
+                            <tr>
+                                <td colspan="3">
+                                    <table style="text-align: left;">
+                                        <tr>
+                                            <td>
+                                                <input type='checkbox' id="workOnlineCheckBox" ng-model="workOnline" style="color: #0072C6;" title="{{getLocalString('WZDAutoSaveTitle')}}" />
+                                                <label for="workOnlineCheckBox" style="width: 150px; margin-bottom: 0px; color: #0072C6;" title="{{getLocalString('WZDAutoSaveTitle')}}">{{getLocalString('WZDAutoSave')}}</label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><a href='#' ng-click="$event.preventDefault();saveDraft($event)" title="{{getLocalString('WZDSaveDraftTitle')}}">{{getLocalString('WZDSaveDraft')}}</a></td>
+                                <td>
+                                    <a href='#' ng-click="$event.preventDefault();loadDraft()" ng-if="workOnline == false" title="{{getLocalString('WZDLoadDraftTitle')}}">{{getLocalString('WZDLoadDraft')}}</a>
+                                    <a href='#' ng-if="workOnline == true" class="disabledlink">{{getLocalString('WZDLoadDraft')}}</a>
+                                </td>
+                                <td><input type="file" id="load-draft-file-input" accept="text/json" ng-model='jsonFile' xmlfilereader my-save-data="somedata" style="opacity: 0; filter: alpha(opacity = 0); width: 1px;"></td>
+                            </tr>
+                        </table>
+
+                        <!-- publish content type confirm dialog -->
+                        <modal title="{{getLocalString('WZDPublishContentType')}}" visible="showPublishContentTypeModal">
+                            <ng-form id="publishContentTypeForm" name="publishContentTypeForm">
+                                <div class="form-group">
+                                    <label>{{getLocalString1Param('WZDConfirmPublishType', wizardTypeData.type.name)}}</label>
+                                </div>
+                                <button type="submit" class="btn btn-default" ng-click="$event.preventDefault();doPublishContentType()">{{getLocalString('WZDPublishContentType')}}</button>
+                                <button type="cancel" class="btn btn-default" ng-click="$event.preventDefault();hidePublishContentTypeModalDialog()">{{getLocalString('WZDCancel')}}</button>
+                            </ng-form>
+                        </modal>
+
+                        <!-- publish content type progress dialog -->
+                        <modal title="{{getLocalString('WZDPublishContentType')}}" visible="showPublishContentTypeProgressModal">
+                            <ng-form id="publishContentTypeProgressForm" name="publishContentTypeProgressForm">
+                                <div class="form-group">
+                                    <img id="publish-content-type-image" border="0" src="/_layouts/images/gears_anv4.gif" alt="Please wait" style="width: 15px; height:15px; margin-right: 20px;">
+                                    <label id="publish-content-type-label">{{getLocalString1Param('WZDTypeUpdatingProgress', wizardTypeData.type.name)}}</label>
+                                </div>
+                                <button id="publish-content-type-okbutton" type="submit" class="btn btn-default" ng-click="$event.preventDefault();hidePublishContentTypeProgressModalDialog()" style="display: none;">{{getLocalString('WZDOK')}}</button>
+                            </ng-form>
+                        </modal>
+
+                        <!-- load draft confirm dialog -->
+                        <modal title="{{getLocalString('WZDReplaceTypeByDraft')}}" visible="showReplaceTypeByDraftModal">
+                            <ng-form id="replaceTypeByDraftForm" name="replaceTypeByDraftForm">
+                                <div class="form-group">
+                                    <label>{{getLocalString1Param('WZDConfirmReplaceTypeByDraft', draftData.type.name)}}</label>
+                                </div>
+                                <button type="submit" class="btn btn-default" ng-click="$event.preventDefault();doReplaceTypeByDraft()">{{getLocalString('WZDReplaceTypeByDraft')}}</button>
+                                <button type="cancel" class="btn btn-default" ng-click="$event.preventDefault();hideReplaceTypeByDraftModalDialog()">{{getLocalString('WZDCancel')}}</button>
+                            </ng-form>
+                        </modal>
+
+                    </div>  <!-- xml-files-div -->
+
+                </td>
+                <td>
+
+                    <div id="params-div">
+
+                        <table id="params-table">
+                            <tr>
+                                <td style="white-space: nowrap;">{{getLocalString('WZDCellSize')}}: {{cellSize}}&nbsp;&nbsp;&nbsp;</td>
+                                <td><input type="range" id="params-range-input" min="200" max="400" ng-model='cellSize' cellsizereader my-save-data="somedata"></td>
+                            </tr>
+                        </table>
+
+                    </div>  <!-- params-div -->
+
+                </td>
+            </tr>
+        </table>    <!-- wizard-app-header-table -->
+
+        <div class="page" id="main-div">
+
+            <!-- select unused or create new state dialog -->
+            <modal title="{{getLocalString('WZDAddState')}}" visible="showAddStateModal">
+                <ng-form id="addStateForm" name="addStateForm">
+                    <div class="form-group check-element" ng-if="useExistingState == true">
+                        <a href='#' ng-click='$event.preventDefault();showStateTxb(true)'>{{getLocalString('WZDCreateNewState')}}</a><br /><br />
+                        <label for="state_existing_name">{{getLocalString('WZDSelectExistingState')}}</label>
+                        <select name="state_existing_name" id="state_existing_name" ng-model='addedState' ng-options="state.state for state in unusedStates | orderBy:'state'" ng-change="selStateAdded(addedState)" class="form-control"></select>
+                    </div>
+                    <div ng-if="useExistingState == false" class="">
+                        <a href='#' ng-click='$event.preventDefault();showStateDdl(true)'>{{getLocalString('WZDSelectExistingState')}}</a><br /><br />
+                        <div class="form-group">
+                            <label for="state_new_name">{{getLocalString('WZDStateName')}}</label>
+                            <input type="text" name="state_new_name" id="state_new_name" ng-model='createdState.state' class="form-control" required uniquestate>
+                            <div ng-messages="addStateForm.state_new_name.$error" class="validation-messages">
+                                <p ng-message="required">{{getLocalString('WZDValidValueRequired')}}</p>
+                                <p ng-message="uniquetype">{{getLocalString('WZDValidValueExists')}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="state_final">{{getLocalString('WZDFinalState')}}</label>
+                            <input name="state_final" id="state_final" ng-model='createdState.final' type="checkbox" class="form-control" />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="$event.preventDefault();addState()">{{getLocalString('WZDAddState')}}</button>
+                    <button type="cancel" class="btn btn-default" ng-click="$event.preventDefault();hideAddStateModalDialog()">{{getLocalString('WZDCancel')}}</button>
+                </ng-form>
+            </modal>
+
+            <!-- delete state dialog -->
+            <modal title="{{getLocalString('WZDDeleteState')}}" visible="showDeleteStateModal">
+                <ng-form id="deleteStateForm" name="deleteStateForm">
+                    <div class="form-group">
+                        <label>{{getLocalString1Param('WZDConfirmDeleteState', deletingState.state)}}</label>
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="$event.preventDefault();doDeleteState()">{{getLocalString('WZDDeleteState')}}</button>
+                    <button type="cancel" class="btn btn-default" ng-click="$event.preventDefault();hideDeleteStateModalDialog()">{{getLocalString('WZDCancel')}}</button>
+                </ng-form>
+            </modal>
+
+            <!-- change state final flag dialog -->
+            <modal title="{{getLocalString('WZDChangeStateFinalFlag')}}" visible="showChangeStateFinalFlagModal">
+                <ng-form id="changeStateFinalFlagForm" name="changeStateFinalFlagForm">
+                    <div class="form-group">
+                        <label>{{getLocalString1Param('WZDConfirmChangeStateFinalFlag', stateChangedFinalFlag.state)}}</label>
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="$event.preventDefault();doChangeStateFinalFlag()">{{getLocalString('WZDChangeStateFinalFlag')}}</button>
+                    <button type="cancel" class="btn btn-default" ng-click="$event.preventDefault();discardChangeStateFinalFlag()">{{getLocalString('WZDCancel')}}</button>
+                </ng-form>
+            </modal>
+
+            <!-- select unused or create new field dialog -->
+            <modal title="{{getLocalString('WZDAddField')}}" visible="showAddFieldModal">
+                <ng-form id="addFieldForm" name="addFieldForm">
+                    <div class="form-group">
+                        <label for="field_existing_name">{{getLocalString('WZDSelectExistingField')}}</label>
+                        <select name="field_existing_name" id="field_existing_name" ng-model='createdField' ng-options="field.displayName for field in unusedFields | localeOrderBy:'displayName'" ng-change="selFieldAdded(createdField)" class="form-control"></select>
+                        <br /><a href='#' ng-click='$event.preventDefault();showNewFieldModalDialog()'>{{getLocalString('WZDCreateNewField')}}</a>
+                    </div>
+                    <div class="form-group">
+                        <label for="field_internal_name">{{getLocalString('WZDInternalName')}}</label>
+                        <input type="text" name="field_internal_name" id="field_internal_name" ng-model='createdField.internalName' disabled="disabled" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="field_display_name">{{getLocalString('WZDDisplayName')}}</label>
+                        <input type="text" name="field_display_name" id="field_display_name" ng-model='createdField.createdFieldDisplayName' required class="form-control" ng-change="displayNameChanged(createdField.createdFieldDisplayName)">
+                        <div ng-messages="addFieldForm.field_display_name.$error" ng-if="!useExistingField" class="validation-messages">
+                            <p ng-message="required">{{getLocalString('WZDValidValueRequired')}}</p>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="$event.preventDefault();addField()">{{getLocalString('WZDAddField')}}</button>
+                    <button type="cancel" class="btn btn-default" ng-click="$event.preventDefault();hideAddFieldModalDialog()">{{getLocalString('WZDCancel')}}</button>
+                </ng-form>
+            </modal>
+
+            <!-- delete field dialog -->
+            <modal title="{{getLocalString('WZDDeleteField')}}" visible="showDeleteFieldModal">
+                <ng-form id="deleteFieldForm" name="deleteFieldForm">
+                    <div class="form-group">
+                        <label>{{getLocalString2Param('WZDConfirmDeleteField', deletingField.displayName, deletingField.internalName)}}</label>
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="$event.preventDefault();doDeleteField()">{{getLocalString('WZDDeleteField')}}</button>
+                    <button type="cancel" class="btn btn-default" ng-click="$event.preventDefault();hideDeleteFieldModalDialog()">{{getLocalString('WZDCancel')}}</button>
+                </ng-form>
+            </modal>
+
+            <!-- select existing or create new permissions dialog -->
+            <modal title="{{getLocalString('WZDStatePermissions')}}" visible="showStatePermissionsModal">
+                <ng-form id="statePermissionsForm" name="statePermissionsForm">
+                    <div class="form-group">
+                        <input type='radio' id="statePermissionsRadioA" ng-model="lastEditedPermissions.radio" value="A" />
+                        <label for="statePermissionsRadioA">{{getLocalString('WZDUsersEverybody')}}</label>
+                    </div>
+                    <div class="form-group" ng-if="(lastEditedPermissions.type == 'E') || (lastEditedPermissions.type == 'R')">
+                        <input type='radio' id="statePermissionsRadioN" ng-model="lastEditedPermissions.radio" value="N" />
+                        <label for="statePermissionsRadioN">{{getLocalString('WZDUsersNobody')}}</label>
+                    </div>
+                    <div class="form-group">
+                        <input type='radio' id="statePermissionsRadioS" ng-model="lastEditedPermissions.radio" value="S" />
+                        <label for="statePermissionsRadioS">{{getLocalString('WZDUsersSelectedOnly')}}</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="perms_users_table"></label>
+                        <div style="padding-left: 50px;margin-top: -20px;">
+                            <div style="width: 300px; max-height: 200px; overflow-y: hidden; padding-bottom: 10px;">
+                                <table>
+                                    <tr ng-repeat='user in lastEditedPermissions.users'>
+                                        <td style="width: 20px;padding: 0px 5px;">
+                                            <a href='#' ng-click='removeExistingPermission(user)' ng-if="lastEditedPermissions.radio == 'S'">
+                                                <img border="0" src="/_layouts/15/images/delete.gif" alt="{{getLocalString('WZDDeleteUser')}}">
+                                            </a>
+                                        </td>
+                                        <td style="width: 100px;">{{user.name}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <button type="button" ng-click="addNewPermission()" ng-if="(lastEditedPermissions.radio == 'S') && !showPeoplePicker" class="btn btn-default">{{getLocalString('WZDAddUsers')}}</button>
+                            <div id="peoplePickerStateDiv" style="display: none;"></div>
+                            <button type="button" ng-click="saveNewPermission()" ng-if="(lastEditedPermissions.radio == 'S') && showPeoplePicker" class="btn btn-default">{{getLocalString('WZDSaveUsers')}}</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="$event.preventDefault();savePermissions()">{{getLocalString('WZDSavePermissions')}}</button>
+                    <button type="cancel" class="btn btn-default" ng-click="$event.preventDefault();hideStatePermissionsModalDialog()">{{getLocalString('WZDCancel')}}</button>
+                </ng-form>
+            </modal>
+
+            <div id="main-table-div">
+                <div style="width: 5000px; height: 1px;"></div>
+                <div class="tabstrip-states main-table-column-headers column-headers" id="clscroll-column-headers">
+                    <ul id="state-elements" class="tabstrip-states-ul">
+                        <li class="add-state-li">
+                            <div class="add-state-li-div">
+                                <a href='#' ng-click='$event.preventDefault();showAddStateDialog()' title="{{getLocalString('WZDAddState')}}">
+                                    <img border="0" src="/_layouts/15/images/AddHero.20x20x32.png" alt="{{getLocalString('WZDAddState')}}">
+                                </a>
+                            </div>
+                        </li>
+                        <li class="drop-target-state"></li>
+                        <li data-ng-repeat-start='state in wizardTypeData.type.states | filter:isUsedState' class="state-li">
+                            <div class="state-label-div">
+                                <table class="state-control-table">
+                                    <tr class="state-control-row">
+                                        <td style="width: 100%;">
+                                            <label class="state-name-label">{{state.state}}</label>
+                                        </td>
+                                        <td style="width: 20px;">
+                                            <a href='#' ng-click='deleteState(state)'>
+                                                <img border="0" src="/_layouts/15/images/delete.gif" alt="{{getLocalString('WZDDeleteState')}}">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </li>
+                        <li class="drop-target-state" data-ng-repeat-end></li>
+                        <li class="add-state-li">
+                            <div class="add-state-li-div">
+                                <a href='#' ng-click='$event.preventDefault();showAddStateDialog()' title="{{getLocalString('WZDAddState')}}">
+                                    <img border="0" src="/_layouts/15/images/AddHero.20x20x32.png" alt="{{getLocalString('WZDAddState')}}">
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tabstrip-states-params">
+                    <ul class="tabstrip-states-params-ul">
+                        <li ng-repeat='state in wizardTypeData.type.states | filter:isUsedState' class="state-li">
+                            <div class="state-params-div">
+                                <div class="state-params-common-div state-params-default-state-div">
+                                    <input type='radio' name="defstate" ng-value="true" data-ng-model="state.typeStateRelation.default" data-ng-click="checkOrClearDefaultState(state)" style="margin: 6px 0 0 0" />
+                                </div>
+                                <div class="state-params-common-div state-params-final-state-div">
+                                    <input type='checkbox' ng-model="state.final" ng-click="askChangeStateFinalFlag(state)" />
+                                </div>
+                                <div class="state-params-common-div state-params-state-permissions-div">
+                                    <div class="user-permissions-div" userstooltip users='{{state.typeStateRelation.users}}' ng-click="editPermissions($event, state, '', 'U')" permission-section="SU"><label class="user-permissions-label"></label></div>
+                                </div>
+                                <div class="state-params-common-div state-params-state-editors-div">
+                                    <div class="user-permissions-div" userstooltip users='{{state.typeStateRelation.editors}}' ng-click="editPermissions($event, state, '', 'E')" permission-section="SE"><label class="user-permissions-label"></label></div>
+                                </div>
+                                <div class="state-params-common-div state-params-state-readers-div">
+                                    <div class="user-permissions-div" userstooltip users='{{state.typeStateRelation.readers}}' ng-click="editPermissions($event, state, '', 'R')" permission-section="SR"><label class="user-permissions-label"></label></div>
+                                </div>
+                                <div class="state-params-fields-divider-div">
+                                    <table class="state-params-fields-divider-table">
+                                        <tr>
+                                            <td>
+                                                <table style="text-align: center;">
+                                                    <tr>
+                                                        <td><label>{{getLocalString('WZDRequiredTitle')}}</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href='#' ng-if="workOnline == false" ng-click="$event.preventDefault();fieldRequiredChangedAll(state, 'T')" title="{{getLocalString('WZDRequiredSetAllTitle')}}">{{getLocalString('WZDRequiredSetAllLink')}}</a>
+                                                            <a href='#' ng-if="workOnline ==  true" class="disabledlink" title="{{getLocalString('WZDRequiredSetAllTitle')}}">{{getLocalString('WZDRequiredSetAllLink')}}</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href='#' ng-if="workOnline == false" ng-click="$event.preventDefault();fieldRequiredChangedAll(state, 'F')" title="{{getLocalString('WZDRequiredResetAllTitle')}}">{{getLocalString('WZDRequiredResetAllLink')}}</a>
+                                                            <a href='#' ng-if="workOnline ==  true" class="disabledlink" title="{{getLocalString('WZDRequiredResetAllTitle')}}">{{getLocalString('WZDRequiredResetAllLink')}}</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href='#' ng-if="workOnline == false" ng-click="$event.preventDefault();fieldRequiredChangedAll(state, 'P')" title="{{getLocalString('WZDRequiredOriginalTitle')}}">{{getLocalString('WZDRequiredOriginalLink')}}</a>
+                                                            <a href='#' ng-if="workOnline ==  true" class="disabledlink" title="{{getLocalString('WZDRequiredOriginalTitle')}}">{{getLocalString('WZDRequiredOriginalLink')}}</a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <table style="text-align: center;">
+                                                    <tr>
+                                                        <td><label>{{getLocalString('WZDEditableTitle')}}</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href='#' ng-if="workOnline == false" ng-click="$event.preventDefault();fieldEditableChangedAll(state, 'E')" title="{{getLocalString('WZDEditableSetEverybodyTitle')}}">{{getLocalString('WZDEditableSetEverybodyLink')}}</a>
+                                                            <a href='#' ng-if="workOnline ==  true" class="disabledlink" title="{{getLocalString('WZDEditableSetEverybodyTitle')}}">{{getLocalString('WZDEditableSetEverybodyLink')}}</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href='#' ng-if="workOnline == false" ng-click="$event.preventDefault();fieldEditableChangedAll(state, 'N')" title="{{getLocalString('WZDEditableSetNobodyTitle')}}">{{getLocalString('WZDEditableSetNobodyLink')}}</a>
+                                                            <a href='#' ng-if="workOnline ==  true" class="disabledlink" title="{{getLocalString('WZDEditableSetNobodyTitle')}}">{{getLocalString('WZDEditableSetNobodyLink')}}</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href='#' ng-if="workOnline == false" ng-click="$event.preventDefault();fieldEditableChangedAll(state, 'P')" title="{{getLocalString('WZDEditableOriginalTitle')}}">{{getLocalString('WZDEditableOriginalLink')}}</a>
+                                                            <a href='#' ng-if="workOnline ==  true" class="disabledlink" title="{{getLocalString('WZDEditableOriginalTitle')}}">{{getLocalString('WZDEditableOriginalLink')}}</a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="tabstrip-states-fields">
+                                    <ul class="state-params-state-field-ul">
+                                        <li ng-repeat='field in wizardTypeData.type.fields | filter: isUsedField | localeOrderBy:selectedOrder.key' class="field-vals-li">
+                                            <div class="field-flags-div">
+                                                <table class="field-flags-content">
+                                                    <tr>
+                                                        <td>
+                                                            <input type='checkbox' checked ng-if="((canFieldChangeRequired(field, state) == true) && (isFieldRequired(field, state) ==  true))" ng-click="$event.preventDefault();fieldRequiredChanged(field, state)" />
+                                                            <input type='checkbox' ng-if="((canFieldChangeRequired(field, state) == true) && (isFieldRequired(field, state) == false))" ng-click="$event.preventDefault();fieldRequiredChanged(field, state)" />
+                                                            <input type='checkbox' checked ng-if="((cannotFieldChangeRequired(field, state) == true) && (isFieldRequired(field, state) ==  true))" disabled="disabled" />
+                                                            <input type='checkbox' ng-if="((cannotFieldChangeRequired(field, state) == true) && (isFieldRequired(field, state) == false))" disabled="disabled" />
+                                                            <br />
+                                                            <br />
+                                                            <a href='#' ng-click='$event.preventDefault();fieldRequiredShowItem(field, state)' ng-if="isFieldRequired(field, state)"><img border="0" src="/_layouts/15/images/actionssettings.gif" alt="{{getLocalString('WZDDeleteField')}}" style="width: 15px; height:15px;"></a>
+                                                        </td>
+                                                        <td>
+                                                            <div class="user-field-permissions-div" userstooltip field="{{field.internalName}}" state="{{state.state}}" users="{{getFieldStateEditors(field, state)}}" ng-if="canFieldChangeEditable(field, state)" ng-click="$event.preventDefault();editPermissions($event, state, field, 'E')" permission-section="FE">
+                                                                <label class="user-field-permissions-label"></label>
+                                                            </div>
+                                                            <div class="user-field-permissions-div" userstooltip users="{{getFieldStateEditors(field, state)}}" ng-if="cannotFieldChangeEditable(field, state)">
+                                                                <label class="user-field-permissions-disabled"></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="main-table-row-headers row-headers">
+                    <div class="tabstrip-params">
+                        <ul id="param-elements" class="tabstrip-params-ul">
+                            <li class="param-radio">
+                                <div class="param-label-div">
+                                    <label>{{getLocalString('WZDDefaultState')}}</label>
+                                </div>
+                            </li>
+                            <li class="param-checkbox">
+                                <div class="param-label-div">
+                                    <label>{{getLocalString('WZDFinalState')}}</label>
+                                </div>
+                            </li>
+                            <li class="param-peoplepicker">
+                                <div class="param-label-div">
+                                    <label>{{getLocalString('WZDStatePermissions')}}</label>
+                                </div>
+                            </li>
+                            <li class="param-peoplepicker">
+                                <div class="param-label-div">
+                                    <label>{{getLocalString('WZDAdditionalEditors')}}</label>
+                                </div>
+                            </li>
+                            <li class="param-peoplepicker">
+                                <div class="param-label-div">
+                                    <label>{{getLocalString('WZDAdditionalReaders')}}</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tabstrip-order">
+                        <ul id="order-elements" class="tabstrip-order-ul">
+                            <li>
+                                <div class="order-label-div">
+                                    <label>{{getLocalString('WZDOrderFields')}}:</label>
+                                    <div class="order-params-div">
+                                        <select ng-model='selectedOrder' ng-options='ordr.text for ordr in orders track by ordr.key' ng-change="selOrderChanged(ordr)" class="form-control"></select>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tabstrip-fields-add">
+                        <ul class="tabstrip-fields-ul-add">
+                            <li class="add-field-li">
+                                <div class="add-field-label-div">
+                                    <div class="add-field-li-div">
+                                        <a href='#' ng-click='$event.preventDefault();showAddFieldDialog()' title="{{getLocalString('WZDAddField')}}">
+                                            <img border="0" src="/_layouts/15/images/AddHero.20x20x32.png" alt="{{getLocalString('WZDAddField')}}">
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tabstrip-fields">
+                        <ul id="field-elements" class="tabstrip-fields-ul">
+                            <li class="drop-target-field"></li>
+                            <li ng-repeat-start="field in wizardTypeData.type.fields | filter:isUsedField | localeOrderBy:selectedOrder.key" class="field-li">
+                                <div class="field-label-div">
+                                    <div class="field-params-div">
+                                        <a href='#' ng-click='deleteField(field)'>
+                                            <img border="0" src="/_layouts/15/images/delete.gif" alt="{{getLocalString('WZDDeleteField')}}">
+                                        </a>
+                                        <table class="field-control-table">
+                                            <tr>
+                                                <td>
+                                                    <a href='#' ng-click='$event.preventDefault();showEditFieldModalDialog(field)'>
+                                                        <label>{{field.displayName}}</label>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label style="font-size: 9px;">(</label>
+                                                    <label style="font-size: 9px;" class="field-name-label" ng-click="selectText($event)">{{field.internalName}}</label>
+                                                    <label style="font-size: 9px;">)</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="drop-target-field" ng-repeat-end></li>
+                        </ul>
+                    </div>
+                    <div class="tabstrip-fields-add" style="top: -90px;">
+                        <ul class="tabstrip-fields-ul-add">
+                            <li class="add-field-li">
+                                <div class="add-field-label-div">
+                                    <div class="add-field-li-div">
+                                        <a href='#' ng-click='$event.preventDefault();showAddFieldDialog()' title="{{getLocalString('WZDAddField')}}">
+                                            <img border="0" src="/_layouts/15/images/AddHero.20x20x32.png" alt="{{getLocalString('WZDAddField')}}">
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>  <!-- main-div -->
+
+    </div>  <!-- ng-controller-div -->
+
+</div>  <!-- wizard-app-div -->
+
+<script type="text/javascript">
+
+        $("#dictionatyHidden").val($('#<%= WizardDictionaryHiddenField.ClientID %>').val());
+
+        window.setTimeout(function () {
+            try {
+                initializePeoplePicker("peoplePickerDiv");
+                initializePeoplePicker("peoplePickerStateDiv");
+            } catch (error) { }
+        }, 500);
+
+</script>
