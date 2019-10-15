@@ -14,7 +14,8 @@ namespace PragWebApp.Data.Entities
         public string Title { get; set; }
         public ApplicationUser Owner { get; set; }
         public CalendarEventType Event { get; set; }
-        public DateTime Term { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
         public Customer Customer { get; set; }
         public string CustomerName { get; set; }
         public string CustomerEmail { get; set; }
@@ -31,7 +32,8 @@ namespace PragWebApp.Data.Entities
                 + ", Title=" + this.Title
                 + ", Owner=" + this.Owner.ToString()
                 + ", Event=" + this.Event.ToString()
-                + ", Term=" + this.Term.ToCzString()
+                + ", Start=" + this.Start.ToCzString()
+                + ", End=" + this.End.ToCzString()
                 + ", Customer=" + this.Customer.ToString()
                 + ", CustomerName=" + this.CustomerName
                 + ", CustomerEmail=" + this.CustomerEmail

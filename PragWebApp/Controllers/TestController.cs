@@ -13,11 +13,11 @@ using PragWebApp.Models;
 
 namespace PragWebApp.Controllers
 {
-    public class HomeController : Controller
+    public class TestController : Controller
     {
         private readonly IStringLocalizer<HomeController> _localizer;
 
-        public HomeController(IStringLocalizer<HomeController> localizer)
+        public TestController(IStringLocalizer<HomeController> localizer)
         {
             _localizer = localizer;
         }

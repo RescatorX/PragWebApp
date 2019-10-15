@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PragWebApp.Data.Enums;
 using PragWebApp.Extensions;
 using PragWebApp.Models;
 using PragWebApp.Models.AccountViewModels;
@@ -219,7 +220,7 @@ namespace PragWebApp.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { Id = Guid.NewGuid(), UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Created = DateTime.Now, Status = UserStatus.Created };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

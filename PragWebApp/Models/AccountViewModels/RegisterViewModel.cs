@@ -12,12 +12,10 @@ namespace PragWebApp.Models.AccountViewModels
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = ResourceKeys.Controllers.AccountController.FirstName, ResourceType = typeof(Controllers_AccountController))]
         public string FirstName { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "LastName")]
         public string LastName { get; set; }
 
