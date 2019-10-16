@@ -35,7 +35,7 @@ namespace PragWebApp.Controllers
             _logger = logger;
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             return View();

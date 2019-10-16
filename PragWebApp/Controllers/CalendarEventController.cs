@@ -39,18 +39,27 @@ namespace PragWebApp.Controllers
         }
 
         // GET: api/Events
-        [HttpGet("initData")]
-        public CalendarInitViewModel GetInitData()
+        [HttpPost("initData")]
+        public CalendarInitViewModel GetInitData([FromBody] SelectorDateParams selectorParams)
         {
-            DateTime now = DateTime.Now;
+            DateTime today = DateTime.Today;
+            int year = today.Year;
+            int month = today.Month;
 
-            SelectorWeek[] weeks = GetMonthWeeks(now.Year, now.Month);
+            if (selectorParams != null)
+            {
+                year = selectorParams.Year;
+                month = selectorParams.Month;
+            }
+
+            SelectorWeek[] weeks = GetMonthWeeks(year, month);
 
             CalendarInitViewModel model = new CalendarInitViewModel();
             model.User = User.Identity.Name;
             model.IsAdmin = User.IsInRole("Admin");
-            model.Year = DateTime.Now.Year.ToString();
-            model.MonthName = GetMonthName(now.Month);
+            model.Year = year;
+            model.Month = month;
+            model.MonthName = GetMonthName(month);
             model.Weeks = weeks;
             model.ViewRange = "DAY";
 
@@ -61,34 +70,37 @@ namespace PragWebApp.Controllers
         {
             List<SelectorWeek> weeks = new List<SelectorWeek>();
 
+            DateTime today = DateTime.Today;
             DateTime firstDay = new DateTime(year, month, 1);
             DateTime previousMonthLastDay = firstDay.AddDays(-1);
-            bool addPreviousMonthLastWeek = (firstDay.DayOfWeek < DayOfWeek.Wednesday);
-            int previousMonthFirstVisibleDay = 0;
 
-            int weekIndex = 0;
-            if (addPreviousMonthLastWeek)
+            int weekMondayIndex = DateTime.DaysInMonth(previousMonthLastDay.Year, previousMonthLastDay.Month) - (int)previousMonthLastDay.DayOfWeek;
+            int weekIndex = 1;
+            DateTime day = new DateTime(previousMonthLastDay.Year, previousMonthLastDay.Month, weekMondayIndex);
+            if ((int)previousMonthLastDay.DayOfWeek < 2)
             {
-                List<SelectorDay> days = new List<SelectorDay>();
-                for (int i = 0; i < ((int)firstDay.DayOfWeek); i++)
-                {
-                    days.Add(new SelectorDay() { });
-                }
-                SelectorWeek week = new SelectorWeek() { Week = weekIndex++, Days = days.ToArray() };
+                day = day.AddDays(-7);
+                weeks.Add(GetWeek(day, month, weekIndex++));
             }
-            for (int i = 0; i < ((int)firstDay.DayOfWeek); i++)
+            while (weeks.Count < 7)
             {
+                day = day.AddDays(7);
+                weeks.Add(GetWeek(day, month, weekIndex++));
             }
 
-/*
-            new SelectorWeek[] {
-                            new StateItem() { State = "Processing", Final = false, TypeStateRelation = new TypeStateRelationItem() { Default = true, Order = 1, Users = new UserItem[] { new UserItem() { Id=1, Name="Kalina", Type="U"}, new UserItem() { Id=2, Name="Kalinovi", Type="G"} }, Editors = new UserItem[] {}, Readers = new UserItem[] {}}},
-                            new StateItem() { State = "Final", Final = true, TypeStateRelation = new TypeStateRelationItem() { Default = false, Order = 2, Users = new UserItem[] {}, Editors = new UserItem[] {}, Readers = new UserItem[] {}}},
-                            new StateItem() { State = "Added", Final = false, TypeStateRelation = new TypeStateRelationItem() { Default = false, Order = 3, Users = new UserItem[] {}, Editors = new UserItem[] {}, Readers = new UserItem[] {}}},
-                            new StateItem() { State = "Deleted", Final = true, TypeStateRelation = new TypeStateRelationItem() { Default = false, Order = 4, Users = new UserItem[] {}, Editors = new UserItem[] {}, Readers = new UserItem[] {}}}
-                        },
-*/
             return weeks.ToArray();
+        }
+
+        private SelectorWeek GetWeek(DateTime monday, int selectedMonth, int weekIndex)
+        {
+            List<SelectorDay> days = new List<SelectorDay>();
+            DateTime today = DateTime.Today;
+            for (int i = 1; i <= 7; i++)
+            {
+                DateTime day = monday.AddDays(i);
+                days.Add(new SelectorDay() { Day = day.Day, IsCurrentDay = (day.Equals(today)), IsInMonth = (day.Month == selectedMonth), IsSelected = (day.Equals(today)) });
+            }
+            return (new SelectorWeek() { Days = days.ToArray(), Week = weekIndex });
         }
 
         private string GetMonthName(int month)

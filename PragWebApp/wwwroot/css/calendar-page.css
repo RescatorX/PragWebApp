@@ -1,4 +1,45 @@
 ﻿
+.month-change {
+    width: 14.2857% !important;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid lightgray;
+}
+
+.month-current {
+    width: 71.428% !important;
+    text-align: center;
+    border: 1px solid lightgray;
+}
+
 .calendar-day {
-    width: 14.2857%;
+    width: 14.2857% !important;
+    text-align: center;
+    background-color: lightgray;
+    border: 1px solid lightgray;
+}
+
+.calendar-day-title {
+    width: 14.2857% !important;
+    text-align: center;
+    border: 1px solid lightgray;
+}
+
+.calendar-day > span {
+    width: 100%;
+    height: 100%;
+    color: black;
+}
+
+.inmonth {
+    background-color: white;
+    cursor: pointer;
+}
+
+.today {
+    border: 1px solid red;
+}
+
+.selectedday {
+    background-color: lightgreen;
 }

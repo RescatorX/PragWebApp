@@ -17,6 +17,9 @@ namespace PragWebApp.Models.CalendarViewModels
 
         [DataMember(Name = "isCurrentDay", Order = 3)]
         public bool IsCurrentDay { get; set; }
+
+        [DataMember(Name = "isSelected", Order = 4)]
+        public bool IsSelected { get; set; }
     }
 
     [DataContract]
@@ -39,15 +42,28 @@ namespace PragWebApp.Models.CalendarViewModels
         public bool IsAdmin { get; set; }
 
         [DataMember(Name = "year", Order = 3)]
-        public string Year { get; set; }
+        public int Year { get; set; }
 
-        [DataMember(Name = "monthName", Order = 4)]
+        [DataMember(Name = "month", Order = 4)]
+        public int Month { get; set; }
+
+        [DataMember(Name = "monthName", Order = 5)]
         public string MonthName { get; set; }
 
-        [DataMember(Name = "weeks", Order = 5)]
+        [DataMember(Name = "weeks", Order = 6)]
         public SelectorWeek[] Weeks { get; set; }
 
-        [DataMember(Name = "viewRange", Order = 6)]
+        [DataMember(Name = "viewRange", Order = 7)]
         public string ViewRange { get; set; }
+    }
+
+    [DataContract]
+    public class SelectorDateParams
+    {
+        [DataMember(Name = "year", Order = 1)]
+        public int Year { get; set; }
+
+        [DataMember(Name = "month", Order = 2)]
+        public int Month { get; set; }
     }
 }
