@@ -13,31 +13,123 @@
 
 <div id="calendar-app-div" ng-app="CalendarPage">
 
-    <div id="controller-div" ng-controller="CalendarCtrl">
+    <div id="controller-div" ng-controller="CalendarCtrl" style="height: 100%;">
 
-        <div class="row calendar-selector">
+        <div class="row title-row">
+            <div class="col-3"></div>
+            <div class="col-3"><span>Uživatel: {{initData.user}}</span></div>
+            <div class="col-2"></div>
+            <div class="col-4">
+                <table>
+                    <tr>
+                        <td ng-if="interval == 'D'" ng-click="intervalDay()" class="bordered clickable interval-div-selected"><span>den</span></td>
+                        <td ng-if="interval != 'D'" ng-click="intervalDay()" class="bordered clickable interval-div"><span>den</span></td>
+                        <td ng-if="interval == 'W'" ng-click="intervalWeek()" class="bordered clickable interval-div-selected"><span>týden</span></td>
+                        <td ng-if="interval != 'W'" ng-click="intervalWeek()" class="bordered clickable interval-div"><span>týden</span></td>
+                        <td ng-if="interval == 'M'" ng-click="intervalMonth()" class="bordered clickable interval-div-selected"><span>měsíc</span></td>
+                        <td ng-if="interval != 'M'" ng-click="intervalMonth()" class="bordered clickable interval-div"><span>měsíc</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div> 
+        <div class="row" style="height: 800px;">
             <div class="col-3">
-                <div class="row" style="margin-bottom: 1px;">
-                    <div class="month-change" ng-click="prevMonth()"><span>&lt;</span></div>
-                    <div class="month-current">{{initData.monthName}}  {{initData.year}}</div>
-                    <div class="month-change" ng-click="nextMonth()"><span>&gt;</span></div>
+                <div class="row">
+                    <div class="col-12 calendar-selector">
+                        <div class="row" style="margin-bottom: 1px;">
+                            <div class="bordered clickable month-change" ng-click="prevMonth()"><span>&lt;</span></div>
+                            <div class="bordered clickable month-current">{{initData.monthName}}  {{initData.year}}</div>
+                            <div class="bordered clickable month-change" ng-click="nextMonth()"><span>&gt;</span></div>
+                        </div>
+                        <div class="row" style="margin-bottom: 1px;">
+                            <div class="bordered calendar-day-title">PO</div>
+                            <div class="bordered calendar-day-title">ÚT</div>
+                            <div class="bordered calendar-day-title">ST</div>
+                            <div class="bordered calendar-day-title">ČT</div>
+                            <div class="bordered calendar-day-title">PÁ</div>
+                            <div class="bordered calendar-day-title">SO</div>
+                            <div class="bordered calendar-day-title">NE</div>
+                        </div>
+                        <div ng-repeat="row in selectorRows" class="row">
+                            <div ng-repeat="day in row.days" ng-click="selectDay(day)" class="clickable calendar-day" ng-class="{inmonth: (day.isInMonth == true), bordered: (day.isCurrentDay != true), today: (day.isCurrentDay == true), selectedday: (day.isSelected == true)}">
+                                <span>{{day.day}}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="row" style="margin-bottom: 1px;">
-                    <div class="calendar-day-title">PO</div>
-                    <div class="calendar-day-title">ÚT</div>
-                    <div class="calendar-day-title">ST</div>
-                    <div class="calendar-day-title">ČT</div>
-                    <div class="calendar-day-title">PÁ</div>
-                    <div class="calendar-day-title">SO</div>
-                    <div class="calendar-day-title">NE</div>
-                </div>
-                <div ng-repeat="row in selectorRows" class="row">
-                    <div ng-repeat="day in row.days" ng-click="selectDay(day)" class="calendar-day" ng-class="{inmonth: (day.isInMonth == true), today: (day.isCurrentDay == true), selectedday: (day.isSelected == true)}">
-                        <span>{{day.day}}</span>
+                <div class="row">
+                    <div ng-if="eventMode == 'A'" class="col-12 clickable calendar-add-event" ng-click="addEvent()">
+                        <i class="fa fa-plus" style="color: green;"></i><span>Přidat událost</span>
+                    </div>
+                    <div ng-if="eventMode == 'S'" class="col-12 calendar-show-event">
+                    </div>
+                    <div ng-if="eventMode == 'E'" class="col-12 calendar-edit-event">
+                    </div>
+                    <div ng-if="eventMode == 'C'" class="col-12 calendar-edit-event">
                     </div>
                 </div>
             </div>
-            <div class="col-9">
+            <div class="col-9 calendar-field-div">
+                <div class="row calendar-field" style="height: 25px; margin-bottom: 1px;">
+                    <div ng-if="interval == 'D'" class="col-1">
+                    </div>
+                    <div ng-if="interval == 'D'" class="col-11">
+                        <div class="row" style="height: 100%;">
+                            <div class="bordered single-day"><span>{{selectedDay.day}}.{{selectedDay.month}}.{{selectedDay.year}}</span></div>
+                        </div>
+                    </div>
+                    <div ng-if="interval == 'W'" class="col-1">
+                    </div>
+                    <div ng-if="interval == 'W'" class="col-11">
+                        <div class="row" style="height: 100%;">
+                            <div ng-repeat="day in weekOfSelectedDay.days" class="bordered day-of-week"><span>{{day.day}}.{{day.month}}.{{day.year}}</span></div>
+                        </div>
+                    </div>
+                    <div ng-if="interval == 'M'" class="col-1">
+                    </div>
+                    <div ng-if="interval == 'M'" class="col-11">
+                        <div class="row" style="height: 100%;">
+                            <div ng-repeat="n in range(1, monthDays)" class="bordered day-of-month"><span>{{n}}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row calendar-field-common" style="height: 25px; margin-bottom: 1px;">
+                    <div class="col-1"></div>
+                    <div ng-if="interval == 'D'" class="col-11 no-padding">
+                        <div class="bordered clickable" style="width: 100%; height: 100%;" ng-click="addAllDayEvent()">
+                        </div>
+                    </div>
+                    <div ng-if="interval == 'W'" class="col-11 no-padding">
+                        <div class="bordered clickable" style="width: {{(13.0952*7)}}%; height: 100%;" ng-click="addAllWeekEvent()">
+                        </div>
+                    </div>
+                    <div ng-if="interval == 'M'" class="col-11 no-padding">
+                        <div class="bordered clickable" style="width: {{(3.0516*monthDays)}}%; height: 100%;" ng-click="addAllMonthEvent()">
+                        </div>
+                    </div>
+                </div>
+                <div class="row calendar-field" style="height: 100%;">
+                    <div class="col-1 timing-col">
+                        <div ng-repeat="n in range(1, 15)" class="row timing-row bordered">
+                            <span class="timing-title">{{(n + 5)}}:00</span>
+                        </div>
+                    </div>
+                    <div ng-if="interval == 'D'" class="col-11 no-padding">
+                        <div ng-repeat="n in range(1, 30)" class="row field-row">
+                            <div class="bordered clickable single-day" ng-click="addEventFromDay(n)"></div>
+                        </div>
+                    </div>
+                    <div ng-if="interval == 'W'" class="col-11 no-padding">
+                        <div ng-repeat="n in range(1, 30)" class="row field-row">
+                            <div ng-repeat="d in range(1, 7)" class="bordered clickable day-of-week" ng-click="addEventFromWeek(d, n)"></div>
+                        </div>
+                    </div>
+                    <div ng-if="interval == 'M'" class="col-11 no-padding">
+                        <div ng-repeat="n in range(1, 30)" class="row field-row">
+                            <div ng-repeat="d in range(1, monthDays)" class="bordered clickable day-of-month" ng-click="addEventFromMonth(d, n)"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

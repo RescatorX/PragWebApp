@@ -48,18 +48,26 @@ namespace PragWebApp.Controllers
 
             if (selectorParams != null)
             {
-                year = selectorParams.Year;
-                month = selectorParams.Month;
+                if ((selectorParams.Month != 0) && (selectorParams.Year != 0))
+                { 
+                    year = selectorParams.Year;
+                    month = selectorParams.Month;
+                }
             }
 
             SelectorWeek[] weeks = GetMonthWeeks(year, month);
 
             CalendarInitViewModel model = new CalendarInitViewModel();
-            model.User = User.Identity.Name;
+
+            string user = User.Identity.Name;
+            if (string.IsNullOrEmpty(user)) { user = "Admin"; }
+
+            model.User = user;
             model.IsAdmin = User.IsInRole("Admin");
             model.Year = year;
             model.Month = month;
             model.MonthName = GetMonthName(month);
+            model.MonthDays = DateTime.DaysInMonth(year, month);
             model.Weeks = weeks;
             model.ViewRange = "DAY";
 
@@ -70,22 +78,22 @@ namespace PragWebApp.Controllers
         {
             List<SelectorWeek> weeks = new List<SelectorWeek>();
 
-            DateTime today = DateTime.Today;
             DateTime firstDay = new DateTime(year, month, 1);
             DateTime previousMonthLastDay = firstDay.AddDays(-1);
 
             int weekMondayIndex = DateTime.DaysInMonth(previousMonthLastDay.Year, previousMonthLastDay.Month) - (int)previousMonthLastDay.DayOfWeek;
             int weekIndex = 1;
             DateTime day = new DateTime(previousMonthLastDay.Year, previousMonthLastDay.Month, weekMondayIndex);
-            if ((int)previousMonthLastDay.DayOfWeek < 2)
+            if ((int)previousMonthLastDay.DayOfWeek < 1)
             {
                 day = day.AddDays(-7);
                 weeks.Add(GetWeek(day, month, weekIndex++));
-            }
-            while (weeks.Count < 7)
-            {
                 day = day.AddDays(7);
+            }
+            while (weeks.Count < 6)
+            {
                 weeks.Add(GetWeek(day, month, weekIndex++));
+                day = day.AddDays(7);
             }
 
             return weeks.ToArray();
@@ -98,7 +106,7 @@ namespace PragWebApp.Controllers
             for (int i = 1; i <= 7; i++)
             {
                 DateTime day = monday.AddDays(i);
-                days.Add(new SelectorDay() { Day = day.Day, IsCurrentDay = (day.Equals(today)), IsInMonth = (day.Month == selectedMonth), IsSelected = (day.Equals(today)) });
+                days.Add(new SelectorDay() { Day = day.Day, Month = day.Month, Year = day.Year, IsCurrentDay = (day.Equals(today)), IsInMonth = (day.Month == selectedMonth), IsSelected = (day.Equals(today)) });
             }
             return (new SelectorWeek() { Days = days.ToArray(), Week = weekIndex });
         }

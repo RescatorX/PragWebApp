@@ -123,7 +123,7 @@ namespace PragWebApp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Test}/{action=Index}/{id?}");
+                    template: "{controller=Calendar}/{action=Index}/{id?}");
             });
         }
     }

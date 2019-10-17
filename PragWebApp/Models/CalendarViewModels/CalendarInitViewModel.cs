@@ -12,13 +12,19 @@ namespace PragWebApp.Models.CalendarViewModels
         [DataMember(Name = "day", Order = 1)]
         public int Day { get; set; }
 
-        [DataMember(Name = "isInMonth", Order = 2)]
+        [DataMember(Name = "month", Order = 2)]
+        public int Month { get; set; }
+
+        [DataMember(Name = "year", Order = 3)]
+        public int Year { get; set; }
+
+        [DataMember(Name = "isInMonth", Order = 4)]
         public bool IsInMonth { get; set; }
 
-        [DataMember(Name = "isCurrentDay", Order = 3)]
+        [DataMember(Name = "isCurrentDay", Order = 5)]
         public bool IsCurrentDay { get; set; }
 
-        [DataMember(Name = "isSelected", Order = 4)]
+        [DataMember(Name = "isSelected", Order = 6)]
         public bool IsSelected { get; set; }
     }
 
@@ -50,10 +56,13 @@ namespace PragWebApp.Models.CalendarViewModels
         [DataMember(Name = "monthName", Order = 5)]
         public string MonthName { get; set; }
 
-        [DataMember(Name = "weeks", Order = 6)]
+        [DataMember(Name = "monthDays", Order = 6)]
+        public int MonthDays { get; set; }
+
+        [DataMember(Name = "weeks", Order = 7)]
         public SelectorWeek[] Weeks { get; set; }
 
-        [DataMember(Name = "viewRange", Order = 7)]
+        [DataMember(Name = "viewRange", Order = 8)]
         public string ViewRange { get; set; }
     }
 
@@ -65,5 +74,8 @@ namespace PragWebApp.Models.CalendarViewModels
 
         [DataMember(Name = "month", Order = 2)]
         public int Month { get; set; }
+
+        [DataMember(Name = "interval", Order = 3)]
+        public string Interval { get; set; }
     }
 }
