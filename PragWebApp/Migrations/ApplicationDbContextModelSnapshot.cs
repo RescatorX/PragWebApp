@@ -50,6 +50,8 @@ namespace PragWebApp.Migrations
 
                     b.Property<DateTime>("Created");
 
+                    b.Property<Guid?>("CreatedById");
+
                     b.Property<string>("CustomerEmail");
 
                     b.Property<Guid?>("CustomerId");
@@ -75,6 +77,8 @@ namespace PragWebApp.Migrations
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
 
                     b.HasIndex("CustomerId");
 
@@ -157,8 +161,8 @@ namespace PragWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("fff47175-d0a6-40c9-b8bd-dca96a19f07e"),
-                            ConcurrencyStamp = "d3a6f2d3-c1c1-4b05-8103-18163a7e5a50",
+                            Id = new Guid("0d30709d-7e7c-408a-b5d5-6c7834eccb6f"),
+                            ConcurrencyStamp = "13c38aa8-53d7-44d1-979c-5984b04fd7fc",
                             Description = "Administrators role",
                             Name = "Admin",
                             NormalizedName = "ADMIN",
@@ -166,8 +170,8 @@ namespace PragWebApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("89f32d6e-0e06-40e8-9c7c-6c9f3146781f"),
-                            ConcurrencyStamp = "a6e961de-ba32-4200-8d2e-b83b1dc7dd04",
+                            Id = new Guid("d8eac52d-a3ce-46ec-9c24-4dea3362e2a2"),
+                            ConcurrencyStamp = "18792c95-c442-48d9-b659-3d9dcfd397d0",
                             Description = "Stylists role",
                             Name = "Stylist",
                             NormalizedName = "STYLIST",
@@ -255,10 +259,10 @@ namespace PragWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("dbacbba3-6bc0-4ccd-b2a3-fcbee3262ada"),
+                            Id = new Guid("94c52b57-0241-4678-a74d-089b0403a226"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "00abbe28-f890-413d-a7d9-981196497aaf",
-                            Created = new DateTime(2019, 10, 14, 22, 17, 52, 19, DateTimeKind.Local).AddTicks(3707),
+                            ConcurrencyStamp = "dd9452d1-a0a5-440f-813c-0902b7d4e19f",
+                            Created = new DateTime(2019, 10, 18, 10, 58, 42, 517, DateTimeKind.Local).AddTicks(729),
                             Email = "xkalinam@email.cz",
                             EmailConfirmed = true,
                             FirstName = "Miroslav",
@@ -275,10 +279,10 @@ namespace PragWebApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5fd14933-6a90-4840-ab0b-144400452b5e"),
+                            Id = new Guid("8fbf0317-92a3-450e-8d02-5133a3c1c8b9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ff3053e0-4092-472a-b94a-08a4ca8b33b2",
-                            Created = new DateTime(2019, 10, 14, 22, 17, 52, 22, DateTimeKind.Local).AddTicks(1897),
+                            ConcurrencyStamp = "be0fa5ea-59f1-4b0b-a4c2-cc230e9e0480",
+                            Created = new DateTime(2019, 10, 18, 10, 58, 42, 519, DateTimeKind.Local).AddTicks(7122),
                             Email = "jiri.pragr@seznam.cz",
                             EmailConfirmed = true,
                             FirstName = "Jiří",
@@ -348,15 +352,15 @@ namespace PragWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("dbacbba3-6bc0-4ccd-b2a3-fcbee3262ada"),
-                            RoleId = new Guid("fff47175-d0a6-40c9-b8bd-dca96a19f07e"),
-                            Added = new DateTime(2019, 10, 14, 22, 17, 52, 22, DateTimeKind.Local).AddTicks(6839)
+                            UserId = new Guid("94c52b57-0241-4678-a74d-089b0403a226"),
+                            RoleId = new Guid("0d30709d-7e7c-408a-b5d5-6c7834eccb6f"),
+                            Added = new DateTime(2019, 10, 18, 10, 58, 42, 520, DateTimeKind.Local).AddTicks(4666)
                         },
                         new
                         {
-                            UserId = new Guid("5fd14933-6a90-4840-ab0b-144400452b5e"),
-                            RoleId = new Guid("fff47175-d0a6-40c9-b8bd-dca96a19f07e"),
-                            Added = new DateTime(2019, 10, 14, 22, 17, 52, 22, DateTimeKind.Local).AddTicks(8281)
+                            UserId = new Guid("8fbf0317-92a3-450e-8d02-5133a3c1c8b9"),
+                            RoleId = new Guid("0d30709d-7e7c-408a-b5d5-6c7834eccb6f"),
+                            Added = new DateTime(2019, 10, 18, 10, 58, 42, 520, DateTimeKind.Local).AddTicks(6859)
                         });
                 });
 
@@ -379,14 +383,14 @@ namespace PragWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("dbacbba3-6bc0-4ccd-b2a3-fcbee3262ada"),
+                            UserId = new Guid("94c52b57-0241-4678-a74d-089b0403a226"),
                             LoginProvider = "PragWebAppLoginProvider",
                             Name = "Token1",
                             Value = "Token1"
                         },
                         new
                         {
-                            UserId = new Guid("5fd14933-6a90-4840-ab0b-144400452b5e"),
+                            UserId = new Guid("8fbf0317-92a3-450e-8d02-5133a3c1c8b9"),
                             LoginProvider = "PragWebAppLoginProvider",
                             Name = "Token2",
                             Value = "Token2"
@@ -402,6 +406,10 @@ namespace PragWebApp.Migrations
 
             modelBuilder.Entity("PragWebApp.Data.Entities.CalendarEvent", b =>
                 {
+                    b.HasOne("PragWebApp.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
                     b.HasOne("PragWebApp.Data.Entities.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId");

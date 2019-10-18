@@ -24,6 +24,7 @@ namespace PragWebApp.Data.Entities
         public bool SendSms { get; set; }
         public bool AllDay { get; set; }
         public DateTime Created { get; set; }
+        public ApplicationUser CreatedBy { get; set; }
         public EventStatus Status { get; set; }
 
         public override string ToString()

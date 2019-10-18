@@ -10,6 +10,7 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     $scope.initData = {};
     $scope.interval = "M";
     $scope.eventMode = "A";
+    $scope.events = [];
 
     // Selector grid
     $scope.currentYear = 0;
@@ -17,7 +18,8 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     $scope.monthDays = 30;
     $scope.selectorRows = [];
     $scope.selectedDay = {};
-    $scope.weekOfSelectedDay = {};
+    $scope.weekOfSelectedDay = { days: []};
+    $scope.monthOfSelectedDay = { days: []};
 
     // init data
     $scope.initData = function () {
@@ -59,9 +61,12 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
                     }
                 }
                 $scope.getWeekOfSelectedDay();
+                $scope.getMonthOfSelectedDay();
+
+                $scope.getEvents();
             },
             function errorCallback(response) {
-                console.log("generateSelectorRows error: " + JSON.stringify(response));
+                console.log("initModel error: " + JSON.stringify(response));
             }
         );
     };
@@ -102,7 +107,9 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
         $scope.deselectDays();
         day.isSelected = true;
         $scope.selectedDay = day;
+
         $scope.getWeekOfSelectedDay();
+        $scope.getMonthOfSelectedDay();
     };
 
     $scope.deselectDays = function () {
@@ -132,7 +139,35 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
                 }
             });
         });
-    }
+    };
+
+    $scope.getMonthOfSelectedDay = function () {
+        $scope.monthOfSelectedDay = { days: [] };
+        angular.forEach($scope.initData.weeks, function (week) {
+            angular.forEach(week.days, function (day) {
+                if (day.isInMonth == true) {
+                    $scope.monthOfSelectedDay.days.push(day);
+                }
+            });
+        });
+    };
+
+    $scope.getEvents = function () {
+
+        var yearValue = $scope.currentYear;
+        var monthValue = $scope.currentMonth;
+        var intervalValue = $scope.interval;
+
+        $http({ method: "POST", url: "/api/events/getEvents", dataType: "json", headers: { "Content-Type": "application/json" }, data: JSON.stringify({ year: yearValue, month: monthValue, interval: intervalValue }) }).then(
+            function successCallback(response) {
+
+                $scope.events = response.data;
+            },
+            function errorCallback(response) {
+                console.log("getEvents error: " + JSON.stringify(response));
+            }
+        );
+    };
 
     $scope.addAllDayEvent = function () {
     };
@@ -146,10 +181,10 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     $scope.addEventFromDay = function (halfHour) {
     };
 
-    $scope.addEventFromWeek = function (dayIndex, halfHour) {
+    $scope.addEventFromWeek = function (day, halfHour) {
     };
 
-    $scope.addEventFromMonth = function (monthIndex, halfHour) {
+    $scope.addEventFromMonth = function (day, halfHour) {
     };
 
     $scope.initData();

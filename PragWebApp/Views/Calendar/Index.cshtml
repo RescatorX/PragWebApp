@@ -75,21 +75,25 @@
                     </div>
                     <div ng-if="interval == 'D'" class="col-11">
                         <div class="row" style="height: 100%;">
-                            <div class="bordered single-day"><span>{{selectedDay.day}}.{{selectedDay.month}}.{{selectedDay.year}}</span></div>
+                            <div class="bordered single-day"><span style="font-size: 14px;">{{selectedDay.day}}.{{selectedDay.month}}.{{selectedDay.year}}</span></div>
                         </div>
                     </div>
                     <div ng-if="interval == 'W'" class="col-1">
                     </div>
                     <div ng-if="interval == 'W'" class="col-11">
                         <div class="row" style="height: 100%;">
-                            <div ng-repeat="day in weekOfSelectedDay.days" class="bordered day-of-week"><span>{{day.day}}.{{day.month}}.{{day.year}}</span></div>
+                            <div ng-repeat="day in weekOfSelectedDay.days" class="bordered day-of-week" ng-class="{saturday: (day.dayOfWeek == 6), sunday: (day.dayOfWeek == 0)}">
+                                <span style="font-size: 14px;">{{day.day}}.{{day.month}}.{{day.year}}</span>
+                            </div>
                         </div>
                     </div>
                     <div ng-if="interval == 'M'" class="col-1">
                     </div>
                     <div ng-if="interval == 'M'" class="col-11">
                         <div class="row" style="height: 100%;">
-                            <div ng-repeat="n in range(1, monthDays)" class="bordered day-of-month"><span>{{n}}</span></div>
+                            <div ng-repeat="day in monthOfSelectedDay.days" class="bordered day-of-month" ng-class="{saturday: (day.dayOfWeek == 6), sunday: (day.dayOfWeek == 0)}">
+                                <span style="font-size: 14px;">{{day.day}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,17 +120,20 @@
                     </div>
                     <div ng-if="interval == 'D'" class="col-11 no-padding">
                         <div ng-repeat="n in range(1, 30)" class="row field-row">
-                            <div class="bordered clickable single-day" ng-click="addEventFromDay(n)"></div>
+                            <div class="bordered clickable single-day" ng-class="{saturday: (day.dayOfWeek == 6), sunday: (day.dayOfWeek == 0)}" ng-click="addEventFromDay(n)"></div>
+                        </div>
+                        <div style="position: absolute; top: 0px; left: 0px; bottom: 100px; right: 30px; background-color: green; z-index: 100;">
+
                         </div>
                     </div>
                     <div ng-if="interval == 'W'" class="col-11 no-padding">
                         <div ng-repeat="n in range(1, 30)" class="row field-row">
-                            <div ng-repeat="d in range(1, 7)" class="bordered clickable day-of-week" ng-click="addEventFromWeek(d, n)"></div>
+                            <div ng-repeat="day in weekOfSelectedDay.days" class="bordered clickable day-of-week" ng-class="{saturday: (day.dayOfWeek == 6), sunday: (day.dayOfWeek == 0)}" ng-click="addEventFromWeek(day, n)"></div>
                         </div>
                     </div>
                     <div ng-if="interval == 'M'" class="col-11 no-padding">
                         <div ng-repeat="n in range(1, 30)" class="row field-row">
-                            <div ng-repeat="d in range(1, monthDays)" class="bordered clickable day-of-month" ng-click="addEventFromMonth(d, n)"></div>
+                            <div ng-repeat="day in monthOfSelectedDay.days" class="bordered clickable day-of-month" ng-class="{saturday: (day.dayOfWeek == 6), sunday: (day.dayOfWeek == 0)}" ng-click="addEventFromMonth(day, n)"></div>
                         </div>
                     </div>
                 </div>
@@ -138,20 +145,6 @@
 </div>
 
 <!--
-<div class="main">
-    <div style="float:left; width: 150px;">
-        <div id="nav"></div>
-    </div>
-    <div style="margin-left: 150px;">
-        <div class="navi">
-            <button id="previous">&laquo;</button>
-            <button id="today">Today</button>
-            <button id="next">&raquo;</button>
-        </div>
-        <div id="dp"></div>
-    </div>
-</div>
-
 <script>
 
     var nav = new DayPilot.Navigator("nav");

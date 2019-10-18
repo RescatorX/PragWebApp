@@ -127,3 +127,11 @@ body {
 .clickable {
     cursor: pointer;
 }
+
+.saturday {
+    background-color: #ddd;
+}
+
+.sunday {
+    background-color: #ccc;
+}

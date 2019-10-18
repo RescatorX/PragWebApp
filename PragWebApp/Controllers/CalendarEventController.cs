@@ -38,7 +38,6 @@ namespace PragWebApp.Controllers
             _logger = logger;
         }
 
-        // GET: api/Events
         [HttpPost("initData")]
         public CalendarInitViewModel GetInitData([FromBody] SelectorDateParams selectorParams)
         {
@@ -106,7 +105,15 @@ namespace PragWebApp.Controllers
             for (int i = 1; i <= 7; i++)
             {
                 DateTime day = monday.AddDays(i);
-                days.Add(new SelectorDay() { Day = day.Day, Month = day.Month, Year = day.Year, IsCurrentDay = (day.Equals(today)), IsInMonth = (day.Month == selectedMonth), IsSelected = (day.Equals(today)) });
+                days.Add(new SelectorDay() {
+                    Day = day.Day,
+                    Month = day.Month,
+                    Year = day.Year,
+                    IsCurrentDay = (day.Equals(today)),
+                    IsInMonth = (day.Month == selectedMonth),
+                    IsSelected = (day.Equals(today)),
+                    DayOfWeek = (int)day.DayOfWeek
+                });
             }
             return (new SelectorWeek() { Days = days.ToArray(), Week = weekIndex });
         }
@@ -130,6 +137,32 @@ namespace PragWebApp.Controllers
                 case 12: monthName = "Prosinec"; break;
             }
             return monthName;
+        }
+
+        [HttpPost("getEvents")]
+        public IEnumerable<CalendarEvent> GetEvents([FromBody] SelectorDateParams selectorParams)
+        {
+            DateTime today = DateTime.Today;
+            int year = today.Year;
+            int month = today.Month;
+
+            if (selectorParams != null)
+            {
+                if ((selectorParams.Month != 0) && (selectorParams.Year != 0))
+                {
+                    year = selectorParams.Year;
+                    month = selectorParams.Month;
+                }
+            }
+
+            DateTime requestStart = new DateTime(year, month, 1, 0, 0, 0);
+            DateTime requestEnd = new DateTime(year, month, DateTime.DaysInMonth(year, month), 23, 59, 59);
+
+            return _db.CalendarEvents.Where(calendarEvent => ((calendarEvent.Start >= requestStart) && (calendarEvent.End <= requestEnd)))
+                .Include(calendarEvent => calendarEvent.CreatedBy)
+                .Include(calendarEvent => calendarEvent.Customer)
+                .Include(calendarEvent => calendarEvent.Event)
+                .Include(calendarEvent => calendarEvent.Owner);
         }
 
         // GET: api/Events

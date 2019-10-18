@@ -26,6 +26,9 @@ namespace PragWebApp.Models.CalendarViewModels
 
         [DataMember(Name = "isSelected", Order = 6)]
         public bool IsSelected { get; set; }
+
+        [DataMember(Name = "dayOfWeek", Order = 7)]
+        public int DayOfWeek { get; set; }
     }
 
     [DataContract]
