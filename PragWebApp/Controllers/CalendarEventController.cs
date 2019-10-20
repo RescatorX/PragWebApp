@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PragWebApp.Data;
 using PragWebApp.Data.Entities;
+using PragWebApp.Data.Enums;
 using PragWebApp.Models;
 using PragWebApp.Models.CalendarViewModels;
 using PragWebApp.Services;
@@ -55,6 +56,7 @@ namespace PragWebApp.Controllers
             }
 
             SelectorWeek[] weeks = GetMonthWeeks(year, month);
+            ApplicationRole stylistRole = _db.Roles.FirstOrDefault(r => r.Name.Equals("Stylist", StringComparison.InvariantCultureIgnoreCase));
 
             CalendarInitViewModel model = new CalendarInitViewModel();
 
@@ -69,6 +71,11 @@ namespace PragWebApp.Controllers
             model.MonthDays = DateTime.DaysInMonth(year, month);
             model.Weeks = weeks;
             model.ViewRange = "DAY";
+            model.Users = _db.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).ToArray();
+            model.Stylists = _db.Users.Where(u => u.UserRoles.Any(r => r.Role == stylistRole)).Include(u => u.UserRoles).ThenInclude(ur => ur.Role).ToArray();
+            model.Customers = _db.Customers.ToArray();
+            model.EventTypes = _db.CalendarEventTypes.ToArray();
+            model.Statuses = ((EventStatus[])Enum.GetValues(typeof(EventStatus))).Select(es => new RegisterEntity() { Id = (int)es, Name = es.ToString() }).ToArray();
 
             return model;
         }
@@ -106,6 +113,7 @@ namespace PragWebApp.Controllers
             {
                 DateTime day = monday.AddDays(i);
                 days.Add(new SelectorDay() {
+                    Date = day.ToString("yyyy-MM-dd"),
                     Day = day.Day,
                     Month = day.Month,
                     Year = day.Year,
@@ -159,6 +167,7 @@ namespace PragWebApp.Controllers
             DateTime requestEnd = new DateTime(year, month, DateTime.DaysInMonth(year, month), 23, 59, 59);
 
             return _db.CalendarEvents.Where(calendarEvent => ((calendarEvent.Start >= requestStart) && (calendarEvent.End <= requestEnd)))
+                .OrderBy(calendarEvent => calendarEvent.Start)
                 .Include(calendarEvent => calendarEvent.CreatedBy)
                 .Include(calendarEvent => calendarEvent.Customer)
                 .Include(calendarEvent => calendarEvent.Event)

@@ -26,6 +26,7 @@ namespace PragWebApp.Data.Entities
         public DateTime Created { get; set; }
         public ApplicationUser CreatedBy { get; set; }
         public EventStatus Status { get; set; }
+        public string Note { get; set; }
 
         public override string ToString()
         {
@@ -44,6 +45,7 @@ namespace PragWebApp.Data.Entities
                 + ", AllDay=" + this.AllDay.ToString()
                 + ", Created=" + this.Created.ToCzString()
                 + ", Status=" + this.Status.ToString()
+                + ", Note=" + this.Note
                 + " ]";
         }
     }

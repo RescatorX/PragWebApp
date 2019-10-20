@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PragWebApp.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -29,6 +30,9 @@ namespace PragWebApp.Models.CalendarViewModels
 
         [DataMember(Name = "dayOfWeek", Order = 7)]
         public int DayOfWeek { get; set; }
+
+        [DataMember(Name = "date", Order = 8)]
+        public string Date { get; set; }
     }
 
     [DataContract]
@@ -67,6 +71,21 @@ namespace PragWebApp.Models.CalendarViewModels
 
         [DataMember(Name = "viewRange", Order = 8)]
         public string ViewRange { get; set; }
+
+        [DataMember(Name = "users", Order = 9)]
+        public ApplicationUser[] Users { get; set; }
+
+        [DataMember(Name = "stylists", Order = 10)]
+        public ApplicationUser[] Stylists { get; set; }
+
+        [DataMember(Name = "customers", Order = 11)]
+        public Customer[] Customers { get; set; }
+
+        [DataMember(Name = "eventTypes", Order = 12)]
+        public CalendarEventType[] EventTypes { get; set; }
+
+        [DataMember(Name = "statuses", Order = 13)]
+        public RegisterEntity[] Statuses { get; set; }
     }
 
     [DataContract]
@@ -80,5 +99,15 @@ namespace PragWebApp.Models.CalendarViewModels
 
         [DataMember(Name = "interval", Order = 3)]
         public string Interval { get; set; }
+    }
+
+    [DataContract]
+    public class RegisterEntity
+    {
+        [DataMember(Name = "id", Order = 1)]
+        public int Id { get; set; }
+
+        [DataMember(Name = "name", Order = 2)]
+        public string Name { get; set; }
     }
 }

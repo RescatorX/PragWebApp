@@ -11,6 +11,8 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     $scope.interval = "M";
     $scope.eventMode = "A";
     $scope.events = [];
+    $scope.pixelsToMinute = 1;
+    $scope.currentEvent = {};
 
     // Selector grid
     $scope.currentYear = 0;
@@ -25,8 +27,21 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     $scope.initData = function () {
 
         try {
+
+            //$scope.initEventStartDatePicker();
+            //$scope.initEventEndDatePicker();
+            //$scope.initEventCreatedDatePicker();
+/*
+            $('#eventStart').pickatime({
+                // 12 or 24 hour
+                twelvehour: false,
+            });
+*/
             $scope.initModel();
-        } catch (error) { }
+
+        } catch (error) {
+            console.log("initData.error: " + error);
+        }
     };
 
     $scope.initModel = function () {
@@ -110,6 +125,7 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
 
         $scope.getWeekOfSelectedDay();
         $scope.getMonthOfSelectedDay();
+        $scope.getEvents();
     };
 
     $scope.deselectDays = function () {
@@ -152,6 +168,30 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
         });
     };
 
+    $scope.getCustomerName = function (event) {
+        var customerName = "";
+        if (event.customer != null) {
+            customerName = event.customer.firstName + " - " + event.customer.lastName;
+        } else {
+            customerName = event.customerName;
+        }
+        return customerName;
+    };
+
+    $scope.dayEventFilter = function (event) {
+        return ((("" + event.start).indexOf(("" + $scope.selectedDay.year) + "-" + ("" + $scope.selectedDay.month) + "-" + ("" + $scope.selectedDay.day)) >= 0) ||
+                (("" + event.start).indexOf(("" + $scope.selectedDay.year) + "-" + ("0" + $scope.selectedDay.month) + "-" + ("" + $scope.selectedDay.day)) >= 0) ||
+                (("" + event.start).indexOf(("" + $scope.selectedDay.year) + "-" + ("" + $scope.selectedDay.month) + "-" + ("0" + $scope.selectedDay.day)) >= 0));
+    };
+
+    $scope.weekEventFilter = function (event) {
+        $scope.getWeekOfSelectedDay();
+        var eventStartDate = new Date(("" + event.start));
+        var weekFirstDate = new Date(("" + $scope.weekOfSelectedDay.days[0].date));
+        var weekLastDate = new Date(("" + $scope.weekOfSelectedDay.days[6].date));
+        return ((eventStartDate >= weekFirstDate) && (eventStartDate <= weekLastDate));
+    };
+
     $scope.getEvents = function () {
 
         var yearValue = $scope.currentYear;
@@ -167,6 +207,54 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
                 console.log("getEvents error: " + JSON.stringify(response));
             }
         );
+    };
+
+    $scope.showEvent = function (event) {
+
+        $scope.currentEvent = event;
+        $('#eventStart').data("DateTimePicker").value($scope.currentEvent.start);
+        $('#eventEnd').data("DateTimePicker").value($scope.currentEvent.end);
+        //$('#eventCreated').data("DateTimePicker").value($scope.currentEvent.created);
+    };
+
+    $scope.getTopMinutes = function (event) {
+        var timePart = ("" + event.start).substring(11);
+        var hours = parseInt(timePart.substring(0, 2));
+        var minutes = parseInt(timePart.substring(3, 5));
+        return (((hours - 6) * 60) + minutes);
+    };
+
+    $scope.getHeightMinutes = function (event) {
+        var topMinutes = $scope.getTopMinutes(event);
+        var timePart = ("" + event.end).substring(11);
+        var hours = parseInt(timePart.substring(0, 2));
+        var minutes = parseInt(timePart.substring(3, 5));
+        return (((hours - 6) * 60) + minutes - topMinutes);
+    };
+
+    $scope.initEventStartDatePicker = function () {
+        $('#eventStart').dateTimePicker({
+            locale: 'cz'
+        });
+    };
+
+    $("#eventStart").on("dp.change", function (e) {
+    });
+
+    $scope.initEventEndDatePicker = function () {
+        $('#eventEnd').dateTimePicker({
+            locale: 'cz'
+        });
+    };
+
+    $scope.initEventCreatedDatePicker = function () {
+        $('#eventCreated').dateTimePicker({
+            locale: 'cz'
+        });
+    };
+
+    $scope.showEventDetail = function (event) {
+        var name = event.title;
     };
 
     $scope.addAllDayEvent = function () {
@@ -216,6 +304,35 @@ app.directive('modal', function () {
                 else
                     $(element).modal('hide');
             });
+        }
+    };
+});
+
+app.directive('dateTimePicker', function () {
+
+    return {
+        require: '?ngModel',
+        restrict: 'AE',
+        scope: {
+            pick12HourFormat: '@',
+            language: '@',
+            useCurrent: '@',
+            location: '@'
+        },
+        link: function (scope, elem, attrs) {
+            elem.datetimepicker({
+                pick12HourFormat: scope.pick12HourFormat,
+                language: scope.language,
+                useCurrent: scope.useCurrent
+            })
+
+            //Local event change
+            elem.on('blur', function () {
+
+                console.info('this', this);
+                console.info('scope', scope);
+                console.info('attrs', attrs);
+            })
         }
     };
 });

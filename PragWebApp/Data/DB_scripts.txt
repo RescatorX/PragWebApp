@@ -1,0 +1,121 @@
+﻿
+USE [Prag]
+GO
+
+INSERT INTO [dbo].[CalendarEventType]
+           ([Id]
+           ,[Name]
+           ,[Color])
+     VALUES
+           ('{5AACC734-F5D7-46D7-BB1D-4A620CB6A167}'
+           ,'Stříhání'
+           ,'#696')
+GO
+
+INSERT INTO [dbo].[CalendarEvent]
+           ([Id]
+           ,[Title]
+           ,[OwnerId]
+           ,[EventId]
+           ,[Start]
+           ,[CustomerId]
+           ,[CustomerName]
+           ,[CustomerEmail]
+           ,[CustomerPhoneNumber]
+           ,[SendEmail]
+           ,[SendSms]
+           ,[AllDay]
+           ,[Created]
+           ,[Status]
+           ,[End]
+           ,[CreatedById])
+     VALUES
+           ('2C54D29F-81C3-4428-878A-335125741996'
+           ,'Pánské stříhání'
+           ,'8FBF0317-92A3-450E-8D02-5133A3C1C8B9'
+           ,'5AACC734-F5D7-46D7-BB1D-4A620CB6A167'
+           ,'2019-10-18 08:30:00'
+           ,null
+           ,'Vomáčka Petr'
+           ,'petr.vomacka@seznam.cz'
+           ,'+420 111 222 333'
+           ,1
+           ,0
+           ,0
+           ,'2019-10-17 14:25:17'
+           ,2
+           ,'2019-10-18 10:00:00'
+           ,'94C52B57-0241-4678-A74D-089B0403A226')
+GO
+
+INSERT INTO [dbo].[CalendarEvent]
+           ([Id]
+           ,[Title]
+           ,[OwnerId]
+           ,[EventId]
+           ,[Start]
+           ,[CustomerId]
+           ,[CustomerName]
+           ,[CustomerEmail]
+           ,[CustomerPhoneNumber]
+           ,[SendEmail]
+           ,[SendSms]
+           ,[AllDay]
+           ,[Created]
+           ,[Status]
+           ,[End]
+           ,[CreatedById])
+     VALUES
+           ('A573505C-44AA-4A08-9AB3-753212D43E22'
+           ,'Ondulace'
+           ,'8FBF0317-92A3-450E-8D02-5133A3C1C8B9'
+           ,'5AACC734-F5D7-46D7-BB1D-4A620CB6A167'
+           ,'2019-10-18 11:00:00'
+           ,null
+           ,'Jirka Votruba'
+           ,'petr.vomacka@seznam.cz'
+           ,'+420 111 222 333'
+           ,1
+           ,0
+           ,0
+           ,'2019-10-17 14:25:17'
+           ,2
+           ,'2019-10-18 12:00:00'
+           ,'94C52B57-0241-4678-A74D-089B0403A226')
+GO
+
+INSERT INTO [dbo].[CalendarEvent]
+           ([Id]
+           ,[Title]
+           ,[OwnerId]
+           ,[EventId]
+           ,[Start]
+           ,[CustomerId]
+           ,[CustomerName]
+           ,[CustomerEmail]
+           ,[CustomerPhoneNumber]
+           ,[SendEmail]
+           ,[SendSms]
+           ,[AllDay]
+           ,[Created]
+           ,[Status]
+           ,[End]
+           ,[CreatedById])
+     VALUES
+           ('3AD124B1-43E9-4D46-BBAE-2C3B8AB971F7'
+           ,'Trvalá'
+           ,'8FBF0317-92A3-450E-8D02-5133A3C1C8B9'
+           ,'5AACC734-F5D7-46D7-BB1D-4A620CB6A167'
+           ,'2019-10-18 09:00:00'
+           ,null
+           ,'Aleš Růžička'
+           ,'petr.vomacka@seznam.cz'
+           ,'+420 111 222 333'
+           ,1
+           ,0
+           ,0
+           ,'2019-10-17 14:25:17'
+           ,2
+           ,'2019-10-18 12:30:00'
+           ,'94C52B57-0241-4678-A74D-089B0403A226')
+GO
