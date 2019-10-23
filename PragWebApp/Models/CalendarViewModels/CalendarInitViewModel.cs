@@ -73,10 +73,10 @@ namespace PragWebApp.Models.CalendarViewModels
         public string ViewRange { get; set; }
 
         [DataMember(Name = "users", Order = 9)]
-        public ApplicationUser[] Users { get; set; }
+        public UserEntity[] Users { get; set; }
 
         [DataMember(Name = "stylists", Order = 10)]
-        public ApplicationUser[] Stylists { get; set; }
+        public UserEntity[] Stylists { get; set; }
 
         [DataMember(Name = "customers", Order = 11)]
         public Customer[] Customers { get; set; }
@@ -109,5 +109,21 @@ namespace PragWebApp.Models.CalendarViewModels
 
         [DataMember(Name = "name", Order = 2)]
         public string Name { get; set; }
+    }
+
+    [DataContract]
+    public class UserEntity
+    {
+        [DataMember(Name = "id", Order = 1)]
+        public string Id { get; set; }
+
+        [DataMember(Name = "firstName", Order = 2)]
+        public string FirstName { get; set; }
+
+        [DataMember(Name = "lastName", Order = 3)]
+        public string LastName { get; set; }
+
+        [DataMember(Name = "email", Order = 4)]
+        public string Email { get; set; }
     }
 }

@@ -71,8 +71,8 @@ namespace PragWebApp.Controllers
             model.MonthDays = DateTime.DaysInMonth(year, month);
             model.Weeks = weeks;
             model.ViewRange = "DAY";
-            model.Users = _db.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).ToArray();
-            model.Stylists = _db.Users.Where(u => u.UserRoles.Any(r => r.Role == stylistRole)).Include(u => u.UserRoles).ThenInclude(ur => ur.Role).ToArray();
+            model.Users = _db.Users.Include(u => u.UserRoles).Select(u => new UserEntity() { Id = u.Id.ToString("D"), FirstName = u.FirstName, LastName = u.LastName, Email = u.Email }).ToArray();
+            model.Stylists = _db.Users.Where(u => u.UserRoles.Any(r => r.Role == stylistRole)).Select(u => new UserEntity() { Id = u.Id.ToString("D"), FirstName = u.FirstName, LastName = u.LastName, Email = u.Email }).ToArray();
             model.Customers = _db.Customers.ToArray();
             model.EventTypes = _db.CalendarEventTypes.ToArray();
             model.Statuses = ((EventStatus[])Enum.GetValues(typeof(EventStatus))).Select(es => new RegisterEntity() { Id = (int)es, Name = es.ToString() }).ToArray();
@@ -170,7 +170,7 @@ namespace PragWebApp.Controllers
                 .OrderBy(calendarEvent => calendarEvent.Start)
                 .Include(calendarEvent => calendarEvent.CreatedBy)
                 .Include(calendarEvent => calendarEvent.Customer)
-                .Include(calendarEvent => calendarEvent.Event)
+                .Include(calendarEvent => calendarEvent.EventType)
                 .Include(calendarEvent => calendarEvent.Owner);
         }
 
@@ -328,7 +328,7 @@ namespace PragWebApp.Controllers
                 return NotFound();
             }
 
-            @event.Event = eventType;
+            @event.EventType = eventType;
 
             try
             {

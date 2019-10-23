@@ -16,7 +16,7 @@ INSERT INTO [dbo].[CalendarEvent]
            ([Id]
            ,[Title]
            ,[OwnerId]
-           ,[EventId]
+           ,[EventTypeId]
            ,[Start]
            ,[CustomerId]
            ,[CustomerName]
@@ -45,14 +45,14 @@ INSERT INTO [dbo].[CalendarEvent]
            ,'2019-10-17 14:25:17'
            ,2
            ,'2019-10-18 10:00:00'
-           ,'94C52B57-0241-4678-A74D-089B0403A226')
+           ,'58349E0B-1DEA-4921-BFF4-770E8C47E2C6')
 GO
 
 INSERT INTO [dbo].[CalendarEvent]
            ([Id]
            ,[Title]
            ,[OwnerId]
-           ,[EventId]
+           ,[EventTypeId]
            ,[Start]
            ,[CustomerId]
            ,[CustomerName]
@@ -81,14 +81,14 @@ INSERT INTO [dbo].[CalendarEvent]
            ,'2019-10-17 14:25:17'
            ,2
            ,'2019-10-18 12:00:00'
-           ,'94C52B57-0241-4678-A74D-089B0403A226')
+           ,'58349E0B-1DEA-4921-BFF4-770E8C47E2C6')
 GO
 
 INSERT INTO [dbo].[CalendarEvent]
            ([Id]
            ,[Title]
            ,[OwnerId]
-           ,[EventId]
+           ,[EventTypeId]
            ,[Start]
            ,[CustomerId]
            ,[CustomerName]
@@ -117,5 +117,5 @@ INSERT INTO [dbo].[CalendarEvent]
            ,'2019-10-17 14:25:17'
            ,2
            ,'2019-10-18 12:30:00'
-           ,'94C52B57-0241-4678-A74D-089B0403A226')
+           ,'58349E0B-1DEA-4921-BFF4-770E8C47E2C6')
 GO

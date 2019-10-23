@@ -2,14 +2,14 @@
 /// CalendarCtrl ///////////////////////////
 ////////////////////////////////////////////
 
-var app = angular.module('CalendarPage', ['ngMessages']);
+var app = angular.module('CalendarPage', ['ngMessages', 'mgcrea.ngStrap']);
 
 app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
 
     // global init data
     $scope.initData = {};
     $scope.interval = "M";
-    $scope.eventMode = "A";
+    $scope.eventMode = "";
     $scope.events = [];
     $scope.pixelsToMinute = 1;
     $scope.currentEvent = {};
@@ -36,6 +36,25 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
                 // 12 or 24 hour
                 twelvehour: false,
             });
+*/
+/*
+            $.datepicker.setDefaults(
+                $.extend(
+                    { 'dateFormat': 'HH:mm' },
+                    $.datepicker.regional['cz']
+                )
+            );
+*/
+/*
+            $('input.time-picker').datepicker(
+                {
+                    format: "HH:mm",
+                    autoclose: true,
+                    todayBtn: false,
+                    onSelect: function (timeString) {
+                    }
+                }
+            );
 */
             $scope.initModel();
 
@@ -137,7 +156,25 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     };
 
     $scope.addEvent = function () {
+        $scope.currentEvent = {};
         $scope.eventMode = "C";
+    };
+
+    $scope.hideEvent = function () {
+        $scope.currentEvent = {};
+        $scope.eventMode = "";
+    };
+
+    $scope.saveEvent = function () {
+
+        // send to server
+        $scope.eventMode = "S";
+    };
+
+    $scope.editEvent = function () {
+
+        // send to server
+        $scope.eventMode = "E";
     };
 
     $scope.range = function (min, max, step) {
@@ -254,7 +291,8 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     };
 
     $scope.showEventDetail = function (event) {
-        var name = event.title;
+        $scope.currentEvent = event;
+        $scope.eventMode = 'S';
     };
 
     $scope.addAllDayEvent = function () {
@@ -308,31 +346,25 @@ app.directive('modal', function () {
     };
 });
 
-app.directive('dateTimePicker', function () {
-
+app.directive('timePicker', function () {
     return {
-        require: '?ngModel',
-        restrict: 'AE',
+        restrict: 'E',
+        require: ['ngModel'],
         scope: {
-            pick12HourFormat: '@',
-            language: '@',
-            useCurrent: '@',
-            location: '@'
+            ngModel: '='
         },
-        link: function (scope, elem, attrs) {
-            elem.datetimepicker({
-                pick12HourFormat: scope.pick12HourFormat,
-                language: scope.language,
-                useCurrent: scope.useCurrent
-            })
-
-            //Local event change
-            elem.on('blur', function () {
-
-                console.info('this', this);
-                console.info('scope', scope);
-                console.info('attrs', attrs);
-            })
+        replace: true,
+        template:
+            '<div class="input-group bootstrap-timepicker">' +
+            '<input type="text"  class="form-control" ngModel>' +
+            '<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i>' +
+            '</div>',
+        link: function (scope, element, attrs) {
+            var input = element.find('input');
+            input.timepicker('showWidget');
+            element.bind('blur keyup change', function () {
+                scope.ngModel = input.val()
+            });
         }
-    };
+    }
 });
