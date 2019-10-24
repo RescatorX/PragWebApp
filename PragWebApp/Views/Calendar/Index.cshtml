@@ -74,6 +74,9 @@
                     <div ng-if="(eventMode == 'S')" class="clickable calendar-save-event calendar-button" style="margin: 20px 20px 0 0;" ng-click="editEvent()">
                         <i class="fa fa-save" style="color: green;"></i><span>Upravit</span>
                     </div>
+                    <div ng-if="(eventMode == 'S')" class="clickable calendar-delete-event calendar-button" style="margin: 20px 20px 0 0;" ng-click="deleteEvent()">
+                        <i class="fa fa-delete" style="color: green;"></i><span>Odstranit</span>
+                    </div>
                 </div>
                 <div ng-if="(eventMode == 'C') || (eventMode == 'E') || (eventMode == 'S')" class="row" style="margin: 20px -25px 0 -25px;">
                     <form asp-action="_EventEditPartial" style="display: contents; margin-bottom: 30px;">
@@ -85,7 +88,7 @@
                         </div>
                         <div ng-if="((initData.stylists != null) && (initData.stylists.length > 0))" class="form-group col-12">
                             <label for="owner" class="control-label">Vlastník</label>
-                            <select ng-if="(eventMode != 'S')" name="owner" id="owner" class="form-control tiny-form-control" style="padding-top: 2px;" ng-model='currentEvent.owner' ng-options='stylist.name for stylist in initData.stylists track by stylist.id' ng-change="ownerChanged()"></select>
+                            <select ng-if="(eventMode != 'S')" name="owner" id="owner" class="form-control tiny-form-control" style="padding-top: 2px;" ng-model='currentEvent.owner' ng-options='(stylist.firstName + " " + stylist.lastName) for stylist in initData.stylists track by stylist.id' ng-change="ownerChanged()"></select>
                             <input ng-if="(eventMode == 'S')" type="text" name="owner" id="owner" class="form-control tiny-form-control" ng-model='currentEvent.owner.name' readonly>
                         </div>
                         <div ng-if="((initData.eventTypes != null) && (initData.eventTypes.length > 0))" class="form-group col-12">

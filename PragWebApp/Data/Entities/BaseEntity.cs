@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace PragWebApp.Data.Entities
@@ -10,8 +11,9 @@ namespace PragWebApp.Data.Entities
     public abstract class BaseEntity
     {
         [Key]
+        [DataMember(Name = "id", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public virtual Guid Id { get; set; }
 
         public abstract override string ToString();
     }

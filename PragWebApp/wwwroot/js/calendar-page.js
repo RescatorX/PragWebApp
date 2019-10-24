@@ -156,7 +156,10 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     };
 
     $scope.addEvent = function () {
-        $scope.currentEvent = {};
+        $scope.currentEvent = {
+            start: new Date($scope.selectedDay.year, $scope.selectedDay.month, $scope.selectedDay.day, 6, 0, 0),
+            end: new Date($scope.selectedDay.year, $scope.selectedDay.month, $scope.selectedDay.day, 7, 0, 0)
+        };
         $scope.eventMode = "C";
     };
 
@@ -244,6 +247,66 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
                 console.log("getEvents error: " + JSON.stringify(response));
             }
         );
+    };
+
+    $scope.saveEvent = function () {
+
+        var savingCalendarEvent = angular.toJson($scope.currentEvent);
+
+        $.ajax({
+            type: "POST",
+            url: "/api/events/saveEvent",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: savingCalendarEvent,
+            error: function (xhr) {
+                console.log("saveEvent error: " + JSON.stringify(xhr));
+            },
+            success: function (data) {
+                $scope.events = data;
+            }
+        });
+/*
+        $http({ method: "POST", url: "/api/events/saveEvent", dataType: "json", headers: { "Content-Type": "application/json" }, data: JSON.stringify({ event: eventValue }) }).then(
+            function successCallback(response) {
+
+                $scope.events = response.data;
+            },
+            function errorCallback(response) {
+                console.log("saveEvent error: " + JSON.stringify(response));
+            }
+        );
+*/
+    };
+
+    $scope.deleteEvent = function () {
+
+        var deletingCalendarEvent = angular.toJson($scope.currentEvent);
+
+        $.ajax({
+            type: "POST",
+            url: "/api/events/deleteEvent",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: deletingCalendarEvent,
+            error: function (xhr) {
+                console.log("deleteEvent error: " + JSON.stringify(xhr));
+            },
+            success: function (data) {
+                $scope.events = data;
+            }
+        });
+/*
+        $http({ method: "POST", url: "/api/events/deleteEvent", dataType: "json", headers: { "Content-Type": "application/json" }, data: JSON.stringify(deletingCalendarEvent) }).then(
+            function successCallback(response) {
+
+                $scope.events = response.data;
+            },
+            function errorCallback(response) {
+                console.log("deleteEvent error: " + JSON.stringify(response));
+            }
+        );
+*/
     };
 
     $scope.showEvent = function (event) {

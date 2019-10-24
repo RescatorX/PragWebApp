@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -72,7 +76,7 @@ namespace PragWebApp.Controllers
             model.Weeks = weeks;
             model.ViewRange = "DAY";
             model.Users = _db.Users.Include(u => u.UserRoles).Select(u => new UserEntity() { Id = u.Id.ToString("D"), FirstName = u.FirstName, LastName = u.LastName, Email = u.Email }).ToArray();
-            model.Stylists = _db.Users.Where(u => u.UserRoles.Any(r => r.Role == stylistRole)).Select(u => new UserEntity() { Id = u.Id.ToString("D"), FirstName = u.FirstName, LastName = u.LastName, Email = u.Email }).ToArray();
+            model.Stylists = _db.Users.Select(u => new UserEntity() { Id = u.Id.ToString("D"), FirstName = u.FirstName, LastName = u.LastName, Email = u.Email }).ToArray(); ; // _db.Users.Where(u => u.UserRoles.Any(r => r.Role == stylistRole)).Select(u => new UserEntity() { Id = u.Id.ToString("D"), FirstName = u.FirstName, LastName = u.LastName, Email = u.Email }).ToArray();
             model.Customers = _db.Customers.ToArray();
             model.EventTypes = _db.CalendarEventTypes.ToArray();
             model.Statuses = ((EventStatus[])Enum.GetValues(typeof(EventStatus))).Select(es => new RegisterEntity() { Id = (int)es, Name = es.ToString() }).ToArray();
@@ -161,6 +165,91 @@ namespace PragWebApp.Controllers
                     year = selectorParams.Year;
                     month = selectorParams.Month;
                 }
+            }
+
+            DateTime requestStart = new DateTime(year, month, 1, 0, 0, 0);
+            DateTime requestEnd = new DateTime(year, month, DateTime.DaysInMonth(year, month), 23, 59, 59);
+
+            IEnumerable<CalendarEvent> events = _db.CalendarEvents.Where(calendarEvent => ((calendarEvent.Start >= requestStart) && (calendarEvent.End <= requestEnd)))
+                .OrderBy(calendarEvent => calendarEvent.Start)
+                .Include(calendarEvent => calendarEvent.CreatedBy)
+                .Include(calendarEvent => calendarEvent.Customer)
+                .Include(calendarEvent => calendarEvent.EventType)
+                .Include(calendarEvent => calendarEvent.Owner);
+
+            return events;
+        }
+
+        [HttpPost("saveEvent")]
+        public IEnumerable<CalendarEvent> SaveEvent([FromBody] CalendarEvent savingCalendarEvent)
+        {
+            DateTime today = DateTime.Today;
+            int year = today.Year;
+            int month = today.Month;
+
+            if (savingCalendarEvent != null)
+            {
+                year = savingCalendarEvent.Start.Year;
+                month = savingCalendarEvent.Start.Month;
+
+                if (savingCalendarEvent.Id != Guid.Empty)
+                {
+                    CalendarEvent editedCalendarEvent = _db.CalendarEvents.SingleOrDefault(ce => ce.Id == savingCalendarEvent.Id);
+                    if (editedCalendarEvent != null)
+                    {
+                        editedCalendarEvent = savingCalendarEvent;
+                    }
+                }
+                else
+                {
+                    savingCalendarEvent.Created = DateTime.Now;
+                    savingCalendarEvent.CreatedBy = _userManager.GetUserAsync(HttpContext.User).Result;
+
+                    if (savingCalendarEvent.Owner != null)
+                    {
+                        savingCalendarEvent.Owner = _db.Users.SingleOrDefault(u => u.Id == savingCalendarEvent.Owner.Id);
+                    }
+
+                    if (savingCalendarEvent.EventType != null)
+                    {
+                        savingCalendarEvent.EventType = _db.CalendarEventTypes.SingleOrDefault(et => et.Id == savingCalendarEvent.EventType.Id);
+                    }
+
+                    if (savingCalendarEvent.Customer != null)
+                    {
+                        savingCalendarEvent.Customer = _db.Customers.SingleOrDefault(c => c.Id == savingCalendarEvent.Customer.Id);
+                    }
+
+                    _db.CalendarEvents.Add(savingCalendarEvent);
+                }
+                _db.SaveChanges();
+            }
+
+            DateTime requestStart = new DateTime(year, month, 1, 0, 0, 0);
+            DateTime requestEnd = new DateTime(year, month, DateTime.DaysInMonth(year, month), 23, 59, 59);
+
+            return _db.CalendarEvents.Where(calendarEvent => ((calendarEvent.Start >= requestStart) && (calendarEvent.End <= requestEnd)))
+                .OrderBy(calendarEvent => calendarEvent.Start)
+                .Include(calendarEvent => calendarEvent.CreatedBy)
+                .Include(calendarEvent => calendarEvent.Customer)
+                .Include(calendarEvent => calendarEvent.EventType)
+                .Include(calendarEvent => calendarEvent.Owner);
+        }
+
+        [HttpPost("deleteEvent")]
+        public IEnumerable<CalendarEvent> DeleteEvent([FromBody] CalendarEvent deletingCalendarEvent)
+        {
+            DateTime today = DateTime.Today;
+            int year = today.Year;
+            int month = today.Month;
+
+            if ((deletingCalendarEvent != null) && (deletingCalendarEvent.Id != Guid.Empty))
+            {
+                year = deletingCalendarEvent.Start.Year;
+                month = deletingCalendarEvent.Start.Month;
+
+                _db.CalendarEvents.Remove(deletingCalendarEvent);
+                _db.SaveChanges();
             }
 
             DateTime requestStart = new DateTime(year, month, 1, 0, 0, 0);
@@ -349,6 +438,47 @@ namespace PragWebApp.Controllers
             return NoContent();
         }
 
+        private static string SerializeCalendarEventToJSon(CalendarEvent item)
+        {
+            string result = string.Empty;
+
+            if (item == null) item = new CalendarEvent();
+
+            try
+            {
+                var json = new MemoryStream();
+                var serializer = new DataContractJsonSerializer(typeof(CalendarEvent));
+                serializer.WriteObject(json, item);
+
+                result = Encoding.UTF8.GetString(json.ToArray());
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+
+            return result;
+        }
+
+        private static CalendarEvent DeserializeCalendarEventFromJSon(string val)
+        {
+            CalendarEvent result = null;
+
+            if (string.IsNullOrEmpty(val)) return result;
+
+            try
+            {
+                var json = new MemoryStream(Encoding.UTF8.GetBytes(HttpUtility.HtmlDecode(val)));
+                var serializer = new DataContractJsonSerializer(typeof(CalendarEvent));
+                result = (CalendarEvent)serializer.ReadObject(json);
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+
+            return result;
+        }
     }
 
     public class EventMoveParams
