@@ -123,7 +123,7 @@ namespace PragWebApp.Controllers
                     Year = day.Year,
                     IsCurrentDay = (day.Equals(today)),
                     IsInMonth = (day.Month == selectedMonth),
-                    IsSelected = (day.Equals(today)),
+                    IsSelected = ((day.Day == today.Day) && (day.Month == selectedMonth)),
                     DayOfWeek = (int)day.DayOfWeek
                 });
             }
@@ -181,86 +181,99 @@ namespace PragWebApp.Controllers
         }
 
         [HttpPost("saveEvent")]
-        public IEnumerable<CalendarEvent> SaveEvent([FromBody] CalendarEvent savingCalendarEvent)
+        public async Task<Guid> SaveEvent([FromBody] CalendarEvent savingCalendarEvent)
         {
-            DateTime today = DateTime.Today;
-            int year = today.Year;
-            int month = today.Month;
-
             if (savingCalendarEvent != null)
             {
-                year = savingCalendarEvent.Start.Year;
-                month = savingCalendarEvent.Start.Month;
-
                 if (savingCalendarEvent.Id != Guid.Empty)
                 {
-                    CalendarEvent editedCalendarEvent = _db.CalendarEvents.SingleOrDefault(ce => ce.Id == savingCalendarEvent.Id);
+                    CalendarEvent editedCalendarEvent = await _db.CalendarEvents.SingleOrDefaultAsync(ce => ce.Id == savingCalendarEvent.Id);
                     if (editedCalendarEvent != null)
                     {
-                        editedCalendarEvent = savingCalendarEvent;
+                        editedCalendarEvent.Title = savingCalendarEvent.Title;
+                        editedCalendarEvent.Owner = savingCalendarEvent.Owner;
+                        editedCalendarEvent.EventType = savingCalendarEvent.EventType;
+                        editedCalendarEvent.Start = savingCalendarEvent.Start;
+                        editedCalendarEvent.End = savingCalendarEvent.End;
+                        editedCalendarEvent.Customer = savingCalendarEvent.Customer;
+                        editedCalendarEvent.CustomerName = savingCalendarEvent.CustomerName;
+                        editedCalendarEvent.CustomerEmail = savingCalendarEvent.CustomerEmail;
+                        editedCalendarEvent.CustomerPhoneNumber = savingCalendarEvent.CustomerPhoneNumber;
+                        editedCalendarEvent.SendEmail = savingCalendarEvent.SendEmail;
+                        editedCalendarEvent.SendSms = savingCalendarEvent.SendSms;
+                        editedCalendarEvent.AllDay = savingCalendarEvent.AllDay;
+                        editedCalendarEvent.Created = savingCalendarEvent.Created;
+                        editedCalendarEvent.CreatedBy = savingCalendarEvent.CreatedBy;
+                        editedCalendarEvent.Status = savingCalendarEvent.Status;
+                        editedCalendarEvent.Note = savingCalendarEvent.Note;
+
+                        editedCalendarEvent.Modified = DateTime.Now;
+                        editedCalendarEvent.ModifiedBy = await _userManager.GetUserAsync(HttpContext.User);
+                        if (editedCalendarEvent.ModifiedBy == null)
+                        {
+                            editedCalendarEvent.ModifiedBy = await _db.Users.FirstOrDefaultAsync(u => u.Email == "xkalinam@email.cz");
+                        }
+
+                        if (savingCalendarEvent.Owner != null)
+                        {
+                            editedCalendarEvent.Owner = await _db.Users.SingleOrDefaultAsync(u => u.Id == savingCalendarEvent.Owner.Id);
+                        }
+
+                        if (savingCalendarEvent.EventType != null)
+                        {
+                            editedCalendarEvent.EventType = await _db.CalendarEventTypes.SingleOrDefaultAsync(et => et.Id == savingCalendarEvent.EventType.Id);
+                        }
+
+                        if (savingCalendarEvent.Customer != null)
+                        {
+                            editedCalendarEvent.Customer = await _db.Customers.SingleOrDefaultAsync(c => c.Id == savingCalendarEvent.Customer.Id);
+                        }
                     }
                 }
                 else
                 {
+                    savingCalendarEvent.Status = EventStatus.Created;
                     savingCalendarEvent.Created = DateTime.Now;
-                    savingCalendarEvent.CreatedBy = _userManager.GetUserAsync(HttpContext.User).Result;
+                    savingCalendarEvent.CreatedBy = await _userManager.GetUserAsync(HttpContext.User);
+                    if (savingCalendarEvent.CreatedBy == null)
+                    {
+                        savingCalendarEvent.CreatedBy = await _db.Users.FirstOrDefaultAsync(u => u.Email == "xkalinam@email.cz");
+                    }
 
                     if (savingCalendarEvent.Owner != null)
                     {
-                        savingCalendarEvent.Owner = _db.Users.SingleOrDefault(u => u.Id == savingCalendarEvent.Owner.Id);
+                        savingCalendarEvent.Owner = await _db.Users.SingleOrDefaultAsync(u => u.Id == savingCalendarEvent.Owner.Id);
                     }
 
                     if (savingCalendarEvent.EventType != null)
                     {
-                        savingCalendarEvent.EventType = _db.CalendarEventTypes.SingleOrDefault(et => et.Id == savingCalendarEvent.EventType.Id);
+                        savingCalendarEvent.EventType = await _db.CalendarEventTypes.SingleOrDefaultAsync(et => et.Id == savingCalendarEvent.EventType.Id);
                     }
 
                     if (savingCalendarEvent.Customer != null)
                     {
-                        savingCalendarEvent.Customer = _db.Customers.SingleOrDefault(c => c.Id == savingCalendarEvent.Customer.Id);
+                        savingCalendarEvent.Customer = await _db.Customers.SingleOrDefaultAsync(c => c.Id == savingCalendarEvent.Customer.Id);
                     }
 
-                    _db.CalendarEvents.Add(savingCalendarEvent);
+                    await _db.CalendarEvents.AddAsync(savingCalendarEvent);
                 }
-                _db.SaveChanges();
+
+                await _db.SaveChangesAsync();
             }
 
-            DateTime requestStart = new DateTime(year, month, 1, 0, 0, 0);
-            DateTime requestEnd = new DateTime(year, month, DateTime.DaysInMonth(year, month), 23, 59, 59);
-
-            return _db.CalendarEvents.Where(calendarEvent => ((calendarEvent.Start >= requestStart) && (calendarEvent.End <= requestEnd)))
-                .OrderBy(calendarEvent => calendarEvent.Start)
-                .Include(calendarEvent => calendarEvent.CreatedBy)
-                .Include(calendarEvent => calendarEvent.Customer)
-                .Include(calendarEvent => calendarEvent.EventType)
-                .Include(calendarEvent => calendarEvent.Owner);
+            return savingCalendarEvent.Id;
         }
 
         [HttpPost("deleteEvent")]
-        public IEnumerable<CalendarEvent> DeleteEvent([FromBody] CalendarEvent deletingCalendarEvent)
+        public async Task<Guid> DeleteEvent([FromBody] CalendarEvent deletingCalendarEvent)
         {
-            DateTime today = DateTime.Today;
-            int year = today.Year;
-            int month = today.Month;
-
             if ((deletingCalendarEvent != null) && (deletingCalendarEvent.Id != Guid.Empty))
             {
-                year = deletingCalendarEvent.Start.Year;
-                month = deletingCalendarEvent.Start.Month;
-
                 _db.CalendarEvents.Remove(deletingCalendarEvent);
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
             }
 
-            DateTime requestStart = new DateTime(year, month, 1, 0, 0, 0);
-            DateTime requestEnd = new DateTime(year, month, DateTime.DaysInMonth(year, month), 23, 59, 59);
-
-            return _db.CalendarEvents.Where(calendarEvent => ((calendarEvent.Start >= requestStart) && (calendarEvent.End <= requestEnd)))
-                .OrderBy(calendarEvent => calendarEvent.Start)
-                .Include(calendarEvent => calendarEvent.CreatedBy)
-                .Include(calendarEvent => calendarEvent.Customer)
-                .Include(calendarEvent => calendarEvent.EventType)
-                .Include(calendarEvent => calendarEvent.Owner);
+            return deletingCalendarEvent.Id;
         }
 
         // GET: api/Events

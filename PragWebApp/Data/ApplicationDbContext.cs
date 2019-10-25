@@ -155,7 +155,8 @@ namespace PragWebApp.Data
                     Tokens = adminUserTokens,
                     PasswordHash = Constants.DefaultAdminPassword.ComputeSHA256Hash(),
                     Created = DateTime.Now,
-                    Status = UserStatus.Verified
+                    Status = UserStatus.Verified,
+                    DefaultColor = "lightgreen"
                 };
                 modelBuilder.Entity<ApplicationUser>().HasData(adminUser1);
 
@@ -179,7 +180,33 @@ namespace PragWebApp.Data
                     Tokens = adminUserTokens,
                     PasswordHash = Constants.DefaultAdminPassword.ComputeSHA256Hash(),
                     Created = DateTime.Now,
-                    Status = UserStatus.Verified
+                    Status = UserStatus.Verified,
+                    DefaultColor = "lightblue"
+                };
+                modelBuilder.Entity<ApplicationUser>().HasData(adminUser2);
+
+                adminUser2 = new ApplicationUser()
+                {
+                    Id = Guid.NewGuid(),
+                    FirstName = "Sandra",
+                    LastName = "Nisterová",
+                    UserName = "snisterova",
+                    NormalizedUserName = "SNISTEROVA",
+                    Email = "sandra.nisterova@seznam.cz",
+                    NormalizedEmail = "SANDRA.NISTEROVA@SEZNAM.CZ",
+                    EmailConfirmed = true,
+                    Logins = null,
+                    TwoFactorEnabled = false,
+                    PhoneNumber = "666555444",
+                    PhoneNumberConfirmed = true,
+                    AccessFailedCount = 0,
+                    Claims = adminUserClaims,
+                    UserRoles = adminUserRoles,
+                    Tokens = adminUserTokens,
+                    PasswordHash = Constants.DefaultAdminPassword.ComputeSHA256Hash(),
+                    Created = DateTime.Now,
+                    Status = UserStatus.Verified,
+                    DefaultColor = "pink"
                 };
                 modelBuilder.Entity<ApplicationUser>().HasData(adminUser2);
             }

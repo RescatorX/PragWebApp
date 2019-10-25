@@ -8,11 +8,20 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
 
     // global init data
     $scope.initData = {};
+    $scope.initialized = false;
     $scope.interval = "M";
     $scope.eventMode = "";
     $scope.events = [];
+    $scope.weekDayRecords = [];
+    $scope.monthDayRecords = [];
     $scope.pixelsToMinute = 1;
     $scope.currentEvent = {};
+    $scope.eventStart = null;
+    $scope.eventEnd = null;
+    $scope.ownerName = "";
+    $scope.sendEmailText = "";
+    $scope.sendSmsText = "";
+    $scope.allDayText = "";
 
     // Selector grid
     $scope.currentYear = 0;
@@ -20,42 +29,14 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     $scope.monthDays = 30;
     $scope.selectorRows = [];
     $scope.selectedDay = {};
-    $scope.weekOfSelectedDay = { days: []};
-    $scope.monthOfSelectedDay = { days: []};
+    $scope.weekOfSelectedDay = { days: [] };
+    $scope.monthOfSelectedDay = { days: [] };
 
     // init data
     $scope.initData = function () {
 
         try {
 
-            //$scope.initEventStartDatePicker();
-            //$scope.initEventEndDatePicker();
-            //$scope.initEventCreatedDatePicker();
-/*
-            $('#eventStart').pickatime({
-                // 12 or 24 hour
-                twelvehour: false,
-            });
-*/
-/*
-            $.datepicker.setDefaults(
-                $.extend(
-                    { 'dateFormat': 'HH:mm' },
-                    $.datepicker.regional['cz']
-                )
-            );
-*/
-/*
-            $('input.time-picker').datepicker(
-                {
-                    format: "HH:mm",
-                    autoclose: true,
-                    todayBtn: false,
-                    onSelect: function (timeString) {
-                    }
-                }
-            );
-*/
             $scope.initModel();
 
         } catch (error) {
@@ -94,10 +75,10 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
                         break;
                     }
                 }
-                $scope.getWeekOfSelectedDay();
-                $scope.getMonthOfSelectedDay();
 
-                $scope.getEvents();
+                $scope.selectDay($scope.selectedDay);
+
+                $scope.initialized = true;
             },
             function errorCallback(response) {
                 console.log("initModel error: " + JSON.stringify(response));
@@ -118,6 +99,7 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     }
 
     $scope.prevMonth = function () {
+
         if ($scope.currentMonth > 1) {
             $scope.currentMonth -= 1;
         } else {
@@ -128,6 +110,7 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     };
 
     $scope.nextMonth = function () {
+
         if ($scope.currentMonth < 12) {
             $scope.currentMonth += 1;
         } else {
@@ -138,16 +121,22 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     };
 
     $scope.selectDay = function (day) {
+
         $scope.deselectDays();
         day.isSelected = true;
         $scope.selectedDay = day;
 
         $scope.getWeekOfSelectedDay();
         $scope.getMonthOfSelectedDay();
+
+        $scope.eventStart = new Date($scope.selectedDay.year, $scope.selectedDay.month - 1, $scope.selectedDay.day, 6, 0, 0);
+        $scope.eventEnd = new Date($scope.selectedDay.year, $scope.selectedDay.month - 1, $scope.selectedDay.day, 7, 0, 0);
+
         $scope.getEvents();
     };
 
     $scope.deselectDays = function () {
+
         angular.forEach($scope.selectorRows, function (row) {
             angular.forEach(row.days, function (day) {
                 day.isSelected = false;
@@ -155,17 +144,42 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
         });
     };
 
-    $scope.addEvent = function () {
-        $scope.currentEvent = {
-            start: new Date($scope.selectedDay.year, $scope.selectedDay.month, $scope.selectedDay.day, 6, 0, 0),
-            end: new Date($scope.selectedDay.year, $scope.selectedDay.month, $scope.selectedDay.day, 7, 0, 0)
-        };
+    $scope.addEvent = function (day, halfHour) {
+
+        $scope.currentEvent = { allDay: false };
+
+        $scope.ownerName = "";
+        $scope.sendEmailText = "";
+        $scope.sendSmsText = "";
+        $scope.allDayText = "";
+
+        if (day != null) {
+
+            var hours = 6;
+            var minutes = 0;
+            if (halfHour != null) {
+                let halfHours = (halfHour % 2);
+                minutes += 30 * halfHours;
+                hours += ((halfHour - halfHours) / 2);
+            }
+
+            $scope.eventStart = new Date(day.year, day.month - 1, day.day, hours, minutes, 0);
+            $scope.eventEnd = new Date(day.year, day.month - 1, day.day, hours + 1, minutes, 0);
+        } else {
+            $scope.eventStart = new Date($scope.selectedDay.year, $scope.selectedDay.month - 1, $scope.selectedDay.day, 6, 0, 0);
+            $scope.eventEnd = new Date($scope.selectedDay.year, $scope.selectedDay.month - 1, $scope.selectedDay.day, 7, 0, 0);
+        }
+
         $scope.eventMode = "C";
     };
 
     $scope.hideEvent = function () {
-        $scope.currentEvent = {};
-        $scope.eventMode = "";
+
+        if ($scope.currentEvent != null) {
+            $scope.eventMode = "S";
+        } else {
+            $scope.eventMode = "";
+        }
     };
 
     $scope.saveEvent = function () {
@@ -242,6 +256,31 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
             function successCallback(response) {
 
                 $scope.events = response.data;
+                $scope.weekDayRecords = [];
+
+                $scope.weekDayRecords = [];
+                angular.forEach($scope.weekOfSelectedDay.days, function (weekDay) {
+                    var weekDayEvents = [];
+                    angular.forEach($scope.events, function (event) {
+                        if ($scope.isEventInDay(event, weekDay)) {
+                            weekDayEvents.push(event);
+                        }
+                    });
+                    $scope.weekDayRecords.push({ day: weekDay, dayEvents: weekDayEvents });
+                });
+
+                $scope.monthDayRecords = [];
+                angular.forEach($scope.monthOfSelectedDay.days, function (monthDay) {
+                    var monthDayEvents = [];
+                    angular.forEach($scope.events, function (event) {
+                        if ($scope.isEventInDay(event, monthDay)) {
+                            monthDayEvents.push(event);
+                        }
+                    });
+                    $scope.monthDayRecords.push({ day: monthDay, dayEvents: monthDayEvents });
+                });
+
+                var len = $scope.weekDayRecords.length;
             },
             function errorCallback(response) {
                 console.log("getEvents error: " + JSON.stringify(response));
@@ -251,6 +290,8 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
 
     $scope.saveEvent = function () {
 
+        $scope.currentEvent.start = new Date($scope.eventStart.getTime() - ($scope.eventStart.getTimezoneOffset() * 60000)).toISOString();
+        $scope.currentEvent.end = new Date($scope.eventEnd.getTime() - ($scope.eventEnd.getTimezoneOffset() * 60000)).toISOString();
         var savingCalendarEvent = angular.toJson($scope.currentEvent);
 
         $.ajax({
@@ -263,20 +304,11 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
                 console.log("saveEvent error: " + JSON.stringify(xhr));
             },
             success: function (data) {
-                $scope.events = data;
+                $scope.currentEvent = null;
+                $scope.eventMode = '';
+                $scope.getEvents();
             }
         });
-/*
-        $http({ method: "POST", url: "/api/events/saveEvent", dataType: "json", headers: { "Content-Type": "application/json" }, data: JSON.stringify({ event: eventValue }) }).then(
-            function successCallback(response) {
-
-                $scope.events = response.data;
-            },
-            function errorCallback(response) {
-                console.log("saveEvent error: " + JSON.stringify(response));
-            }
-        );
-*/
     };
 
     $scope.deleteEvent = function () {
@@ -293,70 +325,59 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
                 console.log("deleteEvent error: " + JSON.stringify(xhr));
             },
             success: function (data) {
-                $scope.events = data;
+                $scope.currentEvent = null;
+                $scope.eventMode == '';
+                $scope.getEvents();
             }
         });
-/*
-        $http({ method: "POST", url: "/api/events/deleteEvent", dataType: "json", headers: { "Content-Type": "application/json" }, data: JSON.stringify(deletingCalendarEvent) }).then(
-            function successCallback(response) {
-
-                $scope.events = response.data;
-            },
-            function errorCallback(response) {
-                console.log("deleteEvent error: " + JSON.stringify(response));
-            }
-        );
-*/
-    };
-
-    $scope.showEvent = function (event) {
-
-        $scope.currentEvent = event;
-        $('#eventStart').data("DateTimePicker").value($scope.currentEvent.start);
-        $('#eventEnd').data("DateTimePicker").value($scope.currentEvent.end);
-        //$('#eventCreated').data("DateTimePicker").value($scope.currentEvent.created);
     };
 
     $scope.getTopMinutes = function (event) {
-        var timePart = ("" + event.start).substring(11);
-        var hours = parseInt(timePart.substring(0, 2));
-        var minutes = parseInt(timePart.substring(3, 5));
-        return (((hours - 6) * 60) + minutes);
+
+        if (event != null) {
+            var timePart = ("" + event.start).substring(11);
+            var hours = parseInt(timePart.substring(0, 2));
+            var minutes = parseInt(timePart.substring(3, 5));
+            return (((hours - 6) * 60) + minutes);
+        } else {
+            return 0;
+        }
     };
 
     $scope.getHeightMinutes = function (event) {
-        var topMinutes = $scope.getTopMinutes(event);
-        var timePart = ("" + event.end).substring(11);
-        var hours = parseInt(timePart.substring(0, 2));
-        var minutes = parseInt(timePart.substring(3, 5));
-        return (((hours - 6) * 60) + minutes - topMinutes);
-    };
 
-    $scope.initEventStartDatePicker = function () {
-        $('#eventStart').dateTimePicker({
-            locale: 'cz'
-        });
-    };
-
-    $("#eventStart").on("dp.change", function (e) {
-    });
-
-    $scope.initEventEndDatePicker = function () {
-        $('#eventEnd').dateTimePicker({
-            locale: 'cz'
-        });
-    };
-
-    $scope.initEventCreatedDatePicker = function () {
-        $('#eventCreated').dateTimePicker({
-            locale: 'cz'
-        });
+        if (event != null) {
+            var topMinutes = $scope.getTopMinutes(event);
+            var timePart = ("" + event.end).substring(11);
+            var hours = parseInt(timePart.substring(0, 2));
+            var minutes = parseInt(timePart.substring(3, 5));
+            return (((hours - 6) * 60) + minutes - topMinutes);
+        } else {
+            return 0;
+        }
     };
 
     $scope.showEventDetail = function (event) {
+
         $scope.currentEvent = event;
+
+        $scope.eventStart = new Date($scope.currentEvent.start);
+        $scope.eventEnd = new Date($scope.currentEvent.end);
+
+        $scope.ownerName = $scope.currentEvent.owner.firstName + " " + $scope.currentEvent.owner.lastName;
+        $scope.sendEmailText = (($scope.currentEvent.sendEmail == true) ? "ano" : "ne");
+        $scope.sendSmsText = (($scope.currentEvent.sendSms == true) ? "ano" : "ne");
+        $scope.allDayText = (($scope.currentEvent.allDay == true) ? "ano" : "ne");
+
         $scope.eventMode = 'S';
     };
+
+    $scope.isEventInDay = function (event, day) {
+
+        var d1 = new Date(event.start);
+
+        return ((d1.getDate() == day.day) && ((d1.getMonth() + 1) == day.month) && (d1.getFullYear() == day.year));
+    }
 
     $scope.addAllDayEvent = function () {
     };
@@ -368,12 +389,15 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     };
 
     $scope.addEventFromDay = function (halfHour) {
+        $scope.addEvent($scope.selectedDay, halfHour - 1);
     };
 
     $scope.addEventFromWeek = function (day, halfHour) {
+        $scope.addEvent(day, halfHour - 1);
     };
 
     $scope.addEventFromMonth = function (day, halfHour) {
+        $scope.addEvent(day, halfHour - 1);
     };
 
     $scope.initData();

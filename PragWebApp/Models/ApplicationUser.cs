@@ -13,6 +13,7 @@ namespace PragWebApp.Models
         public string LastName { get; set; }
         public DateTime Created { get; set; }
         public UserStatus Status { get; set; }
+        public string DefaultColor { get; set; }
 
         public virtual ICollection<ApplicationUserClaim> Claims { get; set; }
         public virtual ICollection<ApplicationUserLogin> Logins { get; set; }

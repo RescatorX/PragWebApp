@@ -62,10 +62,16 @@ namespace PragWebApp.Data.Entities
         [DataMember(Name = "createdBy", Order = 15)]
         public ApplicationUser CreatedBy { get; set; }
 
-        [DataMember(Name = "status", Order = 16)]
+        [DataMember(Name = "modified", Order = 16)]
+        public DateTime Modified { get; set; }
+
+        [DataMember(Name = "modifiedBy", Order = 17)]
+        public ApplicationUser ModifiedBy { get; set; }
+
+        [DataMember(Name = "status", Order = 18)]
         public EventStatus Status { get; set; }
 
-        [DataMember(Name = "note", Order = 17)]
+        [DataMember(Name = "note", Order = 19)]
         public string Note { get; set; }
 
         public override string ToString()
