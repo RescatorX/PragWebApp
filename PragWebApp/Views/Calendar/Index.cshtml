@@ -22,21 +22,9 @@
         <div ng-if="initialized == true" class="row title-row">
             <div class="col-3"></div>
             <div class="col-3"><span>Uživatel: {{initData.user}}</span></div>
-            <div class="col-2"></div>
-            <div class="col-4">
-                <table>
-                    <tr>
-                        <td ng-if="interval == 'D'" ng-click="intervalDay()" class="bordered clickable interval-div-selected"><span>den</span></td>
-                        <td ng-if="interval != 'D'" ng-click="intervalDay()" class="bordered clickable interval-div"><span>den</span></td>
-                        <td ng-if="interval == 'W'" ng-click="intervalWeek()" class="bordered clickable interval-div-selected"><span>týden</span></td>
-                        <td ng-if="interval != 'W'" ng-click="intervalWeek()" class="bordered clickable interval-div"><span>týden</span></td>
-                        <td ng-if="interval == 'M'" ng-click="intervalMonth()" class="bordered clickable interval-div-selected"><span>měsíc</span></td>
-                        <td ng-if="interval != 'M'" ng-click="intervalMonth()" class="bordered clickable interval-div"><span>měsíc</span></td>
-                    </tr>
-                </table>
-            </div>
+            <div class="col-6"></div>
         </div>
-        <div ng-if="initialized == true" class="row" style="margin-bottom: 15px;">
+        <div ng-if="initialized == true" class="row" style="margin-bottom: 15px; height: 1100px;">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                 <div class="row">
                     <div class="col-12 calendar-selector">
@@ -70,8 +58,8 @@
                 </div>
                 <div ng-if="(eventMode == 'C') || (eventMode == 'E')" class="row">
                     <div class="col-6 calendar-button-div">
-                        <div class="clickable calendar-hide-event calendar-button" ng-click="hideEvent()">
-                            <i class="fa fa-hide" style="color: green;"></i><span>Storno</span>
+                        <div class="clickable calendar-cancel-event calendar-button" ng-click="cancelEvent()">
+                            <i class="fa fa-cancel" style="color: green;"></i><span>Storno</span>
                         </div>
                     </div>
                     <div class="col-6 calendar-button-div">
@@ -81,32 +69,32 @@
                     </div>
                 </div>
                 <div ng-if="(eventMode == 'S')" class="row">
-                    <div class="col-6 calendar-button-div">
+                    <div class="col-5 calendar-button-div">
                         <div class="clickable calendar-save-event calendar-button" ng-click="editEvent()">
                             <i class="fa fa-save" style="color: green;"></i><span>Upravit</span>
                         </div>
                     </div>
-                    <div class="col-6 calendar-button-div">
+                    <div class="col-5 calendar-button-div">
                         <div class="clickable calendar-delete-event calendar-button" ng-click="deleteEvent()">
                             <i class="fa fa-delete" style="color: green;"></i><span>Odstranit</span>
+                        </div>
+                    </div>
+                    <div class="col-2 calendar-button-div">
+                        <div class="clickable calendar-hide-event calendar-button" ng-click="hideEvent()">
+                            <i class="fa fa-hide" style="color: green;"></i><span>X</span>
                         </div>
                     </div>
                 </div>
                 <div ng-if="(eventMode == 'C') || (eventMode == 'E') || (eventMode == 'S')" class="row" style="margin: 10px -25px 0 -25px;">
                     <form asp-action="_EventEditPartial" style="display: contents; margin-bottom: 30px;">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="form-group col-12">
-                            <label for="title" class="control-label" title="Název">Název</label>
-                            <input ng-if="(eventMode != 'S')" type="text" name="title" id="title" class="form-control tiny-form-control" ng-model='currentEvent.title'>
-                            <input ng-if="(eventMode == 'S')" type="text" name="title" id="title" class="form-control tiny-form-control" ng-model='currentEvent.title' readonly>
-                        </div>
                         <div ng-if="((initData.stylists != null) && (initData.stylists.length > 0))" class="form-group col-12">
-                            <label for="owner" class="control-label">Vlastník</label>
-                            <select ng-if="(eventMode != 'S')" name="owner" id="owner" class="form-control tiny-form-control" style="padding-top: 2px;" ng-model='currentEvent.owner' ng-options='(stylist.firstName + " " + stylist.lastName) for stylist in initData.stylists track by stylist.id' ng-change="ownerChanged()"></select>
+                            <label for="owner" class="control-label">Kadeřník</label>
+                            <select ng-if="(eventMode != 'S')" name="owner" id="owner" class="form-control tiny-form-control" style="padding-top: 2px;" ng-model='currentEvent.owner' ng-options='(stylist.name) for stylist in initData.stylists track by stylist.id' ng-change="ownerChanged()"></select>
                             <input ng-if="(eventMode == 'S')" type="text" name="owner" id="owner" class="form-control tiny-form-control" ng-model='ownerName' readonly>
                         </div>
                         <div ng-if="((initData.eventTypes != null) && (initData.eventTypes.length > 0))" class="form-group col-12">
-                            <label for="eventType" class="control-label">Typ</label>
+                            <label for="eventType" class="control-label">Akce</label>
                             <select ng-if="(eventMode != 'S')" name="eventType" id="eventType" class="form-control tiny-form-control" style="padding-top: 2px;" ng-model='currentEvent.eventType' ng-options='eventType.name for eventType in initData.eventTypes track by eventType.id' ng-change="eventTypeChanged()"></select>
                             <input ng-if="(eventMode == 'S')" type="text" name="eventType" id="eventType" class="form-control tiny-form-control" ng-model='currentEvent.eventType.name' readonly>
                         </div>
@@ -165,88 +153,45 @@
             </div>
             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 calendar-field-div">
                 <div class="row calendar-field" style="height: 25px; margin-bottom: 1px;">
-                    <div ng-if="interval == 'D'" class="col-1">
+                    <div class="col-1">
                     </div>
-                    <div ng-if="interval == 'D'" class="col-11">
+                    <div class="col-11">
                         <div class="row" style="height: 100%;">
                             <div class="bordered single-day"><span style="font-size: 14px;">{{selectedDay.day}}.{{selectedDay.month}}.{{selectedDay.year}}</span></div>
-                        </div>
-                    </div>
-                    <div ng-if="interval == 'W'" class="col-1">
-                    </div>
-                    <div ng-if="interval == 'W'" class="col-11">
-                        <div class="row" style="height: 100%;">
-                            <div ng-repeat="day in weekOfSelectedDay.days" class="bordered day-of-week" ng-class="{saturday: (day.dayOfWeek == 6), sunday: (day.dayOfWeek == 0)}">
-                                <span style="font-size: 14px;">{{day.day}}.{{day.month}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div ng-if="interval == 'M'" class="col-1">
-                    </div>
-                    <div ng-if="interval == 'M'" class="col-11">
-                        <div class="row" style="height: 100%;">
-                            <div ng-repeat="day in monthOfSelectedDay.days" class="bordered day-of-month" ng-class="{saturday: (day.dayOfWeek == 6), sunday: (day.dayOfWeek == 0)}">
-                                <span style="font-size: 14px;">{{day.day}}</span>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row calendar-field-common" style="height: 25px; margin-bottom: 1px;">
                     <div class="col-1"></div>
-                    <div ng-if="interval == 'D'" class="col-11 no-padding">
+                    <div class="col-11 no-padding">
                         <div class="bordered clickable" style="width: 100%; height: 100%;" ng-click="addAllDayEvent()">
                         </div>
                     </div>
-                    <div ng-if="interval == 'W'" class="col-11 no-padding">
-                        <div class="bordered clickable" style="width: {{(13.0952*7)}}%; height: 100%;" ng-click="addAllWeekEvent()">
-                        </div>
-                    </div>
-                    <div ng-if="interval == 'M'" class="col-11 no-padding">
-                        <div class="bordered clickable" style="width: {{(3.0516*monthDays)}}%; height: 100%;" ng-click="addAllMonthEvent()">
+                </div>
+                <div class="row calendar-field-common" style="height: 25px; margin-bottom: 1px;">
+                    <div class="col-1"></div>
+                    <div class="col-11 no-padding">
+                        <div class="row" style="width: 100%; height: 100%; margin: 0; text-align: center;">
+                            <div ng-repeat="(stylistIndex, stylist) in initData.stylists" class="bordered" style="width: {{(100 / initData.stylists.length)}}% !important; padding-top: 3px;"><span>{{stylist.name}}</span></div>
                         </div>
                     </div>
                 </div>
                 <div class="row calendar-field" style="height: 900px;">
                     <div class="col-1 timing-col">
-                        <div ng-repeat="n in range(1, 15)" class="row timing-row bordered">
-                            <span class="timing-title">{{(n + 5)}}:00</span>
+                        <div ng-repeat="n in range(1, 16)" class="row timing-row bordered">
+                            <span class="timing-title">{{(n + 6)}}:00</span>
                         </div>
                     </div>
-                    <div ng-if="interval == 'D'" class="col-11 no-padding">
-                        <div ng-repeat="n in range(1, 30)" class="row field-row">
-                            <div class="bordered clickable single-day" ng-class="{saturday: (day.dayOfWeek == 6), sunday: (day.dayOfWeek == 0)}" ng-click="addEventFromDay(n)"></div>
+                    <div class="col-11 no-padding">
+                        <div ng-repeat="n in range(1, 32)" class="row field-row">
+                            <div ng-repeat="(stylistIndex, stylist) in initData.stylists" class="bordered clickable single-day" ng-class="{saturday: (weekDayRecord.day.dayOfWeek == 6), sunday: (weekDayRecord.day.dayOfWeek == 0)}" ng-click="addEventFromDay(n, stylist)" style="width: {{(100 / initData.stylists.length)}}% !important;"></div>
                         </div>
-                        <div ng-repeat="event in events | filter: dayEventFilter" class="row clickable" ng-click="showEventDetail(event)" style="position: absolute; top: {{(getTopMinutes(event))}}px; left: {{($index * (50 / (events.length - 1)))}}%; width: 50%; height: {{(getHeightMinutes(event))}}px; z-index: {{(200 + $index)}}; background-color: {{event.owner.defaultColor}}; margin: 0; border: 1px solid black;">
+                        <div ng-repeat="event in events | filter: dayEventFilter" class="row clickable" ng-click="showEventDetail(event)" style="position: absolute; top: {{(getTopMinutes(event))}}px; left: {{(stylistIndex * (100 / initData.stylists.length))}}%; width: {{(100 / initData.stylists.length)}}%; height: {{(getHeightMinutes(event))}}px; z-index: {{(200 + $index)}}; background-color: {{event.owner.defaultColor}}; margin: 0; border: 1px solid black;">
                             <div class="col-12" style="padding: 5px;">
                                 <table>
-                                    <tr><td>{{event.owner.firstName}}&nbsp;{{event.owner.lastName}}&nbsp;-&nbsp;{{event.title}}</td></tr>
-                                    <tr><td>Zákazník: {{(getCustomerName(event))}}</td></tr>
-                                    <tr><td>Termín: {{("" + event.start).substring(11, 16)}}&nbsp;-&nbsp;{{("" + event.end).substring(11, 16)}}</td></tr>
+                                    <tr><td>{{event.eventType.name}} - {{(getCustomerName(event))}}</td></tr>
+                                    <tr><td>Poznámka: {{event.note}}</td></tr>
                                 </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div ng-if="interval == 'W'" class="col-11 no-padding">
-                        <div ng-repeat="n in range(1, 30)" class="row field-row">
-                            <div ng-repeat="(weekDayIndex, weekDayRecord) in weekDayRecords" class="bordered clickable day-of-week" ng-class="{saturday: (weekDayRecord.day.dayOfWeek == 6), sunday: (weekDayRecord.day.dayOfWeek == 0)}" ng-click="addEventFromWeek(weekDayRecord.day, n)">
-                            </div>
-                        </div>
-                        <div ng-repeat="(weekDayIndex, weekDayRecord) in weekDayRecords">
-                            <div ng-repeat="(dayEventIndex, dayEvent) in weekDayRecord.dayEvents">
-                                <div class="row clickable" ng-click="showEventDetail(dayEvent)" style="position: absolute; top: {{(getTopMinutes(dayEvent))}}px; left: {{((weekDayIndex * 13.1) + dayEventIndex * (6.55 / (weekDayRecord.dayEvents.length - 1)))}}%; width: 6.55%; height: {{(getHeightMinutes(dayEvent))}}px; z-index: {{(200 + $dayEventIndex)}}; background-color: {{dayEvent.owner.defaultColor}}; margin: 0; border: 1px solid black;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div ng-if="interval == 'M'" class="col-11 no-padding">
-                        <div ng-repeat="n in range(1, 30)" class="row field-row">
-                            <div ng-repeat="(monthDayIndex, monthDayRecord) in monthDayRecords" class="bordered clickable day-of-month" ng-class="{saturday: (monthDayRecord.day.dayOfWeek == 6), sunday: (monthDayRecord.day.dayOfWeek == 0)}" ng-click="addEventFromMonth(monthDayRecord.day, n)">
-                            </div>
-                        </div>
-                        <div ng-repeat="(monthDayIndex, monthDayRecord) in monthDayRecords">
-                            <div ng-repeat="(dayEventIndex, dayEvent) in monthDayRecord.dayEvents">
-                                <div class="row clickable" ng-click="showEventDetail(dayEvent)" style="position: absolute; top: {{(getTopMinutes(dayEvent))}}px; left: {{((monthDayIndex * 3.0567) + dayEventIndex * (1.5283 / (monthDayRecord.dayEvents.length - 1)))}}%; width: 1.5283%; height: {{(getHeightMinutes(dayEvent))}}px; z-index: {{(200 + $dayEventIndex)}}; background-color: {{dayEvent.owner.defaultColor}}; margin: 0; border: 1px solid black;">
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -255,5 +200,6 @@
         </div>
 
     </div>
+    <div style="height: 100px;"></div>
 
 </div>

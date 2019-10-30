@@ -80,8 +80,6 @@ namespace PragWebApp.Migrations
 
                     b.Property<int>("Status");
 
-                    b.Property<string>("Title");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedById");
@@ -169,8 +167,8 @@ namespace PragWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ec988b67-1144-49fc-b965-0de079c8af81"),
-                            ConcurrencyStamp = "06d76caf-e300-412f-b57e-b1dc227d7296",
+                            Id = new Guid("08cbd66a-24f7-487e-a975-3e7ad817c199"),
+                            ConcurrencyStamp = "1ae5c636-8ba7-46cf-82c4-196553d6ee01",
                             Description = "Administrators role",
                             Name = "Admin",
                             NormalizedName = "ADMIN",
@@ -178,8 +176,8 @@ namespace PragWebApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a29b98f1-ad93-4384-b684-d2ee284f653a"),
-                            ConcurrencyStamp = "a0ea99ba-020e-4dd3-ab47-28b8817d3ff7",
+                            Id = new Guid("6743d304-b2f4-440e-928e-628536edf88e"),
+                            ConcurrencyStamp = "fe9c5b96-6303-4137-8451-24487aa1a773",
                             Description = "Stylists role",
                             Name = "Stylist",
                             NormalizedName = "STYLIST",
@@ -269,10 +267,10 @@ namespace PragWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b58e2e7b-377e-4ece-b360-63bdcc16638a"),
+                            Id = new Guid("d465c52e-f1ea-45c0-a299-eb489e85de08"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2b0850ac-e2be-40bd-acc0-76deac21bdb3",
-                            Created = new DateTime(2019, 10, 25, 12, 34, 12, 533, DateTimeKind.Local).AddTicks(2879),
+                            ConcurrencyStamp = "9c9c9b80-7db6-4f45-b959-9b5adcb3c8ff",
+                            Created = new DateTime(2019, 10, 30, 1, 34, 41, 890, DateTimeKind.Local).AddTicks(7411),
                             DefaultColor = "lightgreen",
                             Email = "xkalinam@email.cz",
                             EmailConfirmed = true,
@@ -290,10 +288,10 @@ namespace PragWebApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cf54205c-285e-43d6-a6c8-d2cd8e87666d"),
+                            Id = new Guid("06edb851-5bbd-4f0a-9f21-7c412eb71b5d"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1bf0ac2a-cdc0-4c5c-b62d-7ba732c8bffe",
-                            Created = new DateTime(2019, 10, 25, 12, 34, 12, 535, DateTimeKind.Local).AddTicks(4010),
+                            ConcurrencyStamp = "6e31e28a-ae3a-4b53-be3e-c53197f845b4",
+                            Created = new DateTime(2019, 10, 30, 1, 34, 41, 894, DateTimeKind.Local).AddTicks(8166),
                             DefaultColor = "lightblue",
                             Email = "jiri.pragr@seznam.cz",
                             EmailConfirmed = true,
@@ -311,10 +309,10 @@ namespace PragWebApp.Migrations
                         },
                         new
                         {
-                            Id = new Guid("908ca5f0-bbe0-4d00-8b4f-95cc27055dbf"),
+                            Id = new Guid("4b852fd0-5de0-4c5b-9a3a-48627a5dcb7a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2232eb9a-1207-4a71-87a2-0cef1038d2de",
-                            Created = new DateTime(2019, 10, 25, 12, 34, 12, 535, DateTimeKind.Local).AddTicks(4244),
+                            ConcurrencyStamp = "f9281591-f041-47d3-a297-877c7b8745d0",
+                            Created = new DateTime(2019, 10, 30, 1, 34, 41, 894, DateTimeKind.Local).AddTicks(8478),
                             DefaultColor = "pink",
                             Email = "sandra.nisterova@seznam.cz",
                             EmailConfirmed = true,
@@ -385,15 +383,27 @@ namespace PragWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("b58e2e7b-377e-4ece-b360-63bdcc16638a"),
-                            RoleId = new Guid("ec988b67-1144-49fc-b965-0de079c8af81"),
-                            Added = new DateTime(2019, 10, 25, 12, 34, 12, 535, DateTimeKind.Local).AddTicks(9594)
+                            UserId = new Guid("d465c52e-f1ea-45c0-a299-eb489e85de08"),
+                            RoleId = new Guid("08cbd66a-24f7-487e-a975-3e7ad817c199"),
+                            Added = new DateTime(2019, 10, 30, 1, 34, 41, 895, DateTimeKind.Local).AddTicks(5181)
                         },
                         new
                         {
-                            UserId = new Guid("908ca5f0-bbe0-4d00-8b4f-95cc27055dbf"),
-                            RoleId = new Guid("ec988b67-1144-49fc-b965-0de079c8af81"),
-                            Added = new DateTime(2019, 10, 25, 12, 34, 12, 536, DateTimeKind.Local).AddTicks(1248)
+                            UserId = new Guid("06edb851-5bbd-4f0a-9f21-7c412eb71b5d"),
+                            RoleId = new Guid("08cbd66a-24f7-487e-a975-3e7ad817c199"),
+                            Added = new DateTime(2019, 10, 30, 1, 34, 41, 895, DateTimeKind.Local).AddTicks(6756)
+                        },
+                        new
+                        {
+                            UserId = new Guid("06edb851-5bbd-4f0a-9f21-7c412eb71b5d"),
+                            RoleId = new Guid("6743d304-b2f4-440e-928e-628536edf88e"),
+                            Added = new DateTime(2019, 10, 30, 1, 34, 41, 895, DateTimeKind.Local).AddTicks(6847)
+                        },
+                        new
+                        {
+                            UserId = new Guid("4b852fd0-5de0-4c5b-9a3a-48627a5dcb7a"),
+                            RoleId = new Guid("6743d304-b2f4-440e-928e-628536edf88e"),
+                            Added = new DateTime(2019, 10, 30, 1, 34, 41, 895, DateTimeKind.Local).AddTicks(6887)
                         });
                 });
 
@@ -416,14 +426,14 @@ namespace PragWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("b58e2e7b-377e-4ece-b360-63bdcc16638a"),
+                            UserId = new Guid("d465c52e-f1ea-45c0-a299-eb489e85de08"),
                             LoginProvider = "PragWebAppLoginProvider",
                             Name = "Token1",
                             Value = "Token1"
                         },
                         new
                         {
-                            UserId = new Guid("908ca5f0-bbe0-4d00-8b4f-95cc27055dbf"),
+                            UserId = new Guid("06edb851-5bbd-4f0a-9f21-7c412eb71b5d"),
                             LoginProvider = "PragWebAppLoginProvider",
                             Name = "Token2",
                             Value = "Token2"

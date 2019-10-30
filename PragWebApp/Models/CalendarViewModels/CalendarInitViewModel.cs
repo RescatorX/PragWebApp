@@ -69,22 +69,19 @@ namespace PragWebApp.Models.CalendarViewModels
         [DataMember(Name = "weeks", Order = 7)]
         public SelectorWeek[] Weeks { get; set; }
 
-        [DataMember(Name = "viewRange", Order = 8)]
-        public string ViewRange { get; set; }
-
-        [DataMember(Name = "users", Order = 9)]
+        [DataMember(Name = "users", Order = 8)]
         public UserEntity[] Users { get; set; }
 
-        [DataMember(Name = "stylists", Order = 10)]
+        [DataMember(Name = "stylists", Order = 9)]
         public UserEntity[] Stylists { get; set; }
 
-        [DataMember(Name = "customers", Order = 11)]
+        [DataMember(Name = "customers", Order = 10)]
         public Customer[] Customers { get; set; }
 
-        [DataMember(Name = "eventTypes", Order = 12)]
+        [DataMember(Name = "eventTypes", Order = 11)]
         public CalendarEventType[] EventTypes { get; set; }
 
-        [DataMember(Name = "statuses", Order = 13)]
+        [DataMember(Name = "statuses", Order = 12)]
         public RegisterEntity[] Statuses { get; set; }
     }
 
@@ -96,9 +93,6 @@ namespace PragWebApp.Models.CalendarViewModels
 
         [DataMember(Name = "month", Order = 2)]
         public int Month { get; set; }
-
-        [DataMember(Name = "interval", Order = 3)]
-        public string Interval { get; set; }
     }
 
     [DataContract]
@@ -117,13 +111,10 @@ namespace PragWebApp.Models.CalendarViewModels
         [DataMember(Name = "id", Order = 1)]
         public string Id { get; set; }
 
-        [DataMember(Name = "firstName", Order = 2)]
-        public string FirstName { get; set; }
+        [DataMember(Name = "name", Order = 2)]
+        public string Name { get; set; }
 
-        [DataMember(Name = "lastName", Order = 3)]
-        public string LastName { get; set; }
-
-        [DataMember(Name = "email", Order = 4)]
+        [DataMember(Name = "email", Order = 3)]
         public string Email { get; set; }
     }
 }

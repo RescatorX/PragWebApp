@@ -9,7 +9,6 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     // global init data
     $scope.initData = {};
     $scope.initialized = false;
-    $scope.interval = "M";
     $scope.eventMode = "";
     $scope.events = [];
     $scope.weekDayRecords = [];
@@ -48,9 +47,8 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
 
         var yearValue = $scope.currentYear;
         var monthValue = $scope.currentMonth;
-        var intervalValue = $scope.interval;
 
-        $http({ method: "POST", url: "/api/events/initData", dataType: "json", headers: { "Content-Type": "application/json" }, data: JSON.stringify({ year: yearValue, month: monthValue, interval: intervalValue }) }).then(
+        $http({ method: "POST", url: "/api/events/initData", dataType: "json", headers: { "Content-Type": "application/json" }, data: JSON.stringify({ year: yearValue, month: monthValue }) }).then(
             function successCallback(response) {
 
                 $scope.initData = response.data;
@@ -85,18 +83,6 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
             }
         );
     };
-
-    $scope.intervalDay = function () {
-        $scope.interval = "D";
-    }
-
-    $scope.intervalWeek = function () {
-        $scope.interval = "W";
-    }
-
-    $scope.intervalMonth = function () {
-        $scope.interval = "M";
-    }
 
     $scope.prevMonth = function () {
 
@@ -144,18 +130,18 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
         });
     };
 
-    $scope.addEvent = function (day, halfHour) {
+    $scope.addEvent = function (day, halfHour, stylist) {
 
-        $scope.currentEvent = { allDay: false };
+        $scope.currentEvent = { allDay: false, owner: stylist };
 
-        $scope.ownerName = "";
+        $scope.ownerName = stylist.name;
         $scope.sendEmailText = "";
         $scope.sendSmsText = "";
         $scope.allDayText = "";
 
         if (day != null) {
 
-            var hours = 6;
+            var hours = 7;
             var minutes = 0;
             if (halfHour != null) {
                 let halfHours = (halfHour % 2);
@@ -166,14 +152,20 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
             $scope.eventStart = new Date(day.year, day.month - 1, day.day, hours, minutes, 0);
             $scope.eventEnd = new Date(day.year, day.month - 1, day.day, hours + 1, minutes, 0);
         } else {
-            $scope.eventStart = new Date($scope.selectedDay.year, $scope.selectedDay.month - 1, $scope.selectedDay.day, 6, 0, 0);
-            $scope.eventEnd = new Date($scope.selectedDay.year, $scope.selectedDay.month - 1, $scope.selectedDay.day, 7, 0, 0);
+            $scope.eventStart = new Date($scope.selectedDay.year, $scope.selectedDay.month - 1, $scope.selectedDay.day, 7, 0, 0);
+            $scope.eventEnd = new Date($scope.selectedDay.year, $scope.selectedDay.month - 1, $scope.selectedDay.day, 8, 0, 0);
         }
 
         $scope.eventMode = "C";
     };
 
     $scope.hideEvent = function () {
+
+        $scope.currentEvent = null;
+        $scope.eventMode = "";
+    };
+
+    $scope.cancelEvent = function () {
 
         if ($scope.currentEvent != null) {
             $scope.eventMode = "S";
@@ -250,9 +242,8 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
 
         var yearValue = $scope.currentYear;
         var monthValue = $scope.currentMonth;
-        var intervalValue = $scope.interval;
 
-        $http({ method: "POST", url: "/api/events/getEvents", dataType: "json", headers: { "Content-Type": "application/json" }, data: JSON.stringify({ year: yearValue, month: monthValue, interval: intervalValue }) }).then(
+        $http({ method: "POST", url: "/api/events/getEvents", dataType: "json", headers: { "Content-Type": "application/json" }, data: JSON.stringify({ year: yearValue, month: monthValue }) }).then(
             function successCallback(response) {
 
                 $scope.events = response.data;
@@ -338,7 +329,7 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
             var timePart = ("" + event.start).substring(11);
             var hours = parseInt(timePart.substring(0, 2));
             var minutes = parseInt(timePart.substring(3, 5));
-            return (((hours - 6) * 60) + minutes);
+            return (((hours - 7) * 60) + minutes);
         } else {
             return 0;
         }
@@ -351,7 +342,7 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
             var timePart = ("" + event.end).substring(11);
             var hours = parseInt(timePart.substring(0, 2));
             var minutes = parseInt(timePart.substring(3, 5));
-            return (((hours - 6) * 60) + minutes - topMinutes);
+            return (((hours - 7) * 60) + minutes - topMinutes);
         } else {
             return 0;
         }
@@ -364,7 +355,7 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
         $scope.eventStart = new Date($scope.currentEvent.start);
         $scope.eventEnd = new Date($scope.currentEvent.end);
 
-        $scope.ownerName = $scope.currentEvent.owner.firstName + " " + $scope.currentEvent.owner.lastName;
+        $scope.ownerName = $scope.currentEvent.owner.name;
         $scope.sendEmailText = (($scope.currentEvent.sendEmail == true) ? "ano" : "ne");
         $scope.sendSmsText = (($scope.currentEvent.sendSms == true) ? "ano" : "ne");
         $scope.allDayText = (($scope.currentEvent.allDay == true) ? "ano" : "ne");
@@ -388,16 +379,8 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     $scope.addAllMonthEvent = function () {
     };
 
-    $scope.addEventFromDay = function (halfHour) {
-        $scope.addEvent($scope.selectedDay, halfHour - 1);
-    };
-
-    $scope.addEventFromWeek = function (day, halfHour) {
-        $scope.addEvent(day, halfHour - 1);
-    };
-
-    $scope.addEventFromMonth = function (day, halfHour) {
-        $scope.addEvent(day, halfHour - 1);
+    $scope.addEventFromDay = function (halfHour, stylist) {
+        $scope.addEvent($scope.selectedDay, halfHour - 1, stylist);
     };
 
     $scope.initData();

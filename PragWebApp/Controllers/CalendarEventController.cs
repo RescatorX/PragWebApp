@@ -74,9 +74,8 @@ namespace PragWebApp.Controllers
             model.MonthName = GetMonthName(month);
             model.MonthDays = DateTime.DaysInMonth(year, month);
             model.Weeks = weeks;
-            model.ViewRange = "DAY";
-            model.Users = _db.Users.Include(u => u.UserRoles).Select(u => new UserEntity() { Id = u.Id.ToString("D"), FirstName = u.FirstName, LastName = u.LastName, Email = u.Email }).ToArray();
-            model.Stylists = _db.Users.Select(u => new UserEntity() { Id = u.Id.ToString("D"), FirstName = u.FirstName, LastName = u.LastName, Email = u.Email }).ToArray(); ; // _db.Users.Where(u => u.UserRoles.Any(r => r.Role == stylistRole)).Select(u => new UserEntity() { Id = u.Id.ToString("D"), FirstName = u.FirstName, LastName = u.LastName, Email = u.Email }).ToArray();
+            model.Users = _db.Users.Include(u => u.UserRoles).Where(u => u.UserRoles.Any(r => ((r.User == u) && (r.Role.Name.Equals("Admin", StringComparison.InvariantCultureIgnoreCase))))).Select(u => new UserEntity() { Id = u.Id.ToString("D"), Name = $"{u.FirstName} {u.LastName}", Email = u.Email }).ToArray();
+            model.Stylists = _db.Users.Include(u => u.UserRoles).Where(u => u.UserRoles.Any(r => ((r.User == u) && (r.Role.Name.Equals("Stylist", StringComparison.InvariantCultureIgnoreCase))))).Select(u => new UserEntity() { Id = u.Id.ToString("D"), Name = $"{u.FirstName} {u.LastName}", Email = u.Email }).ToArray(); ; // _db.Users.Where(u => u.UserRoles.Any(r => r.Role == stylistRole)).Select(u => new UserEntity() { Id = u.Id.ToString("D"), FirstName = u.FirstName, LastName = u.LastName, Email = u.Email }).ToArray();
             model.Customers = _db.Customers.ToArray();
             model.EventTypes = _db.CalendarEventTypes.ToArray();
             model.Statuses = ((EventStatus[])Enum.GetValues(typeof(EventStatus))).Select(es => new RegisterEntity() { Id = (int)es, Name = es.ToString() }).ToArray();
@@ -190,7 +189,6 @@ namespace PragWebApp.Controllers
                     CalendarEvent editedCalendarEvent = await _db.CalendarEvents.SingleOrDefaultAsync(ce => ce.Id == savingCalendarEvent.Id);
                     if (editedCalendarEvent != null)
                     {
-                        editedCalendarEvent.Title = savingCalendarEvent.Title;
                         editedCalendarEvent.Owner = savingCalendarEvent.Owner;
                         editedCalendarEvent.EventType = savingCalendarEvent.EventType;
                         editedCalendarEvent.Start = savingCalendarEvent.Start;

@@ -133,6 +133,7 @@ namespace PragWebApp.Data
 
             ApplicationUser adminUser1 = null;
             ApplicationUser adminUser2 = null;
+            ApplicationUser adminUser3 = null;
             try
             {
                 adminUser1 = new ApplicationUser()
@@ -185,7 +186,7 @@ namespace PragWebApp.Data
                 };
                 modelBuilder.Entity<ApplicationUser>().HasData(adminUser2);
 
-                adminUser2 = new ApplicationUser()
+                adminUser3 = new ApplicationUser()
                 {
                     Id = Guid.NewGuid(),
                     FirstName = "Sandra",
@@ -208,7 +209,7 @@ namespace PragWebApp.Data
                     Status = UserStatus.Verified,
                     DefaultColor = "pink"
                 };
-                modelBuilder.Entity<ApplicationUser>().HasData(adminUser2);
+                modelBuilder.Entity<ApplicationUser>().HasData(adminUser3);
             }
             catch (Exception e)
             {
@@ -232,6 +233,22 @@ namespace PragWebApp.Data
                     Added = DateTime.Now
                 };
                 modelBuilder.Entity<ApplicationUserRole>().HasData(adminUserRole2);
+
+                ApplicationUserRole stylistUserRole1 = new ApplicationUserRole()
+                {
+                    UserId = adminUser2.Id,
+                    RoleId = stylistRole.Id,
+                    Added = DateTime.Now
+                };
+                modelBuilder.Entity<ApplicationUserRole>().HasData(stylistUserRole1);
+
+                ApplicationUserRole stylistUserRole2 = new ApplicationUserRole()
+                {
+                    UserId = adminUser3.Id,
+                    RoleId = stylistRole.Id,
+                    Added = DateTime.Now
+                };
+                modelBuilder.Entity<ApplicationUserRole>().HasData(stylistUserRole2);
             }
             catch (Exception e)
             {
