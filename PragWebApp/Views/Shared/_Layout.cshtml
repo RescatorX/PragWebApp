@@ -36,99 +36,100 @@
     </script>
 </head>
 <body>
-        <header>
-            <div style="width: 100%; margin-bottom: 30px;">
-                <a asp-area="" asp-controller="Test" asp-action="Index"><img src="~/img/Banner.png" style="width: 100%;" /></a>
-            </div>
-            <div style="width: 100%; height: 50px;">
-                <div class="row">
-                    <div class="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-xs-1 mx-auto">
-                    </div>
-                    <div class="col-xl-8 col-lg-8 col-md-10 col-sm-10 col-xs-10 mx-auto">
-                        <div class="row">
-                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Salon">
-                                    <div id="salon" class="menu-link-div"><span class="menu-button">SALON</span></div>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Team">
-                                    <div id="team" class="menu-link-div"><span class="menu-button">TÝM</span></div>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Services">
-                                    <div id="services" class="menu-link-div"><span class="menu-button">SLUŽBY</span></div>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Contacts">
-                                    <div id="contacts" class="menu-link-div"><span class="menu-button">KONTAKTY</span></div>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                                <a class="nav-link text-dark menu-link" href="https://www.instagram.com/pragsalon/" target="_blank"><img src="~/img/Instagram.png" style="width: 47px; margin: -10px 0 0 0;" /></a>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                                <a class="nav-link text-dark menu-link" href="https://www.facebook.com" target="_blank"><img src="~/img/Facebook.png" style="width: 60px; margin: -13px 0 0 0;" /></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-xs-1 mx-auto">
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <div class="container">
-            <partial name="_CookieConsentPartial" />
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
+    <header>
+        <div style="width: 100%; margin-bottom: 30px;">
+            <a asp-area="" asp-controller="Test" asp-action="Index"><img src="~/img/Banner.png" style="width: 100%;" /></a>
         </div>
-
-        <footer class="border-top footer text-muted">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <span class="menu-button">&copy; PRAGsalon - Copyright 2019</span>
+        <div style="width: 100%; height: 50px;">
+            <div class="row">
+                <div class="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-xs-1 mx-auto">
+                </div>
+                <div class="col-xl-8 col-lg-8 col-md-10 col-sm-10 col-xs-10 mx-auto">
+                    <div class="row">
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                            <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Salon">
+                                <div id="salon" class="menu-link-div"><span class="menu-button">SALON</span></div>
+                            </a>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                            <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Team">
+                                <div id="team" class="menu-link-div"><span class="menu-button">TÝM</span></div>
+                            </a>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                            <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Services">
+                                <div id="services" class="menu-link-div"><span class="menu-button">SLUŽBY</span></div>
+                            </a>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                            <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Contacts">
+                                <div id="contacts" class="menu-link-div"><span class="menu-button">KONTAKTY</span></div>
+                            </a>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                            <a class="nav-link text-dark menu-link" href="https://www.instagram.com/pragsalon/" target="_blank"><img src="~/img/Instagram.png" style="width: 47px; margin: -10px 0 0 0;" /></a>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                            <a class="nav-link text-dark menu-link" href="https://www.facebook.com" target="_blank"><img src="~/img/Facebook.png" style="width: 60px; margin: -13px 0 0 0;" /></a>
+                        </div>
                     </div>
-<!--
-                        <div class="col-xl-4 col-lg-4 col-md-0 col-sm-0 col-0">
-                            <a asp-area="" asp-controller="Test" asp-action="Privacy"><span class="footer-button">Prohlášení o soukromí</span></a>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6">
-                            <a asp-area="" asp-controller="Admin" asp-action="Index"><span class="footer-button">Administrace</span></a>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6">
-                            <a asp-area="" asp-controller="Calendar" asp-action="Index"><span class="footer-button">Kalendář</span></a>
-                        </div>
--->
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-xs-1 mx-auto">
                 </div>
             </div>
-        </footer>
+        </div>
+    </header>
 
-        <environment include="Development">
-            <script src="~/lib/jquery/dist/jquery.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
-        </environment>
-        <environment exclude="Development">
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                    asp-fallback-test="window.jQuery"
-                    crossorigin="anonymous"
-                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
-            </script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                    crossorigin="anonymous"
-                    integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
-            </script>
-        </environment>
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3" style="height: 400px; overflow-y: auto;">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <span class="menu-button">&copy; PRAGsalon - Copyright 2019</span>
+                </div>
+                <!--
+                                        <div class="col-xl-4 col-lg-4 col-md-0 col-sm-0 col-0">
+                                            <a asp-area="" asp-controller="Test" asp-action="Privacy"><span class="footer-button">Prohlášení o soukromí</span></a>
+                                        </div>
+                                        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6">
+                                            <a asp-area="" asp-controller="Admin" asp-action="Index"><span class="footer-button">Administrace</span></a>
+                                        </div>
+                                        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6">
+                                            <a asp-area="" asp-controller="Calendar" asp-action="Index"><span class="footer-button">Kalendář</span></a>
+                                        </div>
+                -->
+            </div>
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
-        @RenderSection("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

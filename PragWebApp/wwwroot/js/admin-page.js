@@ -2,6 +2,8 @@
 /// AdminCtrl //////////////////////////////
 ////////////////////////////////////////////
 
+var app = angular.module('AdminPage', ['ngMessages', 'mgcrea.ngStrap']);
+
 app.controller('adminCtrl', function ($scope, $http, $timeout) {
 
     // Global

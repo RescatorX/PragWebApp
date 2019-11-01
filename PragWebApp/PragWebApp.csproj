@@ -38,6 +38,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Controllers.AccountController.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Controllers.CustomerController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.CustomerController.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 
@@ -51,6 +56,16 @@
     <EmbeddedResource Update="Resources\Controllers.AccountController.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Controllers.AccountController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.CustomerController.cs-CZ.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.CustomerController.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.CustomerController.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.CustomerController.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

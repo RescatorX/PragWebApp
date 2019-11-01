@@ -1,0 +1,6 @@
+﻿
+1. Uzivatele + prava
+2. Zakaznici
+3. SMS
+4. Typy udalosti do kalendare
+5. 

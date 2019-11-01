@@ -383,6 +383,15 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
         $scope.addEvent($scope.selectedDay, halfHour - 1, stylist);
     };
 
+    $scope.customerChanged = function () {
+        $scope.currentEvent.customerName = $scope.currentEvent.customer.firstName + " " + $scope.currentEvent.customer.lastName;
+        $scope.currentEvent.customerEmail = $scope.currentEvent.customer.email;
+        $scope.currentEvent.customerPhoneNumber = $scope.currentEvent.customer.phoneNumber;
+        $scope.currentEvent.sendEmail = $scope.currentEvent.customer.sendEmails;
+        $scope.currentEvent.sendSms = $scope.currentEvent.customer.sendSmss;
+        $scope.currentEvent.note = $scope.currentEvent.customer.description;
+    };
+
     $scope.initData();
 
 }); // CalendarCtrl

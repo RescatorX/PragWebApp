@@ -113,10 +113,13 @@
                             <input ng-if="(eventMode != 'S')" type='checkbox' name="allDay" id="allDay" class="form-control tiny-form-control" ng-model="currentEvent.allDay" title="Celodenní" style="width: 20px;" />
                             <input ng-if="(eventMode == 'S')" type="text" name="allDay" id="allDay" class="form-control tiny-form-control" ng-model='allDayText' readonly>
                         </div>
-                        <div ng-if="((initData.customers != null) && (initData.customers.length > 0))" class="form-group col-12">
+                        <div ng-if="((initData.customers != null) && (initData.customers.length > 0))" class="form-group col-10">
                             <label for="customer" class="control-label">Zákazník</label>
-                            <select ng-if="(eventMode != 'S')" name="customer" id="customer" class="form-control tiny-form-control" style="padding-top: 2px;" ng-model='currentEvent.customer' ng-options='customer.name for customer in initData.customers track by customer.id' ng-change="customerChanged()"></select>
+                            <select ng-if="(eventMode != 'S')" name="customer" id="customer" class="form-control tiny-form-control" style="padding-top: 2px;" ng-model='currentEvent.customer' ng-options='(customer.firstName + " " + customer.lastName) for customer in initData.customers track by customer.id' ng-change="customerChanged()"></select>
                             <input ng-if="(eventMode == 'S')" type="text" name="customer" id="customer" class="form-control tiny-form-control" ng-model='currentEvent.customer.name' readonly>
+                        </div>
+                        <div ng-if="((initData.customers != null) && (initData.customers.length > 0))" class="form-group col-2" style="padding-top: 35px;">
+                            <a asp-controller="Customer" asp-action="Index"><i class="fa fa-marker fa-lg"></i></a>
                         </div>
                         <div class="form-group col-12">
                             <label for="customerName" class="control-label" title="Jméno zákazníka">Jméno zákazníka</label>

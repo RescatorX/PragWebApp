@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Localization;
 using PragWebApp.Resources;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Localization.Routing;
 
 namespace PragWebApp
 {
@@ -103,16 +104,16 @@ namespace PragWebApp
                 new CultureInfo("cs-CZ"),
                 new CultureInfo("en-US"),
             };
-/*
+
             app.UseRequestLocalization(new RequestLocalizationOptions
             {                                    
-                DefaultRequestCulture = new RequestCulture("cs-CZ"),
+                DefaultRequestCulture = new RequestCulture(culture: "cs-CZ", uiCulture: "cs-CZ"),
                 // Formatting numbers, dates, etc.
                 SupportedCultures = supportedCultures,
                 // UI strings that we have localized.
                 SupportedUICultures = supportedCultures
             });
-*/
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy(); 

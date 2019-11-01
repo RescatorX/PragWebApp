@@ -10,6 +10,7 @@ namespace PragWebApp.Data.Enums
         Unknown = 0,
         Created = 1,
         Confirmed = 2,
-        Deleted = 3
+        Modified = 3,
+        Deleted = 4
     }
 }
