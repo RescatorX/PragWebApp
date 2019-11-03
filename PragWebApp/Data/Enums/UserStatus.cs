@@ -11,6 +11,7 @@ namespace PragWebApp.Data.Enums
         Created = 1,
         Verified = 2,
         Banned = 3,
-        Deleted = 4
+        Modified = 4,
+        Deleted = 5
     }
 }

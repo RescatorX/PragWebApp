@@ -124,4 +124,16 @@
   <data name="CustomerEntity_Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="CustomerEntity_FirstNameRequired" xml:space="preserve">
+    <value>First name is required field</value>
+  </data>
+  <data name="CustomerEntity_LastNameRequired" xml:space="preserve">
+    <value>Last name is required field</value>
+  </data>
+  <data name="CustomerEntity_EmailRequired" xml:space="preserve">
+    <value>E-Mail is required field</value>
+  </data>
+  <data name="CustomerEntity_PhoneNumberRequired" xml:space="preserve">
+    <value>Phone number is required field</value>
+  </data>
 </root>

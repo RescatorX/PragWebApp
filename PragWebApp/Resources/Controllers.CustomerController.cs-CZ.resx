@@ -124,4 +124,16 @@
   <data name="CustomerEntity_Status" xml:space="preserve">
     <value>Stav</value>
   </data>
+  <data name="CustomerEntity_FirstNameRequired" xml:space="preserve">
+    <value>Jméno je povinné pole</value>
+  </data>
+  <data name="CustomerEntity_LastNameRequired" xml:space="preserve">
+    <value>Příjmení je povinné pole</value>
+  </data>
+  <data name="CustomerEntity_EmailRequired" xml:space="preserve">
+    <value>E-Mail je povinné pole</value>
+  </data>
+  <data name="CustomerEntity_PhoneNumberRequired" xml:space="preserve">
+    <value>Telefon je povinné pole</value>
+  </data>
 </root>

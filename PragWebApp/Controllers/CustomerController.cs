@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using PragWebApp.Data;
 using PragWebApp.Data.Entities;
@@ -17,6 +20,7 @@ namespace PragWebApp.Controllers
 {
     public class CustomerController : Controller
     {
+        private readonly IStringLocalizer<CustomerController> _localizer;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
@@ -24,12 +28,14 @@ namespace PragWebApp.Controllers
         private readonly ILogger _logger;
 
         public CustomerController (
+            IStringLocalizer<CustomerController> localizer,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ApplicationDbContext db,
-            ILogger<AccountController> logger)
+            ILogger<CustomerController> logger)
         {
+            _localizer = localizer;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
@@ -40,6 +46,15 @@ namespace PragWebApp.Controllers
         public async Task<IActionResult> Index()
         {
             List<Customer> customers = await _db.Customers.ToListAsync();
+
+            //ViewData["MyTitle"] = _localizer["The localised title of my app!"];
+            var requestCulture = this.Request.HttpContext.Features.Get<IRequestCultureFeature>();
+
+            this.Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture("cs-CZ")),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
 
             return View(customers);
         }
@@ -58,14 +73,6 @@ namespace PragWebApp.Controllers
             }
 
             return View(customer);
-        }
-
-        public IActionResult Info(Guid? id = null)
-        {
-            if (!id.HasValue)
-                return View(new Customer());
-            else
-                return View(_db.Customers.Find(id.Value));
         }
 
         // GET: Employee/Create

@@ -71,7 +71,10 @@ namespace PragWebApp
                 options.SupportedUICultures = supportedCultures;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix); ;
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix, opts => { opts.ResourcesPath = "Resources"; })
+                .AddDataAnnotationsLocalization();
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -114,6 +117,10 @@ namespace PragWebApp
                 SupportedUICultures = supportedCultures
             });
 
+
+            var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(options.Value);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy(); 
@@ -124,7 +131,7 @@ namespace PragWebApp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=User}/{action=Index}/{id?}");
             });
         }
     }

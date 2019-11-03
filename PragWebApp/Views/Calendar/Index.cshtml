@@ -93,10 +93,13 @@
                             <select ng-if="(eventMode != 'S')" name="owner" id="owner" class="form-control tiny-form-control" style="padding-top: 2px;" ng-model='currentEvent.owner' ng-options='(stylist.name) for stylist in initData.stylists track by stylist.id' ng-change="ownerChanged()"></select>
                             <input ng-if="(eventMode == 'S')" type="text" name="owner" id="owner" class="form-control tiny-form-control" ng-model='ownerName' readonly>
                         </div>
-                        <div ng-if="((initData.eventTypes != null) && (initData.eventTypes.length > 0))" class="form-group col-12">
+                        <div ng-if="((initData.eventTypes != null) && (initData.eventTypes.length > 0))" class="form-group col-10">
                             <label for="eventType" class="control-label">Akce</label>
                             <select ng-if="(eventMode != 'S')" name="eventType" id="eventType" class="form-control tiny-form-control" style="padding-top: 2px;" ng-model='currentEvent.eventType' ng-options='eventType.name for eventType in initData.eventTypes track by eventType.id' ng-change="eventTypeChanged()"></select>
                             <input ng-if="(eventMode == 'S')" type="text" name="eventType" id="eventType" class="form-control tiny-form-control" ng-model='currentEvent.eventType.name' readonly>
+                        </div>
+                        <div ng-if="((initData.eventTypes != null) && (initData.eventTypes.length > 0))" class="form-group col-2" style="padding-top: 35px;">
+                            <a asp-controller="CalendarEventType" asp-action="Index"><i class="fa fa-marker fa-lg"></i></a>
                         </div>
                         <div class="form-group col-6">
                             <label for="eventStart" class="control-label">Začátek</label>

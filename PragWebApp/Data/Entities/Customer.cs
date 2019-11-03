@@ -13,40 +13,40 @@ namespace PragWebApp.Data.Entities
 {
     public class Customer : BaseEntity
     {
-        [Required]
-        [Display(Name = ResourceKeys.Controllers.CustomerController.FirstName, ResourceType = typeof(Controllers_CustomerController))]
+        [Required(ErrorMessageResourceType = typeof(Controllers_CustomerController), ErrorMessageResourceName = ResourceKeys.Controllers.CustomerController.FirstNameRequired)]
+        [Display(ResourceType = typeof(Controllers_CustomerController), Name = ResourceKeys.Controllers.CustomerController.FirstName)]
         public string FirstName { get; set; }
 
-        [Required]
-        [Display(Name = ResourceKeys.Controllers.CustomerController.LastName, ResourceType = typeof(Controllers_CustomerController))]
+        [Required(ErrorMessageResourceType = typeof(Controllers_CustomerController), ErrorMessageResourceName = ResourceKeys.Controllers.CustomerController.LastNameRequired)]
+        [Display(ResourceType = typeof(Controllers_CustomerController), Name = ResourceKeys.Controllers.CustomerController.LastName)]
         public string LastName { get; set; }
 
-        [Required]
-        [Display(Name = ResourceKeys.Controllers.CustomerController.Email, ResourceType = typeof(Controllers_CustomerController))]
+        [Required(ErrorMessageResourceType = typeof(Controllers_CustomerController), ErrorMessageResourceName = ResourceKeys.Controllers.CustomerController.EmailRequired)]
+        [Display(ResourceType = typeof(Controllers_CustomerController), Name = ResourceKeys.Controllers.CustomerController.Email)]
         public string Email { get; set; }
 
-        [Required]
-        [Display(Name = ResourceKeys.Controllers.CustomerController.PhoneNumber, ResourceType = typeof(Controllers_CustomerController))]
+        [Required(ErrorMessageResourceType = typeof(Controllers_CustomerController), ErrorMessageResourceName = ResourceKeys.Controllers.CustomerController.PhoneNumberRequired)]
+        [Display(ResourceType = typeof(Controllers_CustomerController), Name = ResourceKeys.Controllers.CustomerController.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
         [Required]
-        [Display(Name = ResourceKeys.Controllers.CustomerController.SendEmails, ResourceType = typeof(Controllers_CustomerController))]
+        [Display(ResourceType = typeof(Controllers_CustomerController), Name = ResourceKeys.Controllers.CustomerController.SendEmails)]
         public bool SendEmails { get; set; }
 
         [Required]
-        [Display(Name = ResourceKeys.Controllers.CustomerController.SendSmss, ResourceType = typeof(Controllers_CustomerController))]
+        [Display(ResourceType = typeof(Controllers_CustomerController), Name = ResourceKeys.Controllers.CustomerController.SendSmss)]
         public bool SendSmss { get; set; }
 
         [Required]
-        [Display(Name = ResourceKeys.Controllers.CustomerController.Description, ResourceType = typeof(Controllers_CustomerController))]
+        [Display(ResourceType = typeof(Controllers_CustomerController), Name = ResourceKeys.Controllers.CustomerController.Description)]
         public string Description { get; set; }
 
         [Required]
-        [Display(Name = ResourceKeys.Controllers.CustomerController.Created, ResourceType = typeof(Controllers_CustomerController))]
+        [Display(ResourceType = typeof(Controllers_CustomerController), Name = ResourceKeys.Controllers.CustomerController.Created)]
         public DateTime Created { get; set; }
 
         [Required]
-        [Display(Name = ResourceKeys.Controllers.CustomerController.Status, ResourceType = typeof(Controllers_CustomerController))]
+        [Display(ResourceType = typeof(Controllers_CustomerController), Name = ResourceKeys.Controllers.CustomerController.Status)]
         public CustomerStatus Status { get; set; }
 
         public override string ToString()

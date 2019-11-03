@@ -1,0 +1,30 @@
+﻿@model PragWebApp.Data.Entities.CalendarEventType
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Detail";
+}
+
+<div style="margin-top: 50px;">
+    <h4>Detail akce</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="AddOrEdit" asp-route-id="@Model.Id"><i class="fa fa-marker" title="Změnit akci" style="padding: 0 5px;"></i></a> |
+    <a asp-action="Delete" asp-route-id="@Model.Id"><i class="fa fa-trash-alt" title="Odstranit akci" style="padding: 0 5px;"></i></a> |
+    <a asp-action="Index"><i class="fa fa-list" title="Zobrazit seznam akcí" style="padding: 0 5px;"></i></a>
+</div>

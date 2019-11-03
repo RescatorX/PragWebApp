@@ -40,29 +40,5 @@ namespace PragWebApp.Controllers
         {
             return View();
         }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult Manage()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "Admin,Stylist")]
-        public IActionResult WorkingDay()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "Admin,Stylist")]
-        public IActionResult UserWeek(Guid userId)
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "Admin,Stylist")]
-        public IActionResult UserMonth(Guid userId)
-        {
-            return View();
-        }
     }
 }

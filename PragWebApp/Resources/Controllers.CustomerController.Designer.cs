@@ -88,11 +88,29 @@ namespace PragWebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-Mail is required field.
+        /// </summary>
+        public static string CustomerEntity_EmailRequired {
+            get {
+                return ResourceManager.GetString("CustomerEntity_EmailRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First name.
         /// </summary>
         public static string CustomerEntity_FirstName {
             get {
                 return ResourceManager.GetString("CustomerEntity_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name is required field.
+        /// </summary>
+        public static string CustomerEntity_FirstNameRequired {
+            get {
+                return ResourceManager.GetString("CustomerEntity_FirstNameRequired", resourceCulture);
             }
         }
         
@@ -106,11 +124,29 @@ namespace PragWebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last name is required field.
+        /// </summary>
+        public static string CustomerEntity_LastNameRequired {
+            get {
+                return ResourceManager.GetString("CustomerEntity_LastNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone number.
         /// </summary>
         public static string CustomerEntity_PhoneNumber {
             get {
                 return ResourceManager.GetString("CustomerEntity_PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number is required field.
+        /// </summary>
+        public static string CustomerEntity_PhoneNumberRequired {
+            get {
+                return ResourceManager.GetString("CustomerEntity_PhoneNumberRequired", resourceCulture);
             }
         }
         

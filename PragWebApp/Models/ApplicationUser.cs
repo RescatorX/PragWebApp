@@ -2,6 +2,7 @@
 using PragWebApp.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,6 +15,12 @@ namespace PragWebApp.Models
         public DateTime Created { get; set; }
         public UserStatus Status { get; set; }
         public string DefaultColor { get; set; }
+
+        [NotMapped]
+        public bool IsAdmin { get; set; }
+
+        [NotMapped]
+        public bool IsStylist { get; set; }
 
         public virtual ICollection<ApplicationUserClaim> Claims { get; set; }
         public virtual ICollection<ApplicationUserLogin> Logins { get; set; }

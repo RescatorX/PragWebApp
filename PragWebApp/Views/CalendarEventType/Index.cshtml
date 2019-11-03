@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model IEnumerable<PragWebApp.Data.Entities.CalendarEventType>
+@inject IViewLocalizer Localizer
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Index";
+}
+
+@{
+    ViewData["Title"] = Localizer["Home Page"];
+}
+<h2>@ViewData["MyTitle"]</h2>
+
+<div style="margin-top: 50px;"></div>
+
+<h4>Seznam akcí</h4>
+
+<p>
+    <a asp-action="AddOrEdit"><i class="fa fa-plus-circle" title="Vytvořit novou akci" style="color: green; margin: 20px 10px 10px 0; font-size: 20px;"></i><span style="color: green; font-weight: 600;">Nová akce</span></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    <a asp-action="AddOrEdit" asp-route-id="@item.Id"><i class="fa fa-marker" title="Změnit akci" style="padding: 0 5px;"></i></a> |
+                    <a asp-action="Detail" asp-route-id="@item.Id"><i class="fa fa-info" title="Zobrazit detail akce" style="padding: 0 5px;"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" title="Odstranit akci" style="padding: 0 5px;"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

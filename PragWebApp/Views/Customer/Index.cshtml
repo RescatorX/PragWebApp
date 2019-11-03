@@ -1,9 +1,16 @@
-﻿@model IEnumerable<PragWebApp.Data.Entities.Customer>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model IEnumerable<PragWebApp.Data.Entities.Customer>
+@inject IViewLocalizer Localizer
 
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewData["Title"] = "Index";
 }
+
+@{
+    ViewData["Title"] = Localizer["Home Page"];
+}
+<h2>@ViewData["MyTitle"]</h2>
 
 <div style="margin-top: 50px;"></div>
 

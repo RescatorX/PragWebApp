@@ -38,10 +38,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Controllers.AccountController.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Controllers.AuditTrailController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.AuditTrailController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers.CalendarEventTypeController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.CalendarEventTypeController.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Controllers.CustomerController.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Controllers.CustomerController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers.UserController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.UserController.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -57,6 +72,26 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Controllers.AccountController.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.AuditTrailController.cs-CZ.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.AuditTrailController.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.AuditTrailController.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.AuditTrailController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.CalendarEventTypeController.cs-CZ.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.CalendarEventTypeController.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.CalendarEventTypeController.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.CalendarEventTypeController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Controllers.CustomerController.cs-CZ.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
@@ -66,6 +101,16 @@
     <EmbeddedResource Update="Resources\Controllers.CustomerController.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Controllers.CustomerController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.UserController.cs-CZ.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.UserController.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.UserController.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.UserController.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

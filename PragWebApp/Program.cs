@@ -28,11 +28,6 @@ namespace PragWebApp
                     .WriteTo.File("log.txt")
                     .CreateLogger());
             })
-/*
-            .UseKestrel()
-            .UseContentRoot(Directory.GetCurrentDirectory())
-            .UseIISIntegration()
-*/
             .UseStartup<Startup>();
     }
 }
