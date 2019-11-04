@@ -91,19 +91,62 @@ namespace PragWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("Id,FirstName,LastName,Email,PhoneNumber,UserName,PasswordHash,DefaultColor")] ApplicationUser user)
+        public async Task<IActionResult> AddOrEdit([Bind("Id,FirstName,LastName,Email,PhoneNumber,UserName,PasswordHash,DefaultColor,IsAdmin,IsStylist")] ApplicationUser user)
         {
             if (ModelState.IsValid)
             {
+                ApplicationRole adminRole = _db.Roles.FirstOrDefault(r => r.Name.Equals("Admin", StringComparison.InvariantCultureIgnoreCase));
+                ApplicationRole stylistRole = _db.Roles.FirstOrDefault(r => r.Name.Equals("Stylist", StringComparison.InvariantCultureIgnoreCase));
+
                 if (user.Id == Guid.Empty)
                 {
                     user.Created = DateTime.Now;
                     user.Status = UserStatus.Created;
+
+                    if (user.IsAdmin)
+                    {
+                        user.UserRoles.Add(new ApplicationUserRole() { User = user, Role = adminRole, Added = DateTime.Now });
+                    }
+                    if (user.IsStylist)
+                    {
+                        user.UserRoles.Add(new ApplicationUserRole() { User = user, Role = stylistRole, Added = DateTime.Now });
+                    }
+
                     _db.Add(user);
                 }
                 else
                 {
+                    bool currentlyIsAdmin = _db.Users.Include(u => u.UserRoles).Any(u => ((user == u) && u.UserRoles.Any(r => ((r.User == u) && (r.Role == adminRole)))));
+                    bool currentlyIsStylist = _db.Users.Include(u => u.UserRoles).Any(u => ((user == u) && u.UserRoles.Any(r => ((r.User == u) && (r.Role == stylistRole)))));
+
+                    if (currentlyIsAdmin && !user.IsAdmin)
+                    {
+                        ApplicationUserRole adminUserRole = _db.UserRoles.FirstOrDefault(ur => (ur.User == user) && (ur.Role == adminRole));
+                        if (adminUserRole != null)
+                        {
+                            user.UserRoles.Remove(adminUserRole);
+                        }
+                    }
+                    if (!currentlyIsAdmin && user.IsAdmin)
+                    {
+                        user.UserRoles.Add(new ApplicationUserRole() { User = user, Role = adminRole, Added = DateTime.Now });
+                    }
+
+                    if (currentlyIsStylist && !user.IsStylist)
+                    {
+                        ApplicationUserRole stylistUserRole = _db.UserRoles.FirstOrDefault(ur => (ur.User == user) && (ur.Role == stylistRole));
+                        if (stylistUserRole != null)
+                        {
+                            user.UserRoles.Remove(stylistUserRole);
+                        }
+                    }
+                    if (!currentlyIsStylist && user.IsStylist)
+                    {
+                        user.UserRoles.Add(new ApplicationUserRole() { User = user, Role = stylistRole, Added = DateTime.Now });
+                    }
+
                     user.Status = UserStatus.Modified;
+
                     _db.Update(user);
                 }
 
