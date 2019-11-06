@@ -1,36 +1,31 @@
 ﻿
 @{
-    ViewData["Title"] = "Contacts";
+    Layout = "~/Views/Shared/_LayoutMenuPage.cshtml";
+    ViewData["Title"] = "Kontakt";
 }
 
+<div class="page-head-div">
+    <a class="nav-link text-dark" title="Zpět na hlavní stránku" asp-area="" asp-controller="Test" asp-action="Index">
+        <div><span class="page-head">kontakt</span></div>
+    </a>
+</div>
+<div class="text-left" style="margin: -60px 0 0 30px;">
     <div class="text-center" style="text-align: center; font-size: 24px; font-weight: 700;">
-        <div class="row" style="height: 100px;"></div>
+        <div class="row" style="height: 50px;"></div>
         <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                <div class="row" style="text-align: left;">
-                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-0 col-0"></div>
-                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5"><span>Adresa: </span></div>
-                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-7 col-7"><span>PRAGsalon</span></div>
-                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-0 col-0"></div>
-                </div>
-                <div class="row" style="text-align: left;">
-                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-0 col-0"></div>
-                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5"></div>
-                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-7 col-7"><span>Hanušova 1537/1b</span></div>
-                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-0 col-0"></div>
-                </div>
-                <div class="row" style="text-align: left;">
-                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-0 col-0"></div>
-                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5"></div>
-                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-7 col-7"><span>Praha 4, 140 00</span></div>
-                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-0 col-0"></div>
-                </div>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                <a class="nav-link text-dark" href="https://mapy.cz/zakladni?x=14.4429068&y=50.0477920&z=16&l=0&source=addr&id=12707634" target="_blank">
-                    <img src="~/img/Mapa.png" style="width: 80%;" />
+            <div class="col-12">
+                <a class="nav-link text-dark" href="https://goo.gl/maps/vQ6L2Tits6LXnJfE8" target="_blank">
+                    <img src="~/img/Mapa.png" style="width: 55%;" />
                 </a>
             </div>
         </div>
+        <div class="row" style="height: 30px;">
+        </div>
+        <div class="row"><div class="col-12"><span>Hanusova 1537/1b Praha 140 00</span></div></div>
+        <div class="row"><div class="col-12"><span>+420 773 987 886</span></div></div>
+        <div class="row"><div class="col-12"><span>info@pragsalon.cz</span></div></div>
+        <div class="row" style="height: 20px;">
+        </div>
+        <div class="row"><div class="col-12"><span style="font-size: 18px;">Parkování: na hlavní ulici před salonem</span></div></div>
     </div>
-
+</div>

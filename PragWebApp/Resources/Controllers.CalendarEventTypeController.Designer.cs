@@ -59,5 +59,41 @@ namespace PragWebApp.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        public static string CalendarEventTypeEntity_Color {
+            get {
+                return ResourceManager.GetString("CalendarEventTypeEntity_Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color is required field.
+        /// </summary>
+        public static string CalendarEventTypeEntity_ColorRequired {
+            get {
+                return ResourceManager.GetString("CalendarEventTypeEntity_ColorRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string CalendarEventTypeEntity_Name {
+            get {
+                return ResourceManager.GetString("CalendarEventTypeEntity_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is required field.
+        /// </summary>
+        public static string CalendarEventTypeEntity_NameRequired {
+            get {
+                return ResourceManager.GetString("CalendarEventTypeEntity_NameRequired", resourceCulture);
+            }
+        }
     }
 }

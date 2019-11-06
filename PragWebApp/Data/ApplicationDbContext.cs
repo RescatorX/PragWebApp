@@ -279,6 +279,26 @@ namespace PragWebApp.Data
             {
                 throw new Exception("PrefillDatabase - UserRoles table prefill error: " + e.Message, e);
             }
+
+            try
+            {
+                modelBuilder.Entity<CalendarEventType>().HasData(new CalendarEventType() { Id = Guid.NewGuid(), Name = "F", Color = "lightgreen" });
+                modelBuilder.Entity<CalendarEventType>().HasData(new CalendarEventType() { Id = Guid.NewGuid(), Name = "PS", Color = "lightblue" });
+                modelBuilder.Entity<CalendarEventType>().HasData(new CalendarEventType() { Id = Guid.NewGuid(), Name = "SF", Color = "yellow" });
+                modelBuilder.Entity<CalendarEventType>().HasData(new CalendarEventType() { Id = Guid.NewGuid(), Name = "BF", Color = "pink" });
+                modelBuilder.Entity<CalendarEventType>().HasData(new CalendarEventType() { Id = Guid.NewGuid(), Name = "BSF", Color = "orange" });
+                modelBuilder.Entity<CalendarEventType>().HasData(new CalendarEventType() { Id = Guid.NewGuid(), Name = "MF", Color = "brown" });
+                modelBuilder.Entity<CalendarEventType>().HasData(new CalendarEventType() { Id = Guid.NewGuid(), Name = "MSF", Color = "blue" });
+                modelBuilder.Entity<CalendarEventType>().HasData(new CalendarEventType() { Id = Guid.NewGuid(), Name = "TONER", Color = "green" });
+                modelBuilder.Entity<CalendarEventType>().HasData(new CalendarEventType() { Id = Guid.NewGuid(), Name = "AGÁVE", Color = "magenta" });
+                modelBuilder.Entity<CalendarEventType>().HasData(new CalendarEventType() { Id = Guid.NewGuid(), Name = "KONZULTACE", Color = "red" });
+                modelBuilder.Entity<CalendarEventType>().HasData(new CalendarEventType() { Id = Guid.NewGuid(), Name = "VÝČES", Color = "cyan" });
+                modelBuilder.Entity<CalendarEventType>().HasData(new CalendarEventType() { Id = Guid.NewGuid(), Name = "JINÉ", Color = "lightbrown" });
+            }
+            catch (Exception e)
+            {
+                throw new Exception("PrefillDatabase - CalendarEventTypes table prefill error: " + e.Message, e);
+            }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

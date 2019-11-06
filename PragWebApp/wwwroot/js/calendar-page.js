@@ -18,6 +18,7 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     $scope.eventStart = null;
     $scope.eventEnd = null;
     $scope.ownerName = "";
+    $scope.customerName = "";
     $scope.sendEmailText = "";
     $scope.sendSmsText = "";
     $scope.allDayText = "";
@@ -77,6 +78,9 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
                 $scope.selectDay($scope.selectedDay);
 
                 $scope.initialized = true;
+
+                $("#calendar-user-row").css("display", "block");
+                $("#calendar-data-row").css("display", "flex");
             },
             function errorCallback(response) {
                 console.log("initModel error: " + JSON.stringify(response));
@@ -355,7 +359,8 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
         $scope.eventStart = new Date($scope.currentEvent.start);
         $scope.eventEnd = new Date($scope.currentEvent.end);
 
-        $scope.ownerName = $scope.currentEvent.owner.name;
+        $scope.ownerName = $scope.currentEvent.owner.firstName + " " + $scope.currentEvent.owner.lastName;
+        $scope.customerName = $scope.currentEvent.customer.firstName + " " + $scope.currentEvent.customer.lastName;
         $scope.sendEmailText = (($scope.currentEvent.sendEmail == true) ? "ano" : "ne");
         $scope.sendSmsText = (($scope.currentEvent.sendSms == true) ? "ano" : "ne");
         $scope.allDayText = (($scope.currentEvent.allDay == true) ? "ano" : "ne");
@@ -390,6 +395,18 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
         $scope.currentEvent.sendEmail = $scope.currentEvent.customer.sendEmails;
         $scope.currentEvent.sendSms = $scope.currentEvent.customer.sendSmss;
         $scope.currentEvent.note = $scope.currentEvent.customer.description;
+    };
+
+    $scope.getStylistIndex = function (event) {
+        var result = 0;
+        var index = 0;
+        angular.forEach($scope.initData.stylists, function (stylist) {
+            if (stylist.id == event.owner.id) {
+                result = index;
+            }
+            index++;
+        });
+        return result;
     };
 
     $scope.initData();

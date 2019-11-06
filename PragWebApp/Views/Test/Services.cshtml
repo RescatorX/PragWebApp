@@ -1,4 +1,103 @@
 ﻿
 @{
+    Layout = "~/Views/Shared/_LayoutMenuPage.cshtml";
     ViewData["Title"] = "Services";
 }
+
+<div class="page-head-div">
+    <a class="nav-link text-dark" title="Zpět na hlavní stránku" asp-area="" asp-controller="Test" asp-action="Index">
+        <div><span class="page-head">služby</span></div>
+    </a>
+</div>
+<div class="text-left" style="margin: -60px 0 0 30px;">
+    <div class="text-center">
+
+        <div style="height: 30px;"></div>
+        <div><span class="price-list-head">CENÍK</span></div>
+        <div style="height: 20px;"></div>
+        <div style="margin-left: 50px;">
+            <table style="text-align: left; width: 100%;">
+                <tr>
+                    <th style="width: 60%;"></th>
+                    <th style="width: 40%;"></th>
+                </tr>
+                <tr>
+                    <td><span class="price-list-title">konzultace</span></td>
+                    <td><span class="price-list-value">ZDARMA</span></td>
+                </tr>
+                <tr>
+                    <td><span class="price-list-title">dámský střih a foukaná</span></td>
+                    <td><span class="price-list-value">1200 - 1500 Kč</span></td>
+                </tr>
+                <tr>
+                    <td><span class="price-list-title">pánský střih</span></td>
+                    <td><span class="price-list-value">800 Kč / příplatek u haircut specialist 200 Kč</span></td>
+                </tr>
+                <tr>
+                    <td><span class="price-list-title">pánský střih a barva (jemné zakrytí šedivých vlasů)</span></td>
+                    <td><span class="price-list-value">1200 Kč / příplatek u haircut specialist 200 Kč</span></td>
+                </tr>
+                <tr>
+                    <td><span class="price-list-title">úprava vousů</span></td>
+                    <td><span class="price-list-value">500 Kč</span></td>
+                </tr>
+                <tr>
+                    <td><span class="price-list-title">barvení odrost / odrost+délky</span></td>
+                    <td><span class="price-list-value">1100 Kč / 1500 Kč</span></td>
+                </tr>
+                <tr>
+                    <td><span class="price-list-title">melír poloviční / celý / balayage</span></td>
+                    <td><span class="price-list-value">2100 Kč / 2700 Kč / 3200 Kč</span></td>
+                </tr>
+                <tr>
+                    <td><span class="price-list-title">foukaná</span></td>
+                    <td><span class="price-list-value">750 Kč</span></td>
+                </tr>
+                <tr>
+                    <td><span class="price-list-title">tónování</span></td>
+                    <td><span class="price-list-value">550 Kč</span></td>
+                </tr>
+                <tr>
+                    <td><span class="price-list-title">výčes</span></td>
+                    <td><span class="price-list-value">1500 Kč</span></td>
+                </tr>
+                <tr>
+                    <td><span class="price-list-title">maska</span></td>
+                    <td><span class="price-list-value">250 Kč</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="price-list-title">
+                            hloubková péče - speciální ošetření - více
+                            <a asp-area="" asp-controller="Test" asp-action="SpecialServices" style="color: blue;">
+                                zde - viz další strany
+                            </a>
+                        </span>
+                    </td>
+                    <td><span class="price-list-value">550 Kč</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="price-list-title">
+                            Agáve kúra - speciální ošetření - více
+                            <a asp-area="" asp-controller="Test" asp-action="SpecialServices" style="color: blue;">
+                                zde - viz další strany
+                            </a>
+                        </span>
+                    </td>
+                    <td><span class="price-list-value">3000-5000 Kč</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="height: 40px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><span class="price-list-title">kreativní barvení + 500 Kč</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><span class="price-list-title">V případě nezrušení termínu dříve než 24h před naplánovanou návštěvou salonu, poplatek 100% ceny.</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>

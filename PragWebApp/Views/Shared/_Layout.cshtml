@@ -37,53 +37,73 @@
 </head>
 <body>
     <header>
-        <div style="width: 100%; margin-bottom: 30px;">
+        <div style="width: 100%; margin-bottom: 30px; padding-left: 150px;">
             <a asp-area="" asp-controller="Test" asp-action="Index"><img src="~/img/Banner.png" style="width: 100%;" /></a>
         </div>
-        <div style="width: 100%; height: 50px;">
-            <div class="row">
-                <div class="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-xs-1 mx-auto">
-                </div>
-                <div class="col-xl-8 col-lg-8 col-md-10 col-sm-10 col-xs-10 mx-auto">
-                    <div class="row">
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                            <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Salon">
-                                <div id="salon" class="menu-link-div"><span class="menu-button">SALON</span></div>
-                            </a>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                            <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Team">
-                                <div id="team" class="menu-link-div"><span class="menu-button">TÝM</span></div>
-                            </a>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                            <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Services">
-                                <div id="services" class="menu-link-div"><span class="menu-button">SLUŽBY</span></div>
-                            </a>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                            <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Contacts">
-                                <div id="contacts" class="menu-link-div"><span class="menu-button">KONTAKTY</span></div>
-                            </a>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                            <a class="nav-link text-dark menu-link" href="https://www.instagram.com/pragsalon/" target="_blank"><img src="~/img/Instagram.png" style="width: 47px; margin: -10px 0 0 0;" /></a>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                            <a class="nav-link text-dark menu-link" href="https://www.facebook.com" target="_blank"><img src="~/img/Facebook.png" style="width: 60px; margin: -13px 0 0 0;" /></a>
+        <!--
+            <div style="width: 100%; height: 50px;">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-xs-1 mx-auto">
+                    </div>
+                    <div class="col-xl-8 col-lg-8 col-md-10 col-sm-10 col-xs-10 mx-auto">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Salon">
+                                    <div id="salon" class="menu-link-div"><span class="menu-button">SALON</span></div>
+                                </a>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Team">
+                                    <div id="team" class="menu-link-div"><span class="menu-button">TÝM</span></div>
+                                </a>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Services">
+                                    <div id="services" class="menu-link-div"><span class="menu-button">SLUŽBY</span></div>
+                                </a>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Contacts">
+                                    <div id="contacts" class="menu-link-div"><span class="menu-button">KONTAKTY</span></div>
+                                </a>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                                <a class="nav-link text-dark menu-link" href="https://www.instagram.com/pragsalon/" target="_blank"><img src="~/img/Instagram.png" style="width: 47px; margin: -10px 0 0 0;" /></a>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                                <a class="nav-link text-dark menu-link" href="https://www.facebook.com" target="_blank"><img src="~/img/Facebook.png" style="width: 60px; margin: -13px 0 0 0;" /></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-xs-1 mx-auto">
+                    <div class="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-xs-1 mx-auto">
+                    </div>
                 </div>
             </div>
-        </div>
+    -->
     </header>
 
-    <div class="container">
+    <div class="container" style="max-width: 100%;">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3" style="height: 400px; overflow-y: auto;">
-            @RenderBody()
+            <div style="display: inline-block; width: 100%;">
+                <div style="display: block; width: 250px;">
+                    <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Salon">
+                        <div><span class="main-menu-item">SALON</span></div>
+                    </a>
+                    <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Team">
+                        <div><span class="main-menu-item">TÝM</span></div>
+                    </a>
+                    <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Services">
+                        <div><span class="main-menu-item">SLUŽBY</span></div>
+                    </a>
+                    <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Contacts">
+                        <div><span class="main-menu-item">KONTAKT</span></div>
+                    </a>
+                </div>
+                <div>
+                    @RenderBody()
+                </div>
+            </div>
         </main>
     </div>
 
@@ -93,17 +113,6 @@
                 <div class="col-12">
                     <span class="menu-button">&copy; PRAGsalon - Copyright 2019</span>
                 </div>
-                <!--
-                                        <div class="col-xl-4 col-lg-4 col-md-0 col-sm-0 col-0">
-                                            <a asp-area="" asp-controller="Test" asp-action="Privacy"><span class="footer-button">Prohlášení o soukromí</span></a>
-                                        </div>
-                                        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6">
-                                            <a asp-area="" asp-controller="Admin" asp-action="Index"><span class="footer-button">Administrace</span></a>
-                                        </div>
-                                        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6">
-                                            <a asp-area="" asp-controller="Calendar" asp-action="Index"><span class="footer-button">Kalendář</span></a>
-                                        </div>
-                -->
             </div>
         </div>
     </footer>

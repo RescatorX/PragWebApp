@@ -42,6 +42,11 @@ namespace PragWebApp.Controllers
             return View();
         }
 
+        public IActionResult SpecialServices()
+        {
+            return View();
+        }
+
         public IActionResult Contacts()
         {
             return View();
