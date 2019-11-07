@@ -360,7 +360,9 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
         $scope.eventEnd = new Date($scope.currentEvent.end);
 
         $scope.ownerName = $scope.currentEvent.owner.firstName + " " + $scope.currentEvent.owner.lastName;
-        $scope.customerName = $scope.currentEvent.customer.firstName + " " + $scope.currentEvent.customer.lastName;
+        if ($scope.currentEvent.customer != null) {
+            $scope.customerName = $scope.currentEvent.customer.firstName + " " + $scope.currentEvent.customer.lastName;
+        }
         $scope.sendEmailText = (($scope.currentEvent.sendEmail == true) ? "ano" : "ne");
         $scope.sendSmsText = (($scope.currentEvent.sendSms == true) ? "ano" : "ne");
         $scope.allDayText = (($scope.currentEvent.allDay == true) ? "ano" : "ne");
