@@ -7,16 +7,16 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
-              crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+              crossorigin="anonymous" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
+
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script>
         $(document).ready(function () {
@@ -32,93 +32,76 @@
             if (location.pathname.toUpperCase().indexOf('/TEST/CONTACTS') >= 0) {
                 $("#contacts").addClass("menu-link-div-selected");
             }
+            if (location.pathname.toUpperCase().indexOf('/TEST/COLLECTIONS') >= 0) {
+                $("#collections").addClass("menu-link-div-selected");
+            }
         });
     </script>
 </head>
 <body>
-    <header>
-        <div style="width: 100%; margin-bottom: 30px; padding-left: 150px;">
-            <a asp-area="" asp-controller="Test" asp-action="Index"><img src="~/img/Banner.png" style="width: 100%;" /></a>
-        </div>
-        <!--
-            <div style="width: 100%; height: 50px;">
-                <div class="row">
-                    <div class="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-xs-1 mx-auto">
-                    </div>
-                    <div class="col-xl-8 col-lg-8 col-md-10 col-sm-10 col-xs-10 mx-auto">
-                        <div class="row">
-                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Salon">
-                                    <div id="salon" class="menu-link-div"><span class="menu-button">SALON</span></div>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Team">
-                                    <div id="team" class="menu-link-div"><span class="menu-button">TÝM</span></div>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Services">
-                                    <div id="services" class="menu-link-div"><span class="menu-button">SLUŽBY</span></div>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Contacts">
-                                    <div id="contacts" class="menu-link-div"><span class="menu-button">KONTAKTY</span></div>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                                <a class="nav-link text-dark menu-link" href="https://www.instagram.com/pragsalon/" target="_blank"><img src="~/img/Instagram.png" style="width: 47px; margin: -10px 0 0 0;" /></a>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
-                                <a class="nav-link text-dark menu-link" href="https://www.facebook.com" target="_blank"><img src="~/img/Facebook.png" style="width: 60px; margin: -13px 0 0 0;" /></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-xs-1 mx-auto">
-                    </div>
-                </div>
-            </div>
-    -->
-    </header>
 
-    <div class="container" style="max-width: 100%;">
-        <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3" style="height: 400px; overflow-y: auto;">
-            <div style="display: inline-block; width: 100%;">
-                <div style="display: block; width: 250px;">
+    <nav class="navbar fixed-top navbar-light info-color" style="display: contents;">
+        <a asp-area="" asp-controller="Test" asp-action="Index" class="navbar-brand ps-top-menu-banner"><img class="ps-banner-img" src="~/img/Banner.png" /></a>
+        <button class="navbar-toggler ps-top-menu-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
                     <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Services">
-                        <div><span class="main-menu-item">SLUŽBY</span></div>
+                        <div><span class="top-menu-item">SLUŽBY</span></div>
                     </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Team">
-                        <div><span class="main-menu-item">O NÁS</span></div>
+                        <div><span class="top-menu-item">O NÁS</span></div>
                     </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Salon">
-                        <div><span class="main-menu-item">INTERIER</span></div>
+                        <div><span class="top-menu-item">INTERIER</span></div>
                     </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Collections">
-                        <div><span class="main-menu-item">KOLEKCE</span></div>
+                        <div><span class="top-menu-item">KOLEKCE</span></div>
                     </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Contacts">
-                        <div><span class="main-menu-item">KONTAKT</span></div>
+                        <div><span class="top-menu-item">KONTAKT</span></div>
                     </a>
-                </div>
-                <div>
-                    @RenderBody()
-                </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 100%; position: relative; overflow: hidden;">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3" style="width: 100%; height: 100vh; overflow: hidden; display: inline-flex;">
+            <div class="ps-left-menu" style="width: 150px;">
+                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Services">
+                    <div id="services" class="menu-link-div"><span class="main-menu-item">SLUŽBY</span></div>
+                </a>
+                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Team">
+                    <div id="team" class="menu-link-div"><span class="main-menu-item">O NÁS</span></div>
+                </a>
+                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Salon">
+                    <div id="salon" class="menu-link-div"><span class="main-menu-item">INTERIER</span></div>
+                </a>
+                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Collections">
+                    <div id="collections" class="menu-link-div"><span class="main-menu-item">KOLEKCE</span></div>
+                </a>
+                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Contacts">
+                    <div id="contacts" class="menu-link-div"><span class="main-menu-item">KONTAKT</span></div>
+                </a>
+            </div>
+            <div class="ps-content" style="margin-left: -10px;">
+                @RenderBody()
             </div>
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <span class="menu-button">&copy; PRAGsalon - Copyright 2019</span>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
