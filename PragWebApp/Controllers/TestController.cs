@@ -52,6 +52,11 @@ namespace PragWebApp.Controllers
             return View();
         }
 
+        public IActionResult Collections()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
