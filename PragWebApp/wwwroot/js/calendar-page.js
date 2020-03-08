@@ -229,9 +229,12 @@ app.controller('CalendarCtrl', function ($scope, $http, $timeout) {
     };
 
     $scope.dayEventFilter = function (event) {
-        return ((("" + event.start).indexOf(("" + $scope.selectedDay.year) + "-" + ("" + $scope.selectedDay.month) + "-" + ("" + $scope.selectedDay.day)) >= 0) ||
-                (("" + event.start).indexOf(("" + $scope.selectedDay.year) + "-" + ("0" + $scope.selectedDay.month) + "-" + ("" + $scope.selectedDay.day)) >= 0) ||
-                (("" + event.start).indexOf(("" + $scope.selectedDay.year) + "-" + ("" + $scope.selectedDay.month) + "-" + ("0" + $scope.selectedDay.day)) >= 0));
+        var valid = ((("" + event.start).indexOf(("" + $scope.selectedDay.year) + "-" + ( "" + $scope.selectedDay.month) + "-" + ( "" + $scope.selectedDay.day)) >= 0) ||
+                     (("" + event.start).indexOf(("" + $scope.selectedDay.year) + "-" + ("0" + $scope.selectedDay.month) + "-" + ( "" + $scope.selectedDay.day)) >= 0) ||
+                     (("" + event.start).indexOf(("" + $scope.selectedDay.year) + "-" + ( "" + $scope.selectedDay.month) + "-" + ("0" + $scope.selectedDay.day)) >= 0) ||
+                     (("" + event.start).indexOf(("" + $scope.selectedDay.year) + "-" + ("0" + $scope.selectedDay.month) + "-" + ("0" + $scope.selectedDay.day)) >= 0));
+
+        return valid;
     };
 
     $scope.weekEventFilter = function (event) {
