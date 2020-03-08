@@ -7,7 +7,6 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -15,28 +14,94 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
+
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            if (location.pathname.toUpperCase().indexOf('/TEST/SALON') >= 0) {
+                $("#salon").addClass("menu-link-div-selected");
+            }
+            if (location.pathname.toUpperCase().indexOf('/TEST/TEAM') >= 0) {
+                $("#team").addClass("menu-link-div-selected");
+            }
+            if (location.pathname.toUpperCase().indexOf('/TEST/SERVICES') >= 0) {
+                $("#services").addClass("menu-link-div-selected");
+            }
+            if (location.pathname.toUpperCase().indexOf('/TEST/CONTACTS') >= 0) {
+                $("#contacts").addClass("menu-link-div-selected");
+            }
+            if (location.pathname.toUpperCase().indexOf('/TEST/COLLECTIONS') >= 0) {
+                $("#collections").addClass("menu-link-div-selected");
+            }
+        });
+    </script>
 </head>
 <body>
-    <header>
-    </header>
 
-    <div class="container" style="max-width: 100%;">
+    <nav class="navbar fixed-top navbar-light info-color" style="display: contents;">
+        <a asp-area="" asp-controller="Test" asp-action="Index" class="navbar-brand ps-top-menu-banner"><img class="ps-banner-img" src="~/img/Banner.png" /></a>
+        <button class="navbar-toggler ps-top-menu-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Services">
+                        <div><span class="top-menu-item">SLUŽBY</span></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Team">
+                        <div><span class="top-menu-item">O NÁS</span></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Salon">
+                        <div><span class="top-menu-item">INTERIER</span></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Collections">
+                        <div><span class="top-menu-item">KOLEKCE</span></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Contacts">
+                        <div><span class="top-menu-item">KONTAKT</span></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 100%; position: relative; overflow: hidden;">
         <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
-            @RenderBody()
+        <main role="main" class="pb-3" style="width: 100%; height: 100vh; overflow: hidden; display: inline-flex;">
+            <div class="ps-left-menu" style="width: 150px;">
+                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Services">
+                    <div id="services" class="menu-link-div"><span class="main-menu-item">SLUŽBY</span></div>
+                </a>
+                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Team">
+                    <div id="team" class="menu-link-div"><span class="main-menu-item">O NÁS</span></div>
+                </a>
+                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Salon">
+                    <div id="salon" class="menu-link-div"><span class="main-menu-item">INTERIER</span></div>
+                </a>
+                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Collections">
+                    <div id="collections" class="menu-link-div"><span class="main-menu-item">KOLEKCE</span></div>
+                </a>
+                <a class="nav-link text-dark menu-link" asp-area="" asp-controller="Test" asp-action="Contacts">
+                    <div id="contacts" class="menu-link-div"><span class="main-menu-item">KONTAKT</span></div>
+                </a>
+            </div>
+            <div class="ps-content" style="margin-left: -10px;">
+                @RenderBody()
+            </div>
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-0 col-sm-0 col-0">
-                    <span class="menu-button">&copy; PRAGsalon - Copyright 2019</span>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -58,7 +123,6 @@
         </script>
     </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <link rel="stylesheet" href="~/css/admin-page.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
     @RenderSection("Scripts", required: false)

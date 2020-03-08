@@ -67,6 +67,11 @@ header {
         padding: 10px;
     }
 
+    .ps-top-menu-banner-index {
+        text-align: left !important;
+        width: 77%;
+    }
+
     .ps-top-menu-banner {
         text-align: left !important;
         width: 77%;
@@ -105,6 +110,53 @@ header {
     .ps-text-title {
         font-size: 14px;
     }
+    .page-content-template {
+        margin-left: 0px;
+    }
+    .page-content-table {
+        width: 95%;
+        text-align: left;
+    }
+    .price-section-row {
+        border-bottom: 1px solid gray;
+        height: 60px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .price-row {
+        height: 35px;
+        font-size: 16px;
+    }
+    .summary-row {
+        width: 100%;
+        margin-top: 30px;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .brand-titles {
+        width: 100%;
+        margin-top: 35px;
+        text-align: left;
+        font-size: 20px;
+        display: inline-block;
+    }
+
+    .brand-icons {
+        width: 100%;
+        display: inline-flex;
+        height: 330px;
+        margin-bottom: -50px;
+        text-align: center;
+    }
+
+    .price-brands {
+        width: 100%;
+        margin-top: 50px;
+        display: block;
+        text-align: left;
+    }
 }
 
 /* Tablet Styles */
@@ -124,15 +176,19 @@ header {
     .ps-left-menu {
         display: block;
         width: 20%;
-        margin-top: 30px;
+        margin-top: 50px;
     }
 
     .ps-top-menu-div {
         display: none;
     }
 
-    .ps-top-menu-banner {
+    .ps-top-menu-banner-index {
         width: 100%;
+    }
+
+    .ps-top-menu-banner {
+        width: 300px;
     }
 
     .ps-top-menu-button {
@@ -167,6 +223,51 @@ header {
     .ps-text-title {
         font-size: 16px;
     }
+    .page-content-template {
+        margin-left: 50px;
+    }
+    .page-content-table {
+        width: 90%;
+        text-align: left;
+    }
+    .price-section-row {
+        border-bottom: 1px solid gray;
+        height: 60px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .price-row {
+        height: 35px;
+        font-size: 18px;
+    }
+    .summary-row {
+        margin-top: 30px;
+        text-align: left;
+        font-size: 20px;
+    }
+
+    .brand-titles {
+        width: 35%;
+        margin-top: 35px;
+        text-align: left;
+        font-size: 20px;
+        display: inline-block;
+    }
+
+    .brand-icons {
+        width: 50%;
+        display: inline-flex;
+        height: 330px;
+        margin-bottom: -50px;
+        text-align: center;
+    }
+
+    .price-brands {
+        margin-top: 30px;
+        display: block;
+        text-align: left;
+    }
 }
 
 /* Tablet Styles */
@@ -186,15 +287,19 @@ header {
     .ps-left-menu {
         display: block;
         width: 20%;
-        margin-top: 25px;
+        margin-top: 70px;
     }
 
     .ps-top-menu-div {
         display: none;
     }
 
-    .ps-top-menu-banner {
+    .ps-top-menu-banner-index {
         width: 100%;
+    }
+
+    .ps-top-menu-banner {
+        width: 300px;
     }
 
     .ps-top-menu-button {
@@ -229,6 +334,51 @@ header {
     .ps-text-title {
         font-size: 18px;
     }
+    .page-content-template {
+        margin-left: 50px;
+    }
+    .page-content-table {
+        width: 80%;
+        text-align: left;
+    }
+    .price-section-row {
+        border-bottom: 1px solid gray;
+        height: 60px;
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    .price-row {
+        height: 35px;
+        font-size: 20px;
+    }
+    .summary-row {
+        margin-top: 30px;
+        text-align: left;
+        font-size: 20px;
+    }
+
+    .brand-titles {
+        width: 35%;
+        margin-top: 35px;
+        text-align: left;
+        font-size: 20px;
+        display: inline-block;
+    }
+
+    .brand-icons {
+        width: 50%;
+        display: inline-flex;
+        height: 330px;
+        margin-bottom: -50px;
+        text-align: center;
+    }
+
+    .price-brands {
+        margin-top: 50px;
+        display: block;
+        text-align: left;
+    }
 }
 
 /* Desktop Styles */
@@ -248,15 +398,19 @@ header {
     .ps-left-menu {
         display: block;
         width: 20%;
-        margin-top: 120px;
+        margin-top: 220px;
     }
 
     .ps-top-menu-div {
         display: none;
     }
 
-    .ps-top-menu-banner {
+    .ps-top-menu-banner-index {
         width: 100%;
+    }
+
+    .ps-top-menu-banner {
+        width: 300px;
     }
 
     .ps-top-menu-button {
@@ -290,6 +444,50 @@ header {
 
     .ps-text-title {
         font-size: 22px;
+    }
+    .page-content-template {
+        margin-left: 100px;
+    }
+    .page-content-table {
+        width: 80%;
+        text-align: left;
+    }
+    .price-section-row {
+        border-bottom: 1px solid gray;
+        height: 60px;
+        font-size: 22px;
+        font-weight: 600;
+    }
+    .price-section-subrow {
+        height: 10px;
+    }
+    .price-row {
+        height: 35px;
+        font-size: 20px;
+    }
+    .summary-row {
+        margin-top: 30px;
+        text-align: left;
+        font-size: 20px;
+    }
+    .brand-titles {
+        width: 35%;
+        margin-top: 35px;
+        text-align: left;
+        font-size: 20px;
+        display: inline-block;
+    }
+    .brand-icons {
+        width: 50%;
+        display: inline-flex;
+        height: 330px;
+        margin-bottom: -50px;
+        text-align: center;
+    }
+    .price-brands {
+        margin-top: 50px;
+        display: block;
+        text-align: left;
     }
 }
 
